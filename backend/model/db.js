@@ -133,123 +133,72 @@ export async function syncAllNations(existingClient = null) {
 
   const shouldRelease = !existingClient;
   try {
-    await client.query('BEGIN');
-    let insertedCount = 0;
-    let updatedCount = 0;
+    const escapeSql = (str) => {
+      if (str === null || str === undefined) return "''";
+      return "'" + String(str).replace(/'/g, "''") + "'";
+    };
 
-    for (const country of initialCountries) {
-      // Check existing by id or code to avoid duplicate key conflicts
-      const existing = await client.query(
-        'SELECT id, code FROM countries WHERE id = $1 OR code = $2',
-        [country.id, country.code]
-      );
+    const rows = initialCountries.map(c => {
+      return '(' + [
+        escapeSql(c.id),
+        escapeSql(c.name),
+        escapeSql(c.officialName || c.name),
+        escapeSql(c.code),
+        escapeSql(c.flag),
+        escapeSql(c.flagSvg || c.flag),
+        escapeSql(c.capital),
+        escapeSql(c.population),
+        c.populationNum || 0,
+        escapeSql(c.gdp),
+        c.gdpNum || 0,
+        escapeSql(c.perCapitaIncome),
+        c.perCapitaNum || 0,
+        escapeSql(c.currency),
+        escapeSql(c.region),
+        escapeSql(c.languages || 'English'),
+        escapeSql(c.bestTimeToVisit || 'Year-round'),
+        escapeSql(c.climate || 'Temperate'),
+        escapeSql(c.description || '')
+      ].join(', ') + ')';
+    });
 
-      if (existing.rows.length > 0) {
-        await client.query(
-          `UPDATE countries SET
-            name = $2,
-            official_name = $3,
-            flag = $4,
-            flag_svg = $5,
-            capital = $6,
-            population = $7,
-            population_num = $8,
-            gdp = $9,
-            gdp_num = $10,
-            per_capita_income = $11,
-            per_capita_num = $12,
-            currency = $13,
-            region = $14,
-            languages = $15,
-            best_time_to_visit = $16,
-            climate = $17,
-            description = $18,
-            updated_at = CURRENT_TIMESTAMP
-          WHERE id = $1 OR code = $19`,
-          [
-            existing.rows[0].id,
-            country.name,
-            country.officialName,
-            country.flag,
-            country.flagSvg,
-            country.capital,
-            country.population,
-            country.populationNum || 0,
-            country.gdp,
-            country.gdpNum || 0,
-            country.perCapitaIncome,
-            country.perCapitaNum || 0,
-            country.currency,
-            country.region,
-            country.languages,
-            country.bestTimeToVisit,
-            country.climate,
-            country.description,
-            country.code
-          ]
-        );
-        updatedCount++;
-      } else {
-        await client.query(
-          `INSERT INTO countries 
-            (id, name, official_name, code, flag, flag_svg, capital, population, population_num, gdp, gdp_num, per_capita_income, per_capita_num, currency, region, languages, best_time_to_visit, climate, description)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
-           ON CONFLICT (id) DO NOTHING`,
-          [
-            country.id,
-            country.name,
-            country.officialName,
-            country.code,
-            country.flag,
-            country.flagSvg,
-            country.capital,
-            country.population,
-            country.populationNum || 0,
-            country.gdp,
-            country.gdpNum || 0,
-            country.perCapitaIncome,
-            country.perCapitaNum || 0,
-            country.currency,
-            country.region,
-            country.languages,
-            country.bestTimeToVisit,
-            country.climate,
-            country.description,
-          ]
-        );
-        insertedCount++;
-      }
+    const bulkSql = `
+      INSERT INTO countries (
+        id, name, official_name, code, flag, flag_svg, capital, population, 
+        population_num, gdp, gdp_num, per_capita_income, per_capita_num, 
+        currency, region, languages, best_time_to_visit, climate, description
+      )
+      VALUES ${rows.join(',\n')}
+      ON CONFLICT (id) DO UPDATE SET
+        name = EXCLUDED.name,
+        official_name = EXCLUDED.official_name,
+        code = EXCLUDED.code,
+        flag = EXCLUDED.flag,
+        flag_svg = EXCLUDED.flag_svg,
+        capital = EXCLUDED.capital,
+        population = EXCLUDED.population,
+        population_num = EXCLUDED.population_num,
+        gdp = EXCLUDED.gdp,
+        gdp_num = EXCLUDED.gdp_num,
+        per_capita_income = EXCLUDED.per_capita_income,
+        per_capita_num = EXCLUDED.per_capita_num,
+        currency = EXCLUDED.currency,
+        region = EXCLUDED.region,
+        languages = EXCLUDED.languages,
+        best_time_to_visit = EXCLUDED.best_time_to_visit,
+        climate = EXCLUDED.climate,
+        description = EXCLUDED.description,
+        updated_at = CURRENT_TIMESTAMP
+    `;
 
-      if (Array.isArray(country.attractions)) {
-        for (const att of country.attractions) {
-          await client.query(
-            `INSERT INTO attractions (id, country_id, name, location, category, image, why_famous, specs)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-             ON CONFLICT (id) DO NOTHING`,
-            [
-              att.id,
-              country.id,
-              att.name,
-              att.location,
-              att.category,
-              att.image,
-              att.whyFamous,
-              JSON.stringify(att.specs || {}),
-            ]
-          );
-        }
-      }
-    }
-
-    await client.query('COMMIT');
+    await client.query(bulkSql);
     const finalCountRes = await client.query('SELECT COUNT(*) FROM countries');
     const finalCount = parseInt(finalCountRes.rows[0].count, 10);
-    console.log(`[Database] Synchronization complete. Total nations in PostgreSQL: ${finalCount} (Inserted: ${insertedCount}, Updated: ${updatedCount})`);
+    console.log(`[Database] Fast Bulk Sync Complete! Total nations in PostgreSQL: ${finalCount}`);
 
-    return { success: true, count: finalCount, inserted: insertedCount, updated: updatedCount };
+    return { success: true, count: finalCount };
   } catch (err) {
-    await client.query('ROLLBACK');
-    console.error('[Database Sync Error]:', err.message);
+    console.error('[Database Bulk Sync Error]:', err.message);
     throw err;
   } finally {
     if (shouldRelease) {
