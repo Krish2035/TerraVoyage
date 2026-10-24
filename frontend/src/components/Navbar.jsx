@@ -79,7 +79,98 @@ export default function Navbar({
       </div>
 
       <div className="navbar-right">
-        {/* Language Selector Dropdown */}
+        {/* PWA Install Button */}
+        {canInstallPwa && (
+          <button
+            onClick={onInstallApp}
+            className="btn-nav-action btn-nav-pwa"
+            title="Install TerraVoyage as a Desktop/Mobile App (Offline Enabled)"
+            id="btn-install-pwa"
+          >
+            <Download size={14} className="text-cyan" />
+            <span className="nav-btn-text">{t('installApp')}</span>
+          </button>
+        )}
+
+        {/* Cloud Account Sync Action */}
+        <button
+          onClick={onOpenAuthModal}
+          className="btn-nav-action btn-nav-cloud"
+          title="Open Cloud Account & Backup Vault"
+          id="btn-nav-cloud-user"
+        >
+          <Cloud size={15} className="text-cyan" />
+          <span className="nav-btn-text">{t('cloudAccount')}</span>
+        </button>
+
+        {/* Social Share Trip Action */}
+        <button
+          onClick={onOpenShareModal}
+          className="btn-nav-action"
+          title="Share Itinerary, Landmarks & QR Code"
+          id="btn-nav-share-trip"
+        >
+          <Share2 size={15} className="text-emerald" />
+          <span className="nav-btn-text">{t('shareTrip')}</span>
+        </button>
+
+        {/* Wanderlust Trivia Quiz Action */}
+        <button
+          onClick={onOpenQuiz}
+          className="btn-nav-action"
+          title="Play Wanderlust Geography & Landmark Quiz"
+          id="btn-nav-quiz"
+        >
+          <HelpCircle size={15} className="text-purple" />
+          <span className="nav-btn-text">{t('quiz')}</span>
+        </button>
+
+        {/* World Explorer Passport Action */}
+        <button
+          onClick={onOpenPassport}
+          className="btn-nav-action btn-nav-passport"
+          title="Open My World Explorer Passport & Travel Bucket List"
+          id="btn-nav-passport"
+        >
+          <Award size={15} className="text-gold" />
+          <span className="nav-btn-text">{t('passport')}</span>
+        </button>
+
+        {/* Compare Nations Action */}
+        <button 
+          onClick={onOpenCompare}
+          className="btn-nav-action"
+          title="Compare nations side-by-side"
+          id="btn-nav-compare"
+        >
+          <Scale size={15} />
+          <span className="nav-btn-text">{t('compare')}</span>
+        </button>
+
+        {/* Travel Itinerary Drawer Action */}
+        <button 
+          onClick={onOpenItinerary}
+          className="btn-nav-action btn-nav-itinerary"
+          title="Open Travel Itinerary Drawer"
+          id="btn-nav-itinerary"
+        >
+          <Luggage size={15} />
+          <span className="nav-btn-text">{t('myTrip')}</span>
+          {itineraryCount > 0 && (
+            <span className="nav-badge-count">{itineraryCount}</span>
+          )}
+        </button>
+
+        <button 
+          onClick={onOpenAddCountry}
+          className="btn-primary"
+          id="btn-add-country"
+        >
+          <Plus size={16} />
+          <span className="nav-btn-text">{t('addCountry')}</span>
+        </button>
+
+        {/* Language Selector Dropdown - Elegantly Placed at Far Right Utilities */}
         <div className="lang-selector-box" title="Change Interface Language">
           <Languages size={14} className="lang-icon" />
           <select 
@@ -96,97 +187,6 @@ export default function Navbar({
           </select>
         </div>
 
-        {/* PWA Install Button */}
-        {canInstallPwa && (
-          <button
-            onClick={onInstallApp}
-            className="btn-nav-action btn-nav-pwa"
-            title="Install TerraVoyage as a Desktop/Mobile App (Offline Enabled)"
-            id="btn-install-pwa"
-          >
-            <Download size={14} className="text-cyan" />
-            <span>{t('installApp')}</span>
-          </button>
-        )}
-
-        {/* Cloud Account Sync Action */}
-        <button
-          onClick={onOpenAuthModal}
-          className="btn-nav-action btn-nav-cloud"
-          title="Open Cloud Account & Backup Vault"
-          id="btn-nav-cloud-user"
-        >
-          <Cloud size={15} className="text-cyan" />
-          <span>{t('cloudAccount')}</span>
-        </button>
-
-        {/* Social Share Trip Action */}
-        <button
-          onClick={onOpenShareModal}
-          className="btn-nav-action"
-          title="Share Itinerary, Landmarks & QR Code"
-          id="btn-nav-share-trip"
-        >
-          <Share2 size={15} className="text-emerald" />
-          <span>{t('shareTrip')}</span>
-        </button>
-
-        {/* Wanderlust Trivia Quiz Action */}
-        <button
-          onClick={onOpenQuiz}
-          className="btn-nav-action"
-          title="Play Wanderlust Geography & Landmark Quiz"
-          id="btn-nav-quiz"
-        >
-          <HelpCircle size={15} className="text-purple" />
-          <span>{t('quiz')}</span>
-        </button>
-
-        {/* World Explorer Passport Action */}
-        <button
-          onClick={onOpenPassport}
-          className="btn-nav-action btn-nav-passport"
-          title="Open My World Explorer Passport & Travel Bucket List"
-          id="btn-nav-passport"
-        >
-          <Award size={15} className="text-gold" />
-          <span>{t('passport')}</span>
-        </button>
-
-        {/* Compare Nations Action */}
-        <button 
-          onClick={onOpenCompare}
-          className="btn-nav-action"
-          title="Compare nations side-by-side"
-          id="btn-nav-compare"
-        >
-          <Scale size={15} />
-          <span>{t('compare')}</span>
-        </button>
-
-        {/* Travel Itinerary Drawer Action */}
-        <button 
-          onClick={onOpenItinerary}
-          className="btn-nav-action btn-nav-itinerary"
-          title="Open Travel Itinerary Drawer"
-          id="btn-nav-itinerary"
-        >
-          <Luggage size={15} />
-          <span>{t('myTrip')}</span>
-          {itineraryCount > 0 && (
-            <span className="nav-badge-count">{itineraryCount}</span>
-          )}
-        </button>
-
-        <button 
-          onClick={onOpenAddCountry}
-          className="btn-primary"
-          id="btn-add-country"
-        >
-          <Plus size={16} />
-          <span>{t('addCountry')}</span>
-        </button>
-
         <button 
           onClick={onToggleTheme} 
           className="btn-icon" 
@@ -202,16 +202,24 @@ export default function Navbar({
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.9rem 1.6rem;
+          padding: 0.8rem 1.5rem;
           margin-bottom: 0.5rem;
           position: sticky;
           top: 1rem;
           z-index: 50;
+          gap: 1.25rem;
         }
-        .navbar-left, .navbar-right {
+        .navbar-left {
           display: flex;
           align-items: center;
-          gap: 1.25rem;
+          gap: 1rem;
+          flex-shrink: 0;
+        }
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+          flex-wrap: nowrap;
         }
         .navbar-brand {
           display: flex;
@@ -300,15 +308,16 @@ export default function Navbar({
         .btn-primary {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.55rem 1.15rem;
+          gap: 0.4rem;
+          padding: 0.48rem 0.95rem;
           border-radius: var(--radius-md);
           background: linear-gradient(135deg, #6366f1, #4f46e5);
           color: #ffffff;
           font-weight: 600;
-          font-size: 0.88rem;
+          font-size: 0.84rem;
           transition: var(--transition-fast);
           box-shadow: 0 4px 14px var(--accent-glow);
+          white-space: nowrap;
         }
         .btn-primary:hover {
           background: linear-gradient(135deg, #4f46e5, #4338ca);
@@ -316,8 +325,8 @@ export default function Navbar({
           box-shadow: 0 6px 20px var(--accent-glow);
         }
         .btn-icon {
-          width: 38px;
-          height: 38px;
+          width: 36px;
+          height: 36px;
           border-radius: var(--radius-md);
           background: var(--bg-card);
           border: 1px solid var(--border-subtle);
@@ -326,21 +335,23 @@ export default function Navbar({
           align-items: center;
           justify-content: center;
           transition: var(--transition-fast);
+          flex-shrink: 0;
         }
         .btn-nav-action {
           display: inline-flex;
           align-items: center;
-          gap: 0.45rem;
-          padding: 0.52rem 0.95rem;
+          gap: 0.35rem;
+          padding: 0.45rem 0.72rem;
           border-radius: var(--radius-md);
           background: var(--bg-card);
           border: 1px solid var(--border-subtle);
           color: var(--text-primary);
           font-weight: 600;
-          font-size: 0.84rem;
+          font-size: 0.82rem;
           cursor: pointer;
           transition: var(--transition-fast);
           position: relative;
+          white-space: nowrap;
         }
         .btn-nav-action:hover {
           background: rgba(99, 102, 241, 0.15);
@@ -377,6 +388,7 @@ export default function Navbar({
           border-radius: var(--radius-md);
           padding: 0.3rem 0.55rem;
           transition: var(--transition-fast);
+          flex-shrink: 0;
         }
         .lang-selector-box:hover {
           border-color: #38bdf8;
@@ -416,12 +428,28 @@ export default function Navbar({
           background: #4f46e5;
           color: #ffffff;
         }
-        @media (max-width: 640px) {
+        @media (max-width: 1400px) {
+          .btn-nav-action .nav-btn-text {
+            display: none;
+          }
+          .btn-nav-itinerary .nav-btn-text {
+            display: inline;
+          }
+          .btn-nav-action {
+            padding: 0.44rem 0.58rem;
+          }
+        }
+        @media (max-width: 1120px) {
           .arch-badge {
             display: none;
           }
+        }
+        @media (max-width: 768px) {
           .brand-subtitle {
             display: none;
+          }
+          .navbar-wrapper {
+            padding: 0.6rem 0.9rem;
           }
         }
       `}</style>
