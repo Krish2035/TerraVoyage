@@ -11,13 +11,16 @@ async function startServer() {
   console.log(`📐 Architecture Pillars: Active (112 Production Parameters)`);
   console.log('='.repeat(60));
 
-  // Initialize Database with circuit breaker & schema migration
-  await initDb();
+  // Bind server immediately to 0.0.0.0 so Render detects open port instantly (Pillars 85, 10)
+  server.listen(config.port, '0.0.0.0', () => {
+    console.log(`[Server] Live on http://0.0.0.0:${config.port}`);
+    console.log(`[Server] API v1: http://0.0.0.0:${config.port}/api/v1/countries`);
+    console.log(`[Server] Health Check: http://0.0.0.0:${config.port}/api/v1/health`);
+  });
 
-  server.listen(config.port, () => {
-    console.log(`[Server] Live on http://localhost:${config.port}`);
-    console.log(`[Server] API v1: http://localhost:${config.port}/api/v1/countries`);
-    console.log(`[Server] Health Check: http://localhost:${config.port}/api/v1/health`);
+  // Initialize Database in background without blocking port listener
+  initDb().catch(err => {
+    console.error('[Database Init Warning]:', err.message);
   });
 }
 

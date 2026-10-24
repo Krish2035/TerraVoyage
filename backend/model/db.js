@@ -108,54 +108,61 @@ export async function initDb() {
     const checkCount = await client.query('SELECT COUNT(*) FROM countries');
     if (parseInt(checkCount.rows[0].count, 10) === 0) {
       console.log('[Database] Seeding initial countries and attractions into PostgreSQL...');
-      for (const country of hydratedCountries) {
-        await client.query(
-          `INSERT INTO countries 
-            (id, name, official_name, code, flag, flag_svg, capital, population, population_num, gdp, gdp_num, per_capita_income, per_capita_num, currency, region, languages, best_time_to_visit, climate, description)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
-           ON CONFLICT (id) DO NOTHING`,
-          [
-            country.id,
-            country.name,
-            country.officialName,
-            country.code,
-            country.flag,
-            country.flagSvg,
-            country.capital,
-            country.population,
-            country.populationNum || 0,
-            country.gdp,
-            country.gdpNum || 0,
-            country.perCapitaIncome,
-            country.perCapitaNum || 0,
-            country.currency,
-            country.region,
-            country.languages,
-            country.bestTimeToVisit,
-            country.climate,
-            country.description,
-          ]
-        );
-
-        for (const att of country.attractions || []) {
+      await client.query('BEGIN');
+      try {
+        for (const country of hydratedCountries) {
           await client.query(
-            `INSERT INTO attractions (id, country_id, name, location, category, image, why_famous, specs)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            `INSERT INTO countries 
+              (id, name, official_name, code, flag, flag_svg, capital, population, population_num, gdp, gdp_num, per_capita_income, per_capita_num, currency, region, languages, best_time_to_visit, climate, description)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
              ON CONFLICT (id) DO NOTHING`,
             [
-              att.id,
               country.id,
-              att.name,
-              att.location,
-              att.category,
-              att.image,
-              att.whyFamous,
-              JSON.stringify(att.specs || {}),
+              country.name,
+              country.officialName,
+              country.code,
+              country.flag,
+              country.flagSvg,
+              country.capital,
+              country.population,
+              country.populationNum || 0,
+              country.gdp,
+              country.gdpNum || 0,
+              country.perCapitaIncome,
+              country.perCapitaNum || 0,
+              country.currency,
+              country.region,
+              country.languages,
+              country.bestTimeToVisit,
+              country.climate,
+              country.description,
             ]
           );
+
+          for (const att of country.attractions || []) {
+            await client.query(
+              `INSERT INTO attractions (id, country_id, name, location, category, image, why_famous, specs)
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+               ON CONFLICT (id) DO NOTHING`,
+              [
+                att.id,
+                country.id,
+                att.name,
+                att.location,
+                att.category,
+                att.image,
+                att.whyFamous,
+                JSON.stringify(att.specs || {}),
+              ]
+            );
+          }
         }
+        await client.query('COMMIT');
+        console.log('[Database] Seeding complete.');
+      } catch (seedErr) {
+        await client.query('ROLLBACK');
+        console.error('[Database Seed Warning]:', seedErr.message);
       }
-      console.log('[Database] Seeding complete.');
     }
 
     client.release();
