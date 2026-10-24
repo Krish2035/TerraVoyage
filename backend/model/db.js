@@ -104,65 +104,14 @@ export async function initDb() {
       CREATE INDEX IF NOT EXISTS idx_attractions_country_id ON attractions(country_id);
     `);
 
-    // Seed PostgreSQL if empty (Idempotency - Pillar 14)
+    // Seed / Synchronize all 195 nations into PostgreSQL (Pillars 14, 82)
     const checkCount = await client.query('SELECT COUNT(*) FROM countries');
-    if (parseInt(checkCount.rows[0].count, 10) === 0) {
-      console.log('[Database] Seeding initial countries and attractions into PostgreSQL...');
-      await client.query('BEGIN');
-      try {
-        for (const country of hydratedCountries) {
-          await client.query(
-            `INSERT INTO countries 
-              (id, name, official_name, code, flag, flag_svg, capital, population, population_num, gdp, gdp_num, per_capita_income, per_capita_num, currency, region, languages, best_time_to_visit, climate, description)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
-             ON CONFLICT (id) DO NOTHING`,
-            [
-              country.id,
-              country.name,
-              country.officialName,
-              country.code,
-              country.flag,
-              country.flagSvg,
-              country.capital,
-              country.population,
-              country.populationNum || 0,
-              country.gdp,
-              country.gdpNum || 0,
-              country.perCapitaIncome,
-              country.perCapitaNum || 0,
-              country.currency,
-              country.region,
-              country.languages,
-              country.bestTimeToVisit,
-              country.climate,
-              country.description,
-            ]
-          );
+    const existingCount = parseInt(checkCount.rows[0].count, 10);
+    console.log(`[Database] PostgreSQL current country count: ${existingCount} (Expected: ${hydratedCountries.length})`);
 
-          for (const att of country.attractions || []) {
-            await client.query(
-              `INSERT INTO attractions (id, country_id, name, location, category, image, why_famous, specs)
-               VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-               ON CONFLICT (id) DO NOTHING`,
-              [
-                att.id,
-                country.id,
-                att.name,
-                att.location,
-                att.category,
-                att.image,
-                att.whyFamous,
-                JSON.stringify(att.specs || {}),
-              ]
-            );
-          }
-        }
-        await client.query('COMMIT');
-        console.log('[Database] Seeding complete.');
-      } catch (seedErr) {
-        await client.query('ROLLBACK');
-        console.error('[Database Seed Warning]:', seedErr.message);
-      }
+    if (existingCount < hydratedCountries.length) {
+      console.log(`[Database] Auto-synchronizing all ${hydratedCountries.length} countries and attractions into PostgreSQL...`);
+      await syncAllNations(client);
     }
 
     client.release();
@@ -171,6 +120,139 @@ export async function initDb() {
     console.warn(
       `[Database Circuit Breaker - Pillar 10]: PostgreSQL not reachable (${err.message}). Activating in-memory store fallback with ${fallbackStore.countries.length} seeded countries.`
     );
+  }
+}
+
+// Synchronize all 195 nations and their attractions into PostgreSQL (Pillar 14, 82)
+export async function syncAllNations(existingClient = null) {
+  const client = existingClient || (pool ? await pool.connect() : null);
+  if (!client) {
+    console.warn('[Database Sync] Cannot sync: PostgreSQL pool is not connected.');
+    return { success: false, reason: 'database_not_connected', count: fallbackStore.countries.length };
+  }
+
+  const shouldRelease = !existingClient;
+  try {
+    await client.query('BEGIN');
+    let insertedCount = 0;
+    let updatedCount = 0;
+
+    for (const country of hydratedCountries) {
+      // Check existing by id or code to avoid duplicate key conflicts
+      const existing = await client.query(
+        'SELECT id, code FROM countries WHERE id = $1 OR code = $2',
+        [country.id, country.code]
+      );
+
+      if (existing.rows.length > 0) {
+        await client.query(
+          `UPDATE countries SET
+            name = $2,
+            official_name = $3,
+            flag = $4,
+            flag_svg = $5,
+            capital = $6,
+            population = $7,
+            population_num = $8,
+            gdp = $9,
+            gdp_num = $10,
+            per_capita_income = $11,
+            per_capita_num = $12,
+            currency = $13,
+            region = $14,
+            languages = $15,
+            best_time_to_visit = $16,
+            climate = $17,
+            description = $18,
+            updated_at = CURRENT_TIMESTAMP
+          WHERE id = $1 OR code = $19`,
+          [
+            existing.rows[0].id,
+            country.name,
+            country.officialName,
+            country.flag,
+            country.flagSvg,
+            country.capital,
+            country.population,
+            country.populationNum || 0,
+            country.gdp,
+            country.gdpNum || 0,
+            country.perCapitaIncome,
+            country.perCapitaNum || 0,
+            country.currency,
+            country.region,
+            country.languages,
+            country.bestTimeToVisit,
+            country.climate,
+            country.description,
+            country.code
+          ]
+        );
+        updatedCount++;
+      } else {
+        await client.query(
+          `INSERT INTO countries 
+            (id, name, official_name, code, flag, flag_svg, capital, population, population_num, gdp, gdp_num, per_capita_income, per_capita_num, currency, region, languages, best_time_to_visit, climate, description)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
+           ON CONFLICT (id) DO NOTHING`,
+          [
+            country.id,
+            country.name,
+            country.officialName,
+            country.code,
+            country.flag,
+            country.flagSvg,
+            country.capital,
+            country.population,
+            country.populationNum || 0,
+            country.gdp,
+            country.gdpNum || 0,
+            country.perCapitaIncome,
+            country.perCapitaNum || 0,
+            country.currency,
+            country.region,
+            country.languages,
+            country.bestTimeToVisit,
+            country.climate,
+            country.description,
+          ]
+        );
+        insertedCount++;
+      }
+
+      for (const att of country.attractions || []) {
+        await client.query(
+          `INSERT INTO attractions (id, country_id, name, location, category, image, why_famous, specs)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+           ON CONFLICT (id) DO NOTHING`,
+          [
+            att.id,
+            country.id,
+            att.name,
+            att.location,
+            att.category,
+            att.image,
+            att.whyFamous,
+            JSON.stringify(att.specs || {}),
+          ]
+        );
+      }
+    }
+
+    await client.query('COMMIT');
+    const finalCountRes = await client.query('SELECT COUNT(*) FROM countries');
+    const finalCount = parseInt(finalCountRes.rows[0].count, 10);
+    console.log(`[Database] Synchronization complete. Total nations in PostgreSQL: ${finalCount} (Inserted: ${insertedCount}, Updated: ${updatedCount})`);
+
+    return { success: true, count: finalCount, inserted: insertedCount, updated: updatedCount };
+  } catch (err) {
+    await client.query('ROLLBACK');
+    console.error('[Database Sync Error]:', err.message);
+    throw err;
+  } finally {
+    if (shouldRelease) {
+      client.release();
+    }
   }
 }
 

@@ -1,7 +1,14 @@
 import { CountryModel } from '../model/country.model.js';
 import { cacheService } from './cache.service.js';
+import { syncAllNations } from '../model/db.js';
 
 export const CountryService = {
+  async syncAllCountries() {
+    const result = await syncAllNations();
+    // Flush cache so next request fetches complete 195 nations
+    cacheService.invalidatePattern('countries');
+    return result;
+  },
   async getAllCountries(filters = {}) {
     const cacheKey = `countries:list:${JSON.stringify(filters)}`;
     const cached = cacheService.get(cacheKey);

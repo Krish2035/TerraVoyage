@@ -53,5 +53,19 @@ export const CountryController = {
     } catch (err) {
       next(err);
     }
+  },
+
+  // GET / POST /api/v1/countries/sync/all
+  async syncAllCountries(req, res, next) {
+    try {
+      const result = await CountryService.syncAllCountries();
+      return res.status(200).json({
+        success: true,
+        message: 'Synchronization triggered across all 195 nations and destinations',
+        ...result
+      });
+    } catch (err) {
+      next(err);
+    }
   }
 };
