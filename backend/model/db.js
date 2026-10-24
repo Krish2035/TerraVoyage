@@ -137,7 +137,7 @@ export async function syncAllNations(existingClient = null) {
     let insertedCount = 0;
     let updatedCount = 0;
 
-    for (const country of hydratedCountries) {
+    for (const country of initialCountries) {
       // Check existing by id or code to avoid duplicate key conflicts
       const existing = await client.query(
         'SELECT id, code FROM countries WHERE id = $1 OR code = $2',
@@ -220,22 +220,24 @@ export async function syncAllNations(existingClient = null) {
         insertedCount++;
       }
 
-      for (const att of country.attractions || []) {
-        await client.query(
-          `INSERT INTO attractions (id, country_id, name, location, category, image, why_famous, specs)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-           ON CONFLICT (id) DO NOTHING`,
-          [
-            att.id,
-            country.id,
-            att.name,
-            att.location,
-            att.category,
-            att.image,
-            att.whyFamous,
-            JSON.stringify(att.specs || {}),
-          ]
-        );
+      if (Array.isArray(country.attractions)) {
+        for (const att of country.attractions) {
+          await client.query(
+            `INSERT INTO attractions (id, country_id, name, location, category, image, why_famous, specs)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+             ON CONFLICT (id) DO NOTHING`,
+            [
+              att.id,
+              country.id,
+              att.name,
+              att.location,
+              att.category,
+              att.image,
+              att.whyFamous,
+              JSON.stringify(att.specs || {}),
+            ]
+          );
+        }
       }
     }
 
