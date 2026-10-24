@@ -189,45 +189,48 @@ export default function Navbar({
           <span className="nav-btn-text">{t('addCountry')}</span>
         </button>
 
-        {/* Language Selector Dropdown (Desktop) */}
-        <div className="lang-selector-box desktop-only" title="Change Interface Language">
-          <Languages size={14} className="lang-icon" />
-          <select 
-            value={currentLang} 
-            onChange={(e) => changeLanguage(e.target.value)}
-            className="lang-select-dropdown"
-            id="select-language"
+        {/* Global Controls: Language, Theme & Mobile Navigation */}
+        <div className="navbar-controls-group">
+          {/* Language Selector Dropdown (Desktop) */}
+          <div className="lang-selector-box desktop-only" title="Change Interface Language">
+            <Languages size={14} className="lang-icon" />
+            <select 
+              value={currentLang} 
+              onChange={(e) => changeLanguage(e.target.value)}
+              className="lang-select-dropdown"
+              id="select-language"
+            >
+              {languages.map((l) => (
+                <option key={l.code} value={l.code}>
+                  {l.flag} {l.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Theme Toggle - Always visible */}
+          <button 
+            onClick={onToggleTheme} 
+            className="btn-icon" 
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            id="btn-theme-toggle"
           >
-            {languages.map((l) => (
-              <option key={l.code} value={l.code}>
-                {l.flag} {l.label}
-              </option>
-            ))}
-          </select>
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          {/* Mobile & Tablet Hamburger Menu Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="btn-icon btn-mobile-menu-toggle"
+            title={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+            id="btn-mobile-menu"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X size={20} className="text-cyan" /> : <Menu size={20} />}
+          </button>
         </div>
-
-        {/* Theme Toggle - Always visible */}
-        <button 
-          onClick={onToggleTheme} 
-          className="btn-icon" 
-          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          id="btn-theme-toggle"
-        >
-          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-        </button>
-
-        {/* Mobile & Tablet Hamburger Menu Toggle Button */}
-        <button
-          type="button"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="btn-icon btn-mobile-menu-toggle"
-          title={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-          id="btn-mobile-menu"
-          aria-label="Toggle navigation menu"
-          aria-expanded={isMobileMenuOpen}
-        >
-          {isMobileMenuOpen ? <X size={20} className="text-cyan" /> : <Menu size={20} />}
-        </button>
       </div>
 
       {/* Mobile & Tablet Responsive Navigation Sheet */}
@@ -658,9 +661,19 @@ export default function Navbar({
           color: #38bdf8;
         }
 
-        /* Large Tablet / Small Laptop Viewports (1025px - 1400px) */
-        @media (max-width: 1400px) {
-          .btn-nav-action .nav-btn-text {
+        .navbar-controls-group {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+          flex-shrink: 0;
+          margin-left: 0.35rem;
+          padding-left: 0.55rem;
+          border-left: 1px solid var(--border-subtle);
+        }
+
+        /* Large Screen & Laptop Viewports (<= 1650px) */
+        @media (max-width: 1650px) {
+          .desktop-nav-tool .nav-btn-text {
             display: none;
           }
           .btn-nav-itinerary .nav-btn-text {
@@ -670,7 +683,7 @@ export default function Navbar({
             padding: 0.44rem 0.58rem;
           }
         }
-        @media (max-width: 1180px) {
+        @media (max-width: 1280px) {
           .arch-badge.desktop-only {
             display: none !important;
           }

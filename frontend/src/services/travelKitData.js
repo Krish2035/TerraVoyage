@@ -288,14 +288,26 @@ export function getCountrySpecsKit(country) {
     plugs: isAmericas ? ['Type A', 'Type B'] : (isEurope ? ['Type C', 'Type F'] : ['Type C', 'Type G']),
     voltage: isAmericas ? '110–120 V • 60 Hz' : '220–240 V • 50 Hz',
     drivingSide: (isOceania || ['GB', 'IN', 'JP', 'ZA', 'TH', 'AU', 'NZ', 'SG', 'MY'].includes(code)) ? 'Left Side 🚗' : 'Right Side 🚙',
-    emergency: { police: isEurope ? '112' : '911 / 112', ambulance: isEurope ? '112' : '112', fire: isEurope ? '112' : '112' },
-    tipping: 'Check local hospitality norms. 5–10% is generally welcomed.',
+    emergency: { police: isEurope ? '112' : '911 / 112', ambulance: isEurope ? '112' : '911 / 112', fire: isEurope ? '112' : '911 / 112' },
+    tipping: 'Discretionary tips (5–10%) appreciated for good service.',
     transitCard: 'Local Metro Card & Contactless Bank Card'
   };
 }
 
 // 4. Comprehensive Multi-Language Phrase Packs
 export const LANGUAGE_PACKS = {
+  // 🇦🇫 Afghanistan - Pashto / Dari
+  PASHTO: [
+    { cat: 'Greetings', english: 'Hello', native: 'سلام', phonetic: 'Salam (Sah-lahm)', meaning: 'Universal traditional Afghan greeting', speak: 'سلام', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'ډېره مننه / تشکر', phonetic: 'Dera manana / Tashakor (Deh-rah mah-nah-nah)', meaning: 'Deep polite gratitude in Pashto and Dari', speak: 'ډېره مننه', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' },
+    { cat: 'Greetings', english: 'Excuse me / Please', native: 'لطفاً / بښنه غواړم', phonetic: 'Lutfan / Bakhshana ghwaram', meaning: 'Polite interruption or request', speak: 'مهرباني وکړئ', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' },
+    { cat: 'Dining', english: 'Check / Bill, please', native: 'حساب راکړئ، مهرباني وکړئ', phonetic: 'Hisaab raakrey, mehrabani (Hee-sahb rah-kray)', meaning: 'Asking for dining bill / check', speak: 'حساب راکړئ', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'دا ډېر خوندور دی!', phonetic: 'Daa der khwandawar day! (Dah dare khwan-dah-wahr dai!)', meaning: 'Complimenting Afghan cuisine like Kabuli pulao', speak: 'دا ډېر خوندور دی', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'دا په څو دی؟', phonetic: 'Daa pa tso day? (Dah pah tso dai?)', meaning: 'Bazaar and market price check', speak: 'دا په څو دی؟', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' },
+    { cat: 'Directions', english: 'Where is the station / road?', native: 'لار / تمځای چیرته دی؟', phonetic: 'Laar / Tamzay chirta day? (Lahr / Tahm-zay cheer-tah dai?)', meaning: 'Asking transit directions', speak: 'تمځای چیرته دی؟', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' },
+    { cat: 'Safety', english: 'Please help me! (Emergency)', native: 'مهرباني وکړئ مرسته راسره وکړئ!', phonetic: 'Mehrabani wokrey mrasta raasara wokrey! (Mrasta wokrey!)', meaning: 'Urgent emergency assistance cry', speak: 'مرسته وکړئ!', langCode: 'ps-AF', langName: 'Pashto / Dari (پښتو / دری)' }
+  ],
+
   // 🇨🇳 Mandarin Chinese
   MANDARIN: [
     { cat: 'Greetings', english: 'Hello', native: '你好', phonetic: 'Nǐ hǎo (Nee how)', meaning: 'Universal friendly greeting for anyone', speak: '你好', langCode: 'zh-CN', langName: 'Mandarin Chinese (中文)' },
@@ -524,7 +536,355 @@ export const LANGUAGE_PACKS = {
     { cat: 'Safety', english: 'Help me!', native: 'Hjälp mig!', phonetic: 'Hjälp mig! (Yelp mey!)', meaning: 'Emergency distress', speak: 'Hjälp mig, snälla!', langCode: 'sv-SE', langName: 'Swedish (Svenska)' }
   ],
 
-  // 🇰🇪 / 🇹🇿 Swahili
+  // 🇳🇴 Norwegian
+  NORWEGIAN: [
+    { cat: 'Greetings', english: 'Hello / Good day', native: 'God dag / Hei', phonetic: 'God dag / Hei (Goo dahg / Hey)', meaning: 'Universal friendly Norwegian greeting', speak: 'God dag', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Tusen takk', phonetic: 'Tusen takk (Too-sen tahk)', meaning: 'Expressing warm gratitude', speak: 'Tusen takk', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' },
+    { cat: 'Greetings', english: 'Please', native: 'Vær så snill', phonetic: 'Vær så snill (Vair soh snil)', meaning: 'Polite request', speak: 'Vær så snill', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Regningen, takk', phonetic: 'Regningen, takk (Rayn-ing-en tahk)', meaning: 'Asking for restaurant bill', speak: 'Regningen, takk', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'Dette er nydelig!', phonetic: 'Dette er nydelig! (Det-teh ehr nee-deh-lee!)', meaning: 'Complimenting dining', speak: 'Dette er nydelig!', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'Hva koster dette?', phonetic: 'Hva koster dette? (Vah kos-ter det-teh?)', meaning: 'Inquiring cost', speak: 'Hva koster dette?', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Hvor er stasjonen?', phonetic: 'Hvor er stasjonen? (Vohr ehr stah-shoo-nen?)', meaning: 'Station navigation', speak: 'Hvor er stasjonen?', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' },
+    { cat: 'Safety', english: 'Help me!', native: 'Hjelp meg!', phonetic: 'Hjelp meg! (Yelp may!)', meaning: 'Emergency distress call', speak: 'Hjelp meg!', langCode: 'nb-NO', langName: 'Norwegian (Norsk)' }
+  ],
+
+  // 🇩🇰 Danish
+  DANISH: [
+    { cat: 'Greetings', english: 'Hello / Good day', native: 'Goddag / Hej', phonetic: 'Goddag / Hej (Goh-dah / Hey)', meaning: 'Universal friendly Danish greeting', speak: 'Goddag', langCode: 'da-DK', langName: 'Danish (Dansk)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Mange tak', phonetic: 'Mange tak (Mahn-geh tahk)', meaning: 'Warm gratitude', speak: 'Mange tak', langCode: 'da-DK', langName: 'Danish (Dansk)' },
+    { cat: 'Greetings', english: 'Please', native: 'Vær så venlig', phonetic: 'Vær så venlig (Vair soh ven-lee)', meaning: 'Polite request', speak: 'Vær så venlig', langCode: 'da-DK', langName: 'Danish (Dansk)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Regningen, tak', phonetic: 'Regningen, tak (Rye-ning-en tahk)', meaning: 'Asking for dining bill', speak: 'Regningen, tak', langCode: 'da-DK', langName: 'Danish (Dansk)' },
+    { cat: 'Dining', english: 'It tastes fantastic!', native: 'Det smager fantastisk!', phonetic: 'Det smager fantastisk! (Deh smah-er fahn-tahs-teesk!)', meaning: 'Complimenting Danish cuisine', speak: 'Det smager fantastisk!', langCode: 'da-DK', langName: 'Danish (Dansk)' },
+    { cat: 'Directions', english: 'How much does it cost?', native: 'Hvor meget koster det?', phonetic: 'Hvor meget koster det? (Vohr my-et kos-ter deh?)', meaning: 'Price inquiry', speak: 'Hvor meget koster det?', langCode: 'da-DK', langName: 'Danish (Dansk)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Hvor er stationen?', phonetic: 'Hvor er stationen? (Vohr ehr stah-shoo-nen?)', meaning: 'Station directions', speak: 'Hvor er stationen?', langCode: 'da-DK', langName: 'Danish (Dansk)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Hjælp mig, venligst!', phonetic: 'Hjælp mig! (Yelp my ven-leest!)', meaning: 'Emergency distress', speak: 'Hjælp mig!', langCode: 'da-DK', langName: 'Danish (Dansk)' }
+  ],
+
+  // 🇫🇮 Finland - Finnish
+  FINNISH: [
+    { cat: 'Greetings', english: 'Hello / Good day', native: 'Hyvää päivää / Hei', phonetic: 'Hyvää päivää (Hoo-vaa pie-vaa / Hay)', meaning: 'Universal Finnish greeting', speak: 'Hyvää päivää', langCode: 'fi-FI', langName: 'Finnish (Suomi)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Kiitos paljon', phonetic: 'Kiitos paljon (Kee-toss pahl-yon)', meaning: 'Heartfelt gratitude', speak: 'Kiitos paljon', langCode: 'fi-FI', langName: 'Finnish (Suomi)' },
+    { cat: 'Greetings', english: 'Please / You’re welcome', native: 'Ole hyvä', phonetic: 'Ole hyvä (Oh-leh hoo-vah)', meaning: 'Polite phrase', speak: 'Ole hyvä', langCode: 'fi-FI', langName: 'Finnish (Suomi)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Lasku, kiitos', phonetic: 'Lasku, kiitos (Lahs-koo kee-toss)', meaning: 'Asking for check', speak: 'Lasku, kiitos', langCode: 'fi-FI', langName: 'Finnish (Suomi)' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'Tämä on herkullista!', phonetic: 'Tämä on herkullista! (Tah-ma on her-kool-leesta!)', meaning: 'Complimenting meal', speak: 'Tämä on herkullista!', langCode: 'fi-FI', langName: 'Finnish (Suomi)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Paljonko tämä maksaa?', phonetic: 'Paljonko tämä maksaa? (Pahl-yon-ko tah-ma mahk-sah?)', meaning: 'Price check', speak: 'Paljonko tämä maksaa?', langCode: 'fi-FI', langName: 'Finnish (Suomi)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Missä on asema?', phonetic: 'Missä on asema? (Mees-sa on ah-seh-mah?)', meaning: 'Directions to station', speak: 'Missä on asema?', langCode: 'fi-FI', langName: 'Finnish (Suomi)' },
+    { cat: 'Safety', english: 'Help me!', native: 'Auttakaa!', phonetic: 'Auttakaa! (Ow-tah-kah!)', meaning: 'Emergency distress call', speak: 'Auttakaa!', langCode: 'fi-FI', langName: 'Finnish (Suomi)' }
+  ],
+
+  // 🇺🇦 Ukrainian
+  UKRAINIAN: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Добрий день / Вітаю', phonetic: 'Dobryi den / Vitayu (Doh-briy den)', meaning: 'Polite daytime greeting', speak: 'Добрий день', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Щиро дякую', phonetic: 'Shchyro dyakuyu (Shchih-roh dyah-koo-yoo)', meaning: 'Heartfelt gratitude', speak: 'Дуже дякую', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' },
+    { cat: 'Greetings', english: 'Please / You’re welcome', native: 'Будь ласка', phonetic: 'Bud laska (Bood lah-skah)', meaning: 'Universal polite etiquette', speak: 'Будь ласка', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Рахунок, будь ласка', phonetic: 'Rakhunok, bud laska (Rah-khoo-nok bood lah-skah)', meaning: 'Requesting dining check', speak: 'Рахунок, будь ласка', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' },
+    { cat: 'Dining', english: 'This is very tasty!', native: 'Це дуже смачно!', phonetic: 'Tse duzhe smachno! (Tseh doo-zheh smahch-noh!)', meaning: 'Complimenting traditional borscht or dumplings', speak: 'Це дуже смачно!', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Скільки це коштує?', phonetic: 'Skilky tse koshtuye? (Skeel-kih tseh kosh-too-yeh?)', meaning: 'Price check', speak: 'Скільки це коштує?', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Де знаходиться вокзал?', phonetic: 'De znakhodytsya vokzal? (Deh znah-khoh-dyt-syah vohk-zahl?)', meaning: 'Train / transit location', speak: 'Де знаходиться вокзал?', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Допоможіть, будь ласка!', phonetic: 'Dopomozhit, bud laska! (Doh-poh-moh-zheet bood lah-skah!)', meaning: 'Emergency distress call', speak: 'Допоможіть, будь ласка!', langCode: 'uk-UA', langName: 'Ukrainian (Українська)' }
+  ],
+
+  // 🇨🇿 Czech
+  CZECH: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Dobrý den', phonetic: 'Dobrý den (Doh-bree dehn)', meaning: 'Standard polite greeting', speak: 'Dobrý den', langCode: 'cs-CZ', langName: 'Czech (Čeština)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Děkuji mnohokrát', phonetic: 'Děkuji mnohokrát (Dyeh-koo-yee mnoh-hoh-kraht)', meaning: 'Expressing gratitude', speak: 'Děkuji mnohokrát', langCode: 'cs-CZ', langName: 'Czech (Čeština)' },
+    { cat: 'Greetings', english: 'Please', native: 'Prosím', phonetic: 'Prosím (Praw-seem)', meaning: 'Polite request', speak: 'Prosím', langCode: 'cs-CZ', langName: 'Czech (Čeština)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Účet, prosím', phonetic: 'Účet, prosím (Oo-chet praw-seem)', meaning: 'Asking for check', speak: 'Účet, prosím', langCode: 'cs-CZ', langName: 'Czech (Čeština)' },
+    { cat: 'Dining', english: 'It is delicious!', native: 'Je to výborné!', phonetic: 'Je to výborné! (Yeh toh vee-bor-nay!)', meaning: 'Praising Czech food', speak: 'Je to výborné!', langCode: 'cs-CZ', langName: 'Czech (Čeština)' },
+    { cat: 'Directions', english: 'How much does it cost?', native: 'Kolik to stojí?', phonetic: 'Kolik to stojí? (Koh-lik toh stoy-ee?)', meaning: 'Price check', speak: 'Kolik to stojí?', langCode: 'cs-CZ', langName: 'Czech (Čeština)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Kde je nádraží?', phonetic: 'Kde je nádraží? (Gdeh yeh nah-drah-zhee?)', meaning: 'Train station navigation', speak: 'Kde je nádraží?', langCode: 'cs-CZ', langName: 'Czech (Čeština)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Pomozte mi, prosím!', phonetic: 'Pomozte mi, prosím! (Poh-moz-teh mee praw-seem!)', meaning: 'Emergency distress', speak: 'Pomozte mi, prosím!', langCode: 'cs-CZ', langName: 'Czech (Čeština)' }
+  ],
+
+  // 🇸🇰 Slovak
+  SLOVAK: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Dobrý deň', phonetic: 'Dobrý deň (Doh-bree dehn)', meaning: 'Polite Slovak greeting', speak: 'Dobrý deň', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Ďakujem pekne', phonetic: 'Ďakujem pekne (Dyah-koo-yem pek-neh)', meaning: 'Gratitude', speak: 'Ďakujem pekne', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' },
+    { cat: 'Greetings', english: 'Please', native: 'Prosím', phonetic: 'Prosím (Praw-seem)', meaning: 'Polite etiquette', speak: 'Prosím', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Účet, prosím', phonetic: 'Účet, prosím (Oo-chet praw-seem)', meaning: 'Asking for check', speak: 'Účet, prosím', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' },
+    { cat: 'Dining', english: 'It is delicious!', native: 'Je to vynikajúce!', phonetic: 'Je to vynikajúce! (Yeh toh vih-nee-kah-yoo-tseh!)', meaning: 'Complimenting meal', speak: 'Je to vynikajúce!', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'Koľko to stojí?', phonetic: 'Koľko to stojí? (Kol-koh toh stoy-ee?)', meaning: 'Price inquiry', speak: 'Koľko to stojí?', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Kde je stanica?', phonetic: 'Kde je stanica? (Gdeh yeh stah-nee-tsah?)', meaning: 'Transit navigation', speak: 'Kde je stanica?', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Pomoc, prosím!', phonetic: 'Pomoc, prosím! (Poh-mots praw-seem!)', meaning: 'Emergency distress', speak: 'Pomoc, prosím!', langCode: 'sk-SK', langName: 'Slovak (Slovenčina)' }
+  ],
+
+  // 🇭🇺 Hungarian
+  HUNGARIAN: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Jó napot kívánok', phonetic: 'Jó napot kívánok (Yoh nah-poht kee-vah-nohk)', meaning: 'Polite daytime greeting', speak: 'Jó napot kívánok', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Köszönöm szépen', phonetic: 'Köszönöm szépen (Kuh-suh-nuhm say-pen)', meaning: 'Heartfelt thanks', speak: 'Köszönöm szépen', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' },
+    { cat: 'Greetings', english: 'Please', native: 'Kérem', phonetic: 'Kérem (Kay-rem)', meaning: 'Polite request', speak: 'Kérem', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'A számlát, kérem', phonetic: 'A számlát, kérem (Ah sahm-laht kay-rem)', meaning: 'Requesting dining bill', speak: 'A számlát, kérem', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' },
+    { cat: 'Dining', english: 'It is delicious!', native: 'Nagyon finom!', phonetic: 'Nagyon finom! (Nah-jyon fee-nohm!)', meaning: 'Complimenting Hungarian goulash and dining', speak: 'Nagyon finom!', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Mennyibe kerül ez?', phonetic: 'Mennyibe kerül ez? (Men-nyee-beh keh-rool ez?)', meaning: 'Price check', speak: 'Mennyibe kerül ez?', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Hol van az állomás?', phonetic: 'Hol van az állomás? (Hohl vahn ahz ahl-loh-mahsh?)', meaning: 'Finding station', speak: 'Hol van az állomás?', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Segítség, kérem!', phonetic: 'Segítség, kérem! (Sheh-geet-shayg kay-rem!)', meaning: 'Emergency distress', speak: 'Segítség!', langCode: 'hu-HU', langName: 'Hungarian (Magyar)' }
+  ],
+
+  // 🇷🇴 Romania & Moldova - Romanian
+  ROMANIAN: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Bună ziua', phonetic: 'Bună ziua (Boo-nuh zee-wah)', meaning: 'Standard polite Romanian greeting', speak: 'Bună ziua', langCode: 'ro-RO', langName: 'Romanian (Română)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Mulțumesc mult', phonetic: 'Mulțumesc mult (Mool-tsoo-mesk moolt)', meaning: 'Warm gratitude', speak: 'Mulțumesc mult', langCode: 'ro-RO', langName: 'Romanian (Română)' },
+    { cat: 'Greetings', english: 'Please', native: 'Vă rog', phonetic: 'Vă rog (Vuh rohg)', meaning: 'Polite request', speak: 'Vă rog', langCode: 'ro-RO', langName: 'Romanian (Română)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Nota de plată, vă rog', phonetic: 'Nota de plată, vă rog (Noh-tah deh plah-tuh vuh rohg)', meaning: 'Asking for restaurant bill', speak: 'Nota de plată, vă rog', langCode: 'ro-RO', langName: 'Romanian (Română)' },
+    { cat: 'Dining', english: 'It is delicious!', native: 'Este foarte delicios!', phonetic: 'Este foarte delicios! (Es-teh fwar-teh deh-lee-chohs!)', meaning: 'Complimenting food', speak: 'Este foarte delicios!', langCode: 'ro-RO', langName: 'Romanian (Română)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Cât costă acesta?', phonetic: 'Cât costă acesta? (Kuht kos-tuh ah-ches-tah?)', meaning: 'Price check', speak: 'Cât costă acesta?', langCode: 'ro-RO', langName: 'Romanian (Română)' },
+    { cat: 'Directions', english: 'Where is the train station?', native: 'Unde este gara?', phonetic: 'Unde este gara? (Oon-deh es-teh gah-rah?)', meaning: 'Finding train station', speak: 'Unde este gara?', langCode: 'ro-RO', langName: 'Romanian (Română)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Ajutor, vă rog!', phonetic: 'Ajutor, vă rog! (Ah-zhoo-tor vuh rohg!)', meaning: 'Emergency distress', speak: 'Ajutor, vă rog!', langCode: 'ro-RO', langName: 'Romanian (Română)' }
+  ],
+
+  // 🇧🇬 Bulgaria - Bulgarian
+  BULGARIAN: [
+    { cat: 'Greetings', english: 'Hello / Good day', native: 'Здравейте', phonetic: 'Zdraveite (Zdra-vey-teh)', meaning: 'Polite Bulgarian greeting', speak: 'Здравейте', langCode: 'bg-BG', langName: 'Bulgarian (Български)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Благодаря ви много', phonetic: 'Blagodarya vi mnogo (Blah-goh-dah-ryah vee mnoh-goh)', meaning: 'Sincere appreciation', speak: 'Благодаря ви много', langCode: 'bg-BG', langName: 'Bulgarian (Български)' },
+    { cat: 'Greetings', english: 'Please / You’re welcome', native: 'Моля', phonetic: 'Molya (Moh-lyah)', meaning: 'Polite etiquette', speak: 'Моля', langCode: 'bg-BG', langName: 'Bulgarian (Български)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Сметката, моля', phonetic: 'Smetkata, molya (Smet-kah-tah moh-lyah)', meaning: 'Asking for dining bill', speak: 'Сметката, моля', langCode: 'bg-BG', langName: 'Bulgarian (Български)' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'Много е вкусно!', phonetic: 'Mnogo e vkusno! (Mnoh-goh eh vkoos-noh!)', meaning: 'Complimenting Bulgarian food', speak: 'Много е вкусно!', langCode: 'bg-BG', langName: 'Bulgarian (Български)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'Колко струва това?', phonetic: 'Kolko struva tova? (Kol-koh stroo-vah toh-vah?)', meaning: 'Price check', speak: 'Колко струва това?', langCode: 'bg-BG', langName: 'Bulgarian (Български)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Къде е гарата?', phonetic: 'Kade e garata? (Kuh-deh eh gah-rah-tah?)', meaning: 'Directions to station', speak: 'Къде е гарата?', langCode: 'bg-BG', langName: 'Bulgarian (Български)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Помощ, моля!', phonetic: 'Pomosht, molya! (Poh-mosht moh-lyah!)', meaning: 'Emergency cry for help', speak: 'Помощ, моля!', langCode: 'bg-BG', langName: 'Bulgarian (Български)' }
+  ],
+
+  // 🇭🇷 / 🇷🇸 / 🇧🇦 South Slavic (Croatian, Serbian, Bosnian, Montenegrin)
+  SOUTH_SLAVIC: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Dobar dan / Добар дан', phonetic: 'Dobar dan (Doh-bahr dahn)', meaning: 'Universal friendly greeting', speak: 'Dobar dan', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Hvala vam puno / Хвала', phonetic: 'Hvala vam puno (Khvah-lah vahm poo-noh)', meaning: 'Warm gratitude', speak: 'Hvala vam puno', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' },
+    { cat: 'Greetings', english: 'Please', native: 'Molim vas / Молим', phonetic: 'Molim vas (Moh-leem vahs)', meaning: 'Polite request', speak: 'Molim vas', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Račun, molim vas / Рачун', phonetic: 'Račun, molim vas (Rah-choon moh-leem vahs)', meaning: 'Asking for the check', speak: 'Račun, molim vas', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' },
+    { cat: 'Dining', english: 'It is very tasty!', native: 'Jako je ukusno! / Укусно!', phonetic: 'Jako je ukusno! (Yah-koh yeh oo-koos-noh!)', meaning: 'Complimenting Balkan cuisine', speak: 'Jako je ukusno!', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Koliko ovo košta? / Колико кошта?', phonetic: 'Koliko ovo košta? (Koh-lee-koh oh-voh kosh-tah?)', meaning: 'Price check', speak: 'Koliko ovo košta?', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Gdje je stanica? / Где је станица?', phonetic: 'Gdje je stanica? (Gd-yeh yeh stah-nee-tsah?)', meaning: 'Directions to station', speak: 'Gdje je stanica?', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Pomoć, molim vas! / Упомоћ!', phonetic: 'Pomoć, molim vas! (Poh-mohch moh-leem vahs!)', meaning: 'Emergency distress', speak: 'Upomoć!', langCode: 'hr-HR', langName: 'South Slavic (Hrvatski / Srpski / Bosanski)' }
+  ],
+
+  // 🇸🇮 Slovenia - Slovenian
+  SLOVENIAN: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Dober dan', phonetic: 'Dober dan (Doh-ber dahn)', meaning: 'Standard Slovenian greeting', speak: 'Dober dan', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Hvala lepa', phonetic: 'Hvala lepa (Khvah-lah leh-pah)', meaning: 'Warm thanks', speak: 'Hvala lepa', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' },
+    { cat: 'Greetings', english: 'Please', native: 'Prosim', phonetic: 'Prosim (Praw-seem)', meaning: 'Polite request', speak: 'Prosim', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Račun, prosim', phonetic: 'Račun, prosim (Rah-choon praw-seem)', meaning: 'Asking for check', speak: 'Račun, prosim', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' },
+    { cat: 'Dining', english: 'It is very delicious!', native: 'To je zelo okusno!', phonetic: 'To je zelo okusno! (Toh yeh zeh-loh oh-koos-noh!)', meaning: 'Complimenting food', speak: 'To je zelo okusno!', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'Koliko to stane?', phonetic: 'Koliko to stane? (Koh-lee-koh toh stah-neh?)', meaning: 'Price check', speak: 'Koliko to stane?', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Kje je postaja?', phonetic: 'Kje je postaja? (K-yeh yeh poh-stah-yah?)', meaning: 'Station navigation', speak: 'Kje je postaja?', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Na pomoč, prosim!', phonetic: 'Na pomoč, prosim! (Nah poh-moch praw-seem!)', meaning: 'Emergency distress', speak: 'Na pomoč!', langCode: 'sl-SI', langName: 'Slovenian (Slovenščina)' }
+  ],
+
+  // 🇦🇱 Albania & Kosovo - Albanian
+  ALBANIAN: [
+    { cat: 'Greetings', english: 'Hello', native: 'Përshëndetje', phonetic: 'Përshëndetje (Pur-shen-det-yeh)', meaning: 'Universal polite Albanian greeting', speak: 'Përshëndetje', langCode: 'sq-AL', langName: 'Albanian (Shqip)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Faleminderit shumë', phonetic: 'Faleminderit shumë (Fah-leh-meen-deh-reet shoo-muh)', meaning: 'Expressing gratitude', speak: 'Faleminderit', langCode: 'sq-AL', langName: 'Albanian (Shqip)' },
+    { cat: 'Greetings', english: 'Please', native: 'Ju lutem', phonetic: 'Ju lutem (Yoo loo-tem)', meaning: 'Polite etiquette', speak: 'Ju lutem', langCode: 'sq-AL', langName: 'Albanian (Shqip)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Faturën, ju lutem', phonetic: 'Faturën, ju lutem (Fah-too-run yoo loo-tem)', meaning: 'Requesting dining bill', speak: 'Faturën, ju lutem', langCode: 'sq-AL', langName: 'Albanian (Shqip)' },
+    { cat: 'Dining', english: 'It is delicious!', native: 'Është shumë e shijshme!', phonetic: 'Është shumë e shijshme! (Ush-tuh shoo-muh eh shee-shmeh!)', meaning: 'Complimenting meal', speak: 'Është shumë e shijshme!', langCode: 'sq-AL', langName: 'Albanian (Shqip)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Sa kushton kjo?', phonetic: 'Sa kushton kjo? (Sah koosh-tohn kyoh?)', meaning: 'Price inquiry', speak: 'Sa kushton kjo?', langCode: 'sq-AL', langName: 'Albanian (Shqip)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Ku është stacioni?', phonetic: 'Ku është stacioni? (Koo ush-tuh stah-tsyoh-nee?)', meaning: 'Directions to station', speak: 'Ku është stacioni?', langCode: 'sq-AL', langName: 'Albanian (Shqip)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Ndihmë, ju lutem!', phonetic: 'Ndihmë, ju lutem! (Ndee-muh yoo loo-tem!)', meaning: 'Emergency distress', speak: 'Ndihmë, ju lutem!', langCode: 'sq-AL', langName: 'Albanian (Shqip)' }
+  ],
+
+  // 🇦🇲 Armenia - Armenian
+  ARMENIAN: [
+    { cat: 'Greetings', english: 'Hello', native: 'Բարև ձեզ', phonetic: 'Barev dzez (Bah-rev dzez)', meaning: 'Polite Armenian greeting', speak: 'Բարև ձեզ', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Շնորհակալություն', phonetic: 'Shnorhakalutyun (Shnor-hah-kah-loot-yoon)', meaning: 'Warm gratitude', speak: 'Շնորհակալություն', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' },
+    { cat: 'Greetings', english: 'Please', native: 'Խնդրեմ', phonetic: 'Khndrem (Khn-drem)', meaning: 'Polite request', speak: 'Խնդրեմ', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Հաշիվը, խնդրեմ', phonetic: 'Hashivy khndrem (Hah-shee-vuh khn-drem)', meaning: 'Asking for check', speak: 'Հաշիվը, խնդրեմ', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' },
+    { cat: 'Dining', english: 'This is very tasty!', native: 'Շատ համեղ է!', phonetic: 'Shat hamegh e! (Shaht hah-megh eh!)', meaning: 'Complimenting Armenian dining', speak: 'Շատ համեղ է!', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'Ինչքա՞ն արժե սա', phonetic: 'Inchqan arzhe sa? (Eench-kahn ahr-zheh sah?)', meaning: 'Price check', speak: 'Ինչքա՞ն արժե սա', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Որտե՞ղ է կայարանը', phonetic: 'Vortegh e kayarany? (Vohr-tegh eh kah-yah-rah-nuh?)', meaning: 'Station navigation', speak: 'Որտե՞ղ է կայարանը', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' },
+    { cat: 'Safety', english: 'Help me!', native: 'Օգնեցե՛ք!', phonetic: 'Ogneq! (Ohg-nek!)', meaning: 'Emergency cry for help', speak: 'Օգնեցե՛ք!', langCode: 'hy-AM', langName: 'Armenian (Հայերեն)' }
+  ],
+
+  // 🇦🇿 Azerbaijan - Azerbaijani
+  AZERBAIJANI: [
+    { cat: 'Greetings', english: 'Hello', native: 'Salam', phonetic: 'Salam (Sah-lahm)', meaning: 'Universal Azerbaijani greeting', speak: 'Salam', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Çox sağ olun', phonetic: 'Chox sagh olun (Chokh sahgh oh-loon)', meaning: 'Expressing gratitude', speak: 'Çox sağ olun', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' },
+    { cat: 'Greetings', english: 'Please', native: 'Zəhmət olmasa', phonetic: 'Zəhmət olmasa (Zah-met ohl-mah-sah)', meaning: 'Polite request', speak: 'Zəhmət olmasa', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Hesabı, zəhmət olmasa', phonetic: 'Hesabı, zəhmət olmasa (Heh-sah-buh zah-met ohl-mah-sah)', meaning: 'Asking for check', speak: 'Hesabı, zəhmət olmasa', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' },
+    { cat: 'Dining', english: 'It is delicious!', native: 'Çox dadlıdır!', phonetic: 'Çox dadlıdır! (Chokh dahd-luh-duhr!)', meaning: 'Food compliment', speak: 'Çox dadlıdır!', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'Bu neçəyədir?', phonetic: 'Bu neçəyədir? (Boo neh-cheh-yeh-deer?)', meaning: 'Price inquiry', speak: 'Bu neçəyədir?', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'Stansiya haradadır?', phonetic: 'Stansiya haradadır? (Stahn-see-yah hah-rah-dah-duhr?)', meaning: 'Directions to station', speak: 'Stansiya haradadır?', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' },
+    { cat: 'Safety', english: 'Help me!', native: 'Kömək edin!', phonetic: 'Kömək edin! (Kur-mek eh-deen!)', meaning: 'Emergency distress', speak: 'Kömək edin!', langCode: 'az-AZ', langName: 'Azerbaijani (Azərbaycan dili)' }
+  ],
+
+  // 🇬🇪 Georgia - Georgian
+  GEORGIAN: [
+    { cat: 'Greetings', english: 'Hello', native: 'გამარჯობა', phonetic: 'Gamarjoba (Gah-mar-joh-bah)', meaning: 'Warm universal Georgian greeting', speak: 'გამარჯობა', langCode: 'ka-GE', langName: 'Georgian (ქართული)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'დიდი მადლობა', phonetic: 'Didi madloba (Dee-dee mahd-loh-bah)', meaning: 'Expressing sincere thanks', speak: 'დიდი მადლობა', langCode: 'ka-GE', langName: 'Georgian (ქართული)' },
+    { cat: 'Greetings', english: 'Please', native: 'გთხოვთ', phonetic: 'Gtkhovt (Gt-khovt)', meaning: 'Polite request', speak: 'გთხოვთ', langCode: 'ka-GE', langName: 'Georgian (ქართული)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'ანგარიში, გთხოვთ', phonetic: 'Angarishi, gtkhovt (Ahn-gah-ree-shee gt-khovt)', meaning: 'Asking for dining check', speak: 'ანგარიში, გთხოვთ', langCode: 'ka-GE', langName: 'Georgian (ქართული)' },
+    { cat: 'Dining', english: 'It is very delicious!', native: 'ძალიან გემრიელია!', phonetic: 'Dzalian gemrielia! (Dzah-lee-ahn gehm-ree-eh-lee-ah!)', meaning: 'Complimenting khachapuri & Georgian dishes', speak: 'ძალიან გემრიელია!', langCode: 'ka-GE', langName: 'Georgian (ქართული)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'რა ღირს ეს?', phonetic: 'Ra ghirs es? (Rah gheers es?)', meaning: 'Price check', speak: 'რა ღირს ეს?', langCode: 'ka-GE', langName: 'Georgian (ქართული)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'სად არის სადგური?', phonetic: 'Sad aris sadguri? (Sahd ah-rees sahd-goo-ree?)', meaning: 'Station navigation', speak: 'სად არის სადგური?', langCode: 'ka-GE', langName: 'Georgian (ქართული)' },
+    { cat: 'Safety', english: 'Help me!', native: 'დამეხმარეთ!', phonetic: 'Damekhmaret! (Dah-mehkh-mah-ret!)', meaning: 'Emergency distress', speak: 'დამეხმარეთ!', langCode: 'ka-GE', langName: 'Georgian (ქართული)' }
+  ],
+
+  // 🇧🇩 Bangladesh - Bengali
+  BENGALI: [
+    { cat: 'Greetings', english: 'Hello / Greetings', native: 'নমস্কার / সালাম', phonetic: 'Nomoshkar / Salam (Noh-mosh-kahr)', meaning: 'Respectful Bengali greeting', speak: 'নমস্কার', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'অনেক ধন্যবাদ', phonetic: 'Onek dhonnobad (Oh-nek dhon-noh-bahd)', meaning: 'Sincere thanks', speak: 'ধন্যবাদ', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' },
+    { cat: 'Greetings', english: 'Please', native: 'দয়া করে', phonetic: 'Doya kore (Doh-yah koh-reh)', meaning: 'Polite request', speak: 'দয়া করে', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'বিলটা দিন, দয়া করে', phonetic: 'Bill-ta din, doya kore (Bill-tah deen)', meaning: 'Requesting dining bill', speak: 'বিলটা দিন', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' },
+    { cat: 'Dining', english: 'This is very delicious!', native: 'খাবারটা খুব সুস্বাদু!', phonetic: 'Khabarta khub shushwadu! (Kha-bar-tah khoob shoo-shwah-doo!)', meaning: 'Complimenting food taste', speak: 'খাবারটা খুব সুস্বাদু!', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'এটার দাম কত?', phonetic: 'Etar daam koto? (Eh-tahr dahm koh-toh?)', meaning: 'Inquiring price', speak: 'এটার দাম কত?', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'স্টেশনটি কোথায়?', phonetic: 'Station-ti kothay? (Stay-shon-tee koh-thye?)', meaning: 'Asking directions', speak: 'স্টেশনটি কোথায়?', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' },
+    { cat: 'Safety', english: 'Please help me!', native: 'আমাকে সাহায্য করুন!', phonetic: 'Amake sahajjo korun! (Ah-mah-keh shah-hahj-joh koh-roon!)', meaning: 'Emergency distress', speak: 'আমাকে সাহায্য করুন!', langCode: 'bn-BD', langName: 'Bengali (বাংলা)' }
+  ],
+
+  // 🇵🇰 Pakistan - Urdu
+  URDU: [
+    { cat: 'Greetings', english: 'Hello / Peace be upon you', native: 'السلام علیکم', phonetic: 'Assalam-o-Alaikum (Ah-sah-lahm oh ah-lye-koom)', meaning: 'Universal traditional Urdu greeting', speak: 'السلام علیکم', langCode: 'ur-PK', langName: 'Urdu (اردو)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'بہت شکریہ', phonetic: 'Bohat shukriya (Boh-hut shook-ree-yah)', meaning: 'Expressing gratitude', speak: 'بہت شکریہ', langCode: 'ur-PK', langName: 'Urdu (اردو)' },
+    { cat: 'Greetings', english: 'Please', native: 'برائے مہربانی', phonetic: 'Bara-e-meherbani (Bah-rah-ay meh-her-bah-nee)', meaning: 'Polite request', speak: 'برائے مہربانی', langCode: 'ur-PK', langName: 'Urdu (اردو)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'بل لے آئیے، پلیز', phonetic: 'Bill le aaiye, please (Bill lay eye-yeh)', meaning: 'Asking for dining bill', speak: 'بل لے آئیے', langCode: 'ur-PK', langName: 'Urdu (اردو)' },
+    { cat: 'Dining', english: 'This is very delicious!', native: 'یہ بہت لذیذ ہے!', phonetic: 'Yeh bohat lazeez hai! (Yeh boh-hut lah-zeez hai!)', meaning: 'Complimenting Pakistani cuisine', speak: 'یہ بہت لذیذ ہے!', langCode: 'ur-PK', langName: 'Urdu (اردو)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'یہ کتنے کا ہے؟', phonetic: 'Yeh kitne ka hai? (Yeh kit-nay kah hai?)', meaning: 'Price check', speak: 'یہ کتنے کا ہے؟', langCode: 'ur-PK', langName: 'Urdu (اردو)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'اسٹیشن کہاں ہے؟', phonetic: 'Station kahan hai? (Stay-shun kah-hahn hai?)', meaning: 'Directions to station', speak: 'اسٹیشن کہاں ہے؟', langCode: 'ur-PK', langName: 'Urdu (اردو)' },
+    { cat: 'Safety', english: 'Please help me!', native: 'براہ کرم میری مدد کریں!', phonetic: 'Barah-e-karam meri madad karein! (Mah-dad kah-rein!)', meaning: 'Emergency distress call', speak: 'میری مدد کریں!', langCode: 'ur-PK', langName: 'Urdu (اردو)' }
+  ],
+
+  // 🇮🇷 Iran & 🇹🇯 Tajikistan - Persian / Farsi
+  PERSIAN: [
+    { cat: 'Greetings', english: 'Hello', native: 'سلام / درود', phonetic: 'Salaam / Dorood (Sah-lahm)', meaning: 'Polite Persian greeting', speak: 'سلام', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'خیلی ممنون', phonetic: 'Kheili mamnoon (Khay-lee mahm-noon)', meaning: 'Deep gratitude', speak: 'خیلی ممنون', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' },
+    { cat: 'Greetings', english: 'Please', native: 'لطفاً', phonetic: 'Lotfan (Loht-fahn)', meaning: 'Polite request', speak: 'لطفاً', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'صورتحساب، لطفاً', phonetic: 'Soorathessab, lotfan (Soo-raht-heh-sahb loht-fahn)', meaning: 'Requesting dining check', speak: 'صورتحساب، لطفاً', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' },
+    { cat: 'Dining', english: 'It is very delicious!', native: 'خیلی خوشمزه است!', phonetic: 'Kheili khoshmazeh ast! (Khay-lee khoosh-mah-zeh ahst!)', meaning: 'Complimenting Persian food', speak: 'خیلی خوشمزه است!', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'این چنده؟', phonetic: 'In chande? (Een chahn-deh?)', meaning: 'Bazaar price check', speak: 'این چنده؟', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'ایستگاه کجاست؟', phonetic: 'Istgah kojast? (Eest-gah koh-jahst?)', meaning: 'Station navigation', speak: 'ایستگاه کجاست؟', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'کمک، لطفاً!', phonetic: 'Komak, lotfan! (Koh-mahk loht-fahn!)', meaning: 'Emergency distress', speak: 'کمک کنید!', langCode: 'fa-IR', langName: 'Persian / Farsi (فارسی)' }
+  ],
+
+  // 🇮🇱 Israel - Hebrew
+  HEBREW: [
+    { cat: 'Greetings', english: 'Hello / Peace', native: 'שלום', phonetic: 'Shalom (Shah-lohm)', meaning: 'Traditional timeless greeting', speak: 'שלום', langCode: 'he-IL', langName: 'Hebrew (עברית)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'תודה רבה', phonetic: 'Toda raba (Toh-dah rah-bah)', meaning: 'Warm gratitude', speak: 'תודה רבה', langCode: 'he-IL', langName: 'Hebrew (עברית)' },
+    { cat: 'Greetings', english: 'Please / You’re welcome', native: 'בבקשה', phonetic: 'Bevakasha (Beh-vah-kah-shah)', meaning: 'Universal polite etiquette', speak: 'בבקשה', langCode: 'he-IL', langName: 'Hebrew (עברית)' },
+    { cat: 'Dining', english: 'The check, please', native: 'חשבון, בבקשה', phonetic: 'Kheshbon, bevakasha (Khesh-bohn beh-vah-kah-shah)', meaning: 'Asking for dining bill', speak: 'חשבון, בבקשה', langCode: 'he-IL', langName: 'Hebrew (עברית)' },
+    { cat: 'Dining', english: 'This is very delicious!', native: 'זה טעים מאוד!', phonetic: 'Zeh ta’im me’od! (Zeh tah-eem meh-ohd!)', meaning: 'Complimenting meal', speak: 'זה טעים מאוד!', langCode: 'he-IL', langName: 'Hebrew (עברית)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'כמה זה עולה?', phonetic: 'Kama zeh oleh? (Kah-mah zeh oh-leh?)', meaning: 'Price check', speak: 'כמה זה עולה?', langCode: 'he-IL', langName: 'Hebrew (עברית)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'איפה התחנה?', phonetic: 'Eifoh ha-takhana? (Ay-foh hah-tah-khah-nah?)', meaning: 'Transit navigation', speak: 'איפה התחנה?', langCode: 'he-IL', langName: 'Hebrew (עברית)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'עזרה, בבקשה!', phonetic: 'Ezra, bevakasha! (Ez-rah beh-vah-kah-shah!)', meaning: 'Emergency distress', speak: 'עזרה!', langCode: 'he-IL', langName: 'Hebrew (עברית)' }
+  ],
+
+  // 🇪🇹 Ethiopia - Amharic
+  AMHARIC: [
+    { cat: 'Greetings', english: 'Hello', native: 'ሰላም / እንደምን አለህ', phonetic: 'Selam / Endemin alleh (Seh-lahm)', meaning: 'Traditional warm Ethiopian greeting', speak: 'ሰላም', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'በጣም አመሰግናለሁ', phonetic: 'Betam amesegegnalehu (Beh-tahm ah-meh-seh-geh-nah-leh-hoo)', meaning: 'Sincere gratitude', speak: 'አመሰግናለሁ', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' },
+    { cat: 'Greetings', english: 'Please', native: 'እባክዎ', phonetic: 'Ebakwo (Eh-bahk-woh)', meaning: 'Polite request', speak: 'እባክዎ', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'ሂሳቡን እባክዎ', phonetic: 'Hisabun ebakwo (Hee-sah-boon eh-bahk-woh)', meaning: 'Requesting dining bill', speak: 'ሂሳቡን እባክዎ', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' },
+    { cat: 'Dining', english: 'Food is very delicious!', native: 'በጣም ጣፋጭ ነው!', phonetic: 'Betam tafach new! (Beh-tahm tah-fahch neh-w!)', meaning: 'Complimenting Ethiopian injera & wot', speak: 'በጣም ጣፋጭ ነው!', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'ዋጋው ስንት ነው?', phonetic: 'Wagaw sint new? (Wah-gow seent neh-w?)', meaning: 'Inquiring price', speak: 'ዋጋው ስንት ነው?', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'ጣቢያው የት ነው?', phonetic: 'Tabiyaw yet new? (Tah-bee-yow yet neh-w?)', meaning: 'Transit navigation', speak: 'ጣቢያው የት ነው?', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'እባክዎ እርዱኝ!', phonetic: 'Ebakwo erdugn! (Eh-bahk-woh er-doon!)', meaning: 'Emergency cry for help', speak: 'እርዱኝ!', langCode: 'am-ET', langName: 'Amharic (አማርኛ)' }
+  ],
+
+  // 🇰🇭 Cambodia - Khmer
+  KHMER: [
+    { cat: 'Greetings', english: 'Hello', native: 'ជំរាបសួរ', phonetic: 'Choum reap sour (Choom reep soor)', meaning: 'Respectful Cambodian greeting with Sampeah', speak: 'ជំរាបសួរ', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'អរគុណច្រើន', phonetic: 'Orkun chran (Or-koon chrahn)', meaning: 'Heartfelt thanks', speak: 'អរគុណច្រើន', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' },
+    { cat: 'Greetings', english: 'Please', native: 'សូមមេត្តា', phonetic: 'Som metta (Sohm mayt-tah)', meaning: 'Polite request', speak: 'សូម', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'សុំគិតលុយ', phonetic: 'Som kit luy (Sohm kit lwee)', meaning: 'Asking for food check', speak: 'សុំគិតលុយ', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' },
+    { cat: 'Dining', english: 'Delicious!', native: 'ឆ្ងាញ់ណាស់!', phonetic: 'Chnganh nas! (Ch-ngahn nahs!)', meaning: 'Complimenting Khmer dishes', speak: 'ឆ្ងាញ់ណាស់!', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'ថ្លៃប៉ុន្មាន?', phonetic: 'Thlay ponman? (Tlay pon-mahn?)', meaning: 'Market bargaining & pricing', speak: 'ថ្លៃប៉ុន្មាន?', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'តើស្ថានីយ៍នៅឯណា?', phonetic: 'Station now e na? (Stah-nee now eh nah?)', meaning: 'Finding transit', speak: 'ស្ថានីយ៍នៅឯណា?', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' },
+    { cat: 'Safety', english: 'Please help me!', native: 'សូមជួយខ្ញុំផង!', phonetic: 'Som chuoy khnhom phong! (Sohm choo-ay k-nyom pawng!)', meaning: 'Emergency distress call', speak: 'សូមជួយខ្ញុំ!', langCode: 'km-KH', langName: 'Khmer (ភាសាខ្មែរ)' }
+  ],
+
+  // 🇲🇲 Myanmar - Burmese
+  BURMESE: [
+    { cat: 'Greetings', english: 'Hello', native: 'မင်္ဂလာပါ', phonetic: 'Mingalaba (Meen-gah-lah-bah)', meaning: 'Auspicious universal Burmese greeting', speak: 'မင်္ဂလာပါ', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'ကျေးဇူးတင်ပါတယ်', phonetic: 'Kyei-zoo tin-ba-de (Jay-zoo tin-bah-deh)', meaning: 'Polite gratitude', speak: 'ကျေးဇူးတင်ပါတယ်', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' },
+    { cat: 'Greetings', english: 'Please', native: 'ကျေးဇူးပြု၍', phonetic: 'Kyei-zoo pyu-ywe (Jay-zoo pyoo-yway)', meaning: 'Polite request', speak: 'ကျေးဇူးပြု၍', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'ဘေလ်ရှင်းပေးပါ', phonetic: 'Bill shin pay ba (Bill sheen pay bah)', meaning: 'Asking for check', speak: 'ဘေလ်ရှင်းပေးပါ', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' },
+    { cat: 'Dining', english: 'Very delicious!', native: 'အရမ်းအရသာရှိတယ်!', phonetic: 'A-yann a-ya-tha shi de! (Ah-yahn ah-yah-thah shee deh!)', meaning: 'Complimenting food', speak: 'အရမ်းအရသာရှိတယ်!', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'ဒါဘယ်လောက်လဲ?', phonetic: 'Da bal-lout le? (Dah beh-lowk leh?)', meaning: 'Price check', speak: 'ဒါဘယ်လောက်လဲ?', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'ဘူတာရုံဘယ်မှာလဲ?', phonetic: 'Bu-ta-yone bal-hma le? (Boo-tah-yohn beh-hmah leh?)', meaning: 'Finding station', speak: 'ဘူတာရုံဘယ်မှာလဲ?', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' },
+    { cat: 'Safety', english: 'Help me!', native: 'ကူညီပါ!', phonetic: 'Ku-nyi ba! (Koo-nyee bah!)', meaning: 'Emergency distress', speak: 'ကူညီပါ!', langCode: 'my-MM', langName: 'Burmese (မြန်မာစာ)' }
+  ],
+
+  // 🇱🇦 Laos - Lao
+  LAO: [
+    { cat: 'Greetings', english: 'Hello', native: 'ສະບາຍດີ', phonetic: 'Sabaidee (Sah-bye-dee)', meaning: 'Universal warm Lao greeting', speak: 'ສະບາຍດີ', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'ຂອບໃຈຫຼາຍໆ', phonetic: 'Khop chai lai lai (Kohp chai lye lye)', meaning: 'Deep gratitude', speak: 'ຂອບໃຈຫຼາຍໆ', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' },
+    { cat: 'Greetings', english: 'Please', native: 'ກະລຸນາ', phonetic: 'Karuna (Kah-roo-nah)', meaning: 'Polite request', speak: 'ກະລຸນາ', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'ເຊັກບິນແດ່', phonetic: 'Check bill dae (Chehk bill deh)', meaning: 'Asking for dining bill', speak: 'ເຊັກບິນແດ່', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' },
+    { cat: 'Dining', english: 'Delicious!', native: 'ແຊບຫຼາຍ!', phonetic: 'Saep lai! (Sehp lye!)', meaning: 'Praising Lao food', speak: 'ແຊບຫຼາຍ!', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'ອັນນີ້ເທົ່າໃດ?', phonetic: 'An nee thao dai? (Ahn nee tow dye?)', meaning: 'Price inquiry', speak: 'ອັນນີ້ເທົ່າໃດ?', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' },
+    { cat: 'Directions', english: 'Where is the station?', native: 'ສະຖານີຢູ່ໃສ?', phonetic: 'Sathani yoo sai? (Sah-tah-nee yoo sye?)', meaning: 'Station navigation', speak: 'ສະຖານີຢູ່ໃສ?', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' },
+    { cat: 'Safety', english: 'Help me!', native: 'ຊ່ວຍຂ້ອຍແດ່!', phonetic: 'Suay khoy dae! (Soo-ay koy deh!)', meaning: 'Emergency cry for help', speak: 'ຊ່ວຍຂ້ອຍແດ່!', langCode: 'lo-LA', langName: 'Lao (ພາສາລາວ)' }
+  ],
+
+  // 🇳🇵 Nepal - Nepali
+  NEPALI: [
+    { cat: 'Greetings', english: 'Hello / Greetings', native: 'नमस्ते', phonetic: 'Namaste (Nuh-muh-stay)', meaning: 'Traditional respectful greeting', speak: 'नमस्ते', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'धेरै धन्यवाद', phonetic: 'Dherai dhanyabaad (Dheh-rai dhun-yah-bahd)', meaning: 'Heartfelt gratitude', speak: 'धन्यवाद', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' },
+    { cat: 'Greetings', english: 'Please', native: 'कृपया', phonetic: 'Kripya (Krip-yah)', meaning: 'Polite request', speak: 'कृपया', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'बिल ल्याइदिनुहोस्', phonetic: 'Bill lyaaidinuhos (Bill lyai-dee-noo-hohs)', meaning: 'Asking for check', speak: 'बिल ल्याइदिनुहोस्', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' },
+    { cat: 'Dining', english: 'This is very delicious!', native: 'यो धेरै मीठो छ!', phonetic: 'Yo dherai meetho chha! (Yoh dheh-rai mee-thoh chha!)', meaning: 'Praising momos and dal bhat', speak: 'यो धेरै मीठो छ!', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'यसको कति पर्छ?', phonetic: 'Yasko kati parchha? (Yahs-koh kah-tee pahr-chha?)', meaning: 'Price check', speak: 'यसको कति पर्छ?', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' },
+    { cat: 'Directions', english: 'Where is the station / road?', native: 'स्टेशन / बाटो कहाँ छ?', phonetic: 'Station / Baato kahan chha?', meaning: 'Trekking & transit directions', speak: 'बाटो कहाँ छ?', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' },
+    { cat: 'Safety', english: 'Please help me!', native: 'कृपया मलाई मद्दत गर्नुहोस्!', phonetic: 'Kripya malai maddat garnuhos! (Mah-dud gahr-noo-hohs!)', meaning: 'Emergency distress', speak: 'मलाई मद्दत गर्नुहोस्!', langCode: 'ne-NP', langName: 'Nepali (नेपाली)' }
+  ],
+
+  // 🇱🇰 Sri Lanka - Sinhala & Tamil
+  SINHALA_TAMIL: [
+    { cat: 'Greetings', english: 'Hello / May you live long', native: 'ආයුබෝවන් / வணக்கம்', phonetic: 'Ayubowan / Vanakkam (Ah-yoo-boh-wahn / Vah-nahk-kahm)', meaning: 'Traditional Sri Lankan greeting', speak: 'ආයුබෝවන්', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'බොහොම ස්තූතියි / நன்றி', phonetic: 'Bohoma sthuthiyi / Nandri (Boh-hoh-mah sthoo-tee-yee)', meaning: 'Heartfelt gratitude', speak: 'බොහොම ස්තූතියි', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' },
+    { cat: 'Greetings', english: 'Please', native: 'කරුණාකර', phonetic: 'Karunakarala (Kah-roo-nah-kah-rah-lah)', meaning: 'Polite request', speak: 'කරුණාකර', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'බිල ගෙවන්න, කරුණාකර', phonetic: 'Bila genna, karunakarala (Bih-lah gehn-nah)', meaning: 'Asking for check', speak: 'බිල ගෙවන්න', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'මේක හරිම රසයි!', phonetic: 'Meka harima rasayi! (May-kah hah-ree-mah rah-sye!)', meaning: 'Complimenting Ceylon tea & curry', speak: 'මේක හරිම රසයි!', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' },
+    { cat: 'Directions', english: 'How much is this?', native: 'මේක කීයද?', phonetic: 'Meka keeyada? (May-kah kee-yah-dah?)', meaning: 'Price inquiry', speak: 'මේක කීයද?', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' },
+    { cat: 'Directions', english: 'Where is the train station?', native: 'දුම්රිය ස්ථානය කොහෙද?', phonetic: 'Dumriya sthanaya koheda? (Doom-ree-yah stah-nah-yah koh-heh-dah?)', meaning: 'Train station navigation', speak: 'දුම්රිය ස්ථානය කොහෙද?', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' },
+    { cat: 'Safety', english: 'Please help me!', native: 'කරුණාකර මට උදව් කරන්න!', phonetic: 'Karunakarala mata udaw karanna! (Mah-tah oo-dow kahr-ahn-nah!)', meaning: 'Emergency distress', speak: 'මට උදව් කරන්න!', langCode: 'si-LK', langName: 'Sinhala / Tamil (සිංහල / தமிழ்)' }
+  ],
+
+  // 🇵🇭 Philippines - Tagalog / Filipino
+  TAGALOG: [
+    { cat: 'Greetings', english: 'Hello / How are you', native: 'Kamusta / Magandang araw', phonetic: 'Kamusta / Magandang araw (Kah-moos-tah / Mah-gahn-dahng ah-row)', meaning: 'Warm friendly Filipino greeting', speak: 'Kamusta, magandang araw', langCode: 'fil-PH', langName: 'Filipino / Tagalog' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Maraming salamat po', phonetic: 'Maraming salamat po (Mah-rah-meeng sah-lah-maht poh)', meaning: 'Polite respectful gratitude', speak: 'Maraming salamat po', langCode: 'fil-PH', langName: 'Filipino / Tagalog' },
+    { cat: 'Greetings', english: 'Please', native: 'Pakiusap / Pwede po ba', phonetic: 'Pakiusap (Pah-kee-oo-sahp poh)', meaning: 'Polite request', speak: 'Pakiusap', langCode: 'fil-PH', langName: 'Filipino / Tagalog' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Ang bill po, pakiusap', phonetic: 'Ang bill po, pakiusap (Ahng bill poh)', meaning: 'Asking for dining bill', speak: 'Ang bill po, pakiusap', langCode: 'fil-PH', langName: 'Filipino / Tagalog' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'Napakasarap nito!', phonetic: 'Napakasarap nito! (Nah-pah-kah-sah-rahp nee-toh!)', meaning: 'Complimenting Filipino dishes like adobo', speak: 'Napakasarap nito!', langCode: 'fil-PH', langName: 'Filipino / Tagalog' },
+    { cat: 'Directions', english: 'How much is this?', native: 'Magkano po ito?', phonetic: 'Magkano po ito? (Mahg-kah-noh poh ee-toh?)', meaning: 'Jeepney and market fare check', speak: 'Magkano po ito?', langCode: 'fil-PH', langName: 'Filipino / Tagalog' },
+    { cat: 'Directions', english: 'Where is the station / jeepney stop?', native: 'Nasaan ang sakayan / istasyon?', phonetic: 'Nasaan ang istasyon? (Nah-sah-ahn ahng ees-tahs-yon?)', meaning: 'Transit navigation', speak: 'Nasaan ang istasyon?', langCode: 'fil-PH', langName: 'Filipino / Tagalog' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Tulong po!', phonetic: 'Tulong po! (Too-long poh!)', meaning: 'Emergency distress call', speak: 'Tulong po!', langCode: 'fil-PH', langName: 'Filipino / Tagalog' }
+  ],
+
+  // 🇲🇳 Mongolia - Mongolian
+  MONGOLIAN: [
+    { cat: 'Greetings', english: 'Hello', native: 'Сайн байна уу', phonetic: 'Sain baina uu (Sign bye-noo)', meaning: 'Traditional warm nomadic greeting', speak: 'Сайн байна уу', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Их баярлалаа', phonetic: 'Ikh bayarlalaa (Ikh by-ahr-lah-lah)', meaning: 'Deep gratitude', speak: 'Их баярлалаа', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' },
+    { cat: 'Greetings', english: 'Please', native: 'Гуйя', phonetic: 'Guiya (Goo-ee-yah)', meaning: 'Polite request', speak: 'Гуйя', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Тооцоо хийе, гуйя', phonetic: 'Tootsoo khiye, guiya (Toh-tsoh khee-yeh)', meaning: 'Asking for check', speak: 'Тооцоо хийе', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'Маш амттай байна!', phonetic: 'Mash amttai baina! (Mahsh ahm-tye bye-nuh!)', meaning: 'Complimenting Mongolian dining', speak: 'Маш амттай байна!', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Энэ ямар үнэтэй вэ?', phonetic: 'Ene yamar unetei ve? (Eh-neh yah-mar oo-neh-tay veh?)', meaning: 'Price check', speak: 'Энэ ямар үнэтэй вэ?', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' },
+    { cat: 'Directions', english: 'Where is the station / yurt stop?', native: 'Буудал хаана байна вэ?', phonetic: 'Buudal haana baina ve? (Boo-dahl hah-nah bye-nuh veh?)', meaning: 'Transit navigation', speak: 'Буудал хаана байна вэ?', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' },
+    { cat: 'Safety', english: 'Help me!', native: 'Туслаарай!', phonetic: 'Tuslaarai! (Toos-lah-rye!)', meaning: 'Emergency distress call', speak: 'Туслаарай!', langCode: 'mn-MN', langName: 'Mongolian (Монгол хэл)' }
+  ],
+
+  // 🇮🇸 Iceland - Icelandic
+  ICELANDIC: [
+    { cat: 'Greetings', english: 'Good day / Hello', native: 'Góðan daginn / Halló', phonetic: 'Góðan daginn (Goh-than dye-in / Hah-loh)', meaning: 'Universal friendly Icelandic greeting', speak: 'Góðan daginn', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Takk kærlega fyrir', phonetic: 'Takk kærlega fyrir (Tahk kire-leh-gah fee-reer)', meaning: 'Deep gratitude', speak: 'Takk kærlega fyrir', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' },
+    { cat: 'Greetings', english: 'Please / You’re welcome', native: 'Gjörðu svo vel', phonetic: 'Gjörðu svo vel (Gyer-thoo svoh vel)', meaning: 'Polite phrase', speak: 'Gjörðu svo vel', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'Reikninginn, takk', phonetic: 'Reikninginn, takk (Rake-ning-in tahk)', meaning: 'Asking for restaurant check', speak: 'Reikninginn, takk', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' },
+    { cat: 'Dining', english: 'This is delicious!', native: 'Þetta er ljúffengt!', phonetic: 'Þetta er ljúffengt! (Thet-tah ehr lyoof-fengt!)', meaning: 'Complimenting Nordic dining', speak: 'Þetta er ljúffengt!', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Hvað kostar þetta?', phonetic: 'Hvað kostar þetta? (Kvath kos-tar thet-tah?)', meaning: 'Price inquiry', speak: 'Hvað kostar þetta?', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' },
+    { cat: 'Directions', english: 'Where is the bus stop / station?', native: 'Hvar er stöðin?', phonetic: 'Hvar er stöðin? (Kvahr ehr stuh-thin?)', meaning: 'Transit navigation', speak: 'Hvar er stöðin?', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Hjálp, vinsamlegast!', phonetic: 'Hjálp, vinsamlegast! (Hyowlp vin-sahm-leh-gahst!)', meaning: 'Emergency distress', speak: 'Hjálp!', langCode: 'is-IS', langName: 'Icelandic (Íslenska)' }
+  ],
+
+  // 🇦🇩 Andorra - Catalan
+  CATALAN: [
+    { cat: 'Greetings', english: 'Hello / Good day', native: 'Hola / Bon dia', phonetic: 'Hola / Bon dia (Oh-lah / Bohn dee-ah)', meaning: 'Standard Catalan greeting', speak: 'Bon dia', langCode: 'ca-ES', langName: 'Catalan (Català)' },
+    { cat: 'Greetings', english: 'Thank you very much', native: 'Moltes gràcies', phonetic: 'Moltes gràcies (Mohl-tahs grah-see-ahs)', meaning: 'Warm gratitude', speak: 'Moltes gràcies', langCode: 'ca-ES', langName: 'Catalan (Català)' },
+    { cat: 'Greetings', english: 'Please', native: 'Si us plau', phonetic: 'Si us plau (See oos plow)', meaning: 'Polite request', speak: 'Si us plau', langCode: 'ca-ES', langName: 'Catalan (Català)' },
+    { cat: 'Dining', english: 'The bill, please', native: 'El compte, si us plau', phonetic: 'El compte, si us plau (El kohm-teh see oos plow)', meaning: 'Asking for dining check', speak: 'El compte, si us plau', langCode: 'ca-ES', langName: 'Catalan (Català)' },
+    { cat: 'Dining', english: 'It is delicious!', native: 'És boníssim!', phonetic: 'És boníssim! (Es boh-nee-seem!)', meaning: 'Complimenting Pyrenees & Catalan food', speak: 'És boníssim!', langCode: 'ca-ES', langName: 'Catalan (Català)' },
+    { cat: 'Directions', english: 'How much does this cost?', native: 'Quant costa això?', phonetic: 'Quant costa això? (Kwahn kos-tah ah-ee-shoh?)', meaning: 'Duty-free shopping price check', speak: 'Quant costa això?', langCode: 'ca-ES', langName: 'Catalan (Català)' },
+    { cat: 'Directions', english: 'Where is the station / bus?', native: 'On és l’estació?', phonetic: 'On és l’estació? (Ohn es luhs-tah-see-oh?)', meaning: 'Station navigation', speak: 'On és l’estació?', langCode: 'ca-ES', langName: 'Catalan (Català)' },
+    { cat: 'Safety', english: 'Help me, please!', native: 'Ajuda, si us plau!', phonetic: 'Ajuda, si us plau! (Ah-zhoo-dah see oos plow!)', meaning: 'Emergency distress', speak: 'Ajuda!', langCode: 'ca-ES', langName: 'Catalan (Català)' }
+  ],
+
+  // 🇰🇪 / 🇹🇿 East Africa - Swahili
   SWAHILI: [
     { cat: 'Greetings', english: 'Hello / How are you', native: 'Jambo / Habari', phonetic: 'Jambo / Habari (Jahm-boh / Hah-bah-ree)', meaning: 'Traditional warm East African greeting', speak: 'Habari za leo', langCode: 'sw-KE', langName: 'Swahili (Kiswahili)' },
     { cat: 'Greetings', english: 'Thank you very much', native: 'Asante sana', phonetic: 'Asante sana (Ah-sahn-teh sah-nah)', meaning: 'Heartfelt gratitude', speak: 'Asante sana', langCode: 'sw-KE', langName: 'Swahili (Kiswahili)' },
@@ -549,67 +909,87 @@ export const LANGUAGE_PACKS = {
   ]
 };
 
-// Map ISO country codes directly to their primary native Language Pack
+// Map ALL 195 Sovereign Countries directly to their primary native Language Pack
 export const COUNTRY_TO_LANGUAGE_MAP = {
-  // Chinese
-  CN: 'MANDARIN', TW: 'MANDARIN', HK: 'MANDARIN', MO: 'MANDARIN', SG: 'MANDARIN',
-  // Japanese
-  JP: 'JAPANESE',
-  // Spanish
-  ES: 'SPANISH', MX: 'SPANISH', AR: 'SPANISH', CO: 'SPANISH', CL: 'SPANISH',
-  PE: 'SPANISH', VE: 'SPANISH', EC: 'SPANISH', GT: 'SPANISH', CU: 'SPANISH',
-  DO: 'SPANISH', BO: 'SPANISH', HN: 'SPANISH', PY: 'SPANISH', SV: 'SPANISH',
-  NI: 'SPANISH', CR: 'SPANISH', PA: 'SPANISH', UY: 'SPANISH', PR: 'SPANISH', GQ: 'SPANISH',
-  // French
-  FR: 'FRENCH', MC: 'FRENCH', BE: 'FRENCH', SN: 'FRENCH', CI: 'FRENCH',
-  CD: 'FRENCH', CM: 'FRENCH', MG: 'FRENCH', ML: 'FRENCH', NE: 'FRENCH',
-  BF: 'FRENCH', GN: 'FRENCH', RW: 'FRENCH', BI: 'FRENCH', TG: 'FRENCH',
-  BJ: 'FRENCH', GA: 'FRENCH', CG: 'FRENCH', DJ: 'FRENCH',
-  // German
-  DE: 'GERMAN', AT: 'GERMAN', CH: 'GERMAN', LI: 'GERMAN', LU: 'GERMAN',
-  // Italian
-  IT: 'ITALIAN', SM: 'ITALIAN', VA: 'ITALIAN',
-  // Hindi
-  IN: 'HINDI', NP: 'HINDI',
-  // Arabic
-  SA: 'ARABIC', AE: 'ARABIC', EG: 'ARABIC', QA: 'ARABIC', KW: 'ARABIC',
-  OM: 'ARABIC', BH: 'ARABIC', JO: 'ARABIC', LB: 'ARABIC', IQ: 'ARABIC',
-  SY: 'ARABIC', YE: 'ARABIC', MA: 'ARABIC', DZ: 'ARABIC', TN: 'ARABIC',
-  LY: 'ARABIC', SD: 'ARABIC', MR: 'ARABIC',
-  // Russian
-  RU: 'RUSSIAN', BY: 'RUSSIAN', KZ: 'RUSSIAN', KG: 'RUSSIAN', TJ: 'RUSSIAN', UZ: 'RUSSIAN',
-  // Portuguese
-  BR: 'PORTUGUESE', PT: 'PORTUGUESE', AO: 'PORTUGUESE', MZ: 'PORTUGUESE', CV: 'PORTUGUESE',
-  // Korean
-  KR: 'KOREAN', KP: 'KOREAN',
-  // Thai
-  TH: 'THAI',
-  // Vietnamese
-  VN: 'VIETNAMESE',
-  // Indonesian / Malay
-  ID: 'INDONESIAN', MY: 'INDONESIAN', BN: 'INDONESIAN',
-  // Turkish
-  TR: 'TURKISH', AZ: 'TURKISH',
-  // Greek
-  GR: 'GREEK', CY: 'GREEK',
-  // Dutch
-  NL: 'DUTCH', SR: 'DUTCH',
-  // Polish
-  PL: 'POLISH',
-  // Swedish / Nordic
-  SE: 'SWEDISH', NO: 'SWEDISH', DK: 'SWEDISH', FI: 'SWEDISH', IS: 'SWEDISH',
-  // Swahili
-  KE: 'SWAHILI', TZ: 'SWAHILI', UG: 'SWAHILI',
-  // English
-  US: 'ENGLISH', GB: 'ENGLISH', AU: 'ENGLISH', CA: 'ENGLISH', NZ: 'ENGLISH',
-  IE: 'ENGLISH', ZA: 'ENGLISH', JM: 'ENGLISH', BS: 'ENGLISH', BB: 'ENGLISH', TT: 'ENGLISH'
+  // A
+  AF: 'PASHTO', AL: 'ALBANIAN', DZ: 'ARABIC', AD: 'CATALAN', AO: 'PORTUGUESE',
+  AG: 'ENGLISH', AR: 'SPANISH', AM: 'ARMENIAN', AU: 'ENGLISH', AT: 'GERMAN', AZ: 'AZERBAIJANI',
+  // B
+  BS: 'ENGLISH', BH: 'ARABIC', BD: 'BENGALI', BB: 'ENGLISH', BY: 'RUSSIAN',
+  BE: 'FRENCH', BZ: 'ENGLISH', BJ: 'FRENCH', BT: 'NEPALI', BO: 'SPANISH',
+  BA: 'SOUTH_SLAVIC', BW: 'ENGLISH', BR: 'PORTUGUESE', BN: 'INDONESIAN', BG: 'BULGARIAN',
+  BF: 'FRENCH', BI: 'FRENCH',
+  // C
+  CV: 'PORTUGUESE', KH: 'KHMER', CM: 'FRENCH', CA: 'ENGLISH', CF: 'FRENCH',
+  TD: 'ARABIC', CL: 'SPANISH', CN: 'MANDARIN', CO: 'SPANISH', KM: 'ARABIC',
+  CD: 'FRENCH', CG: 'FRENCH', CR: 'SPANISH', CI: 'FRENCH', HR: 'SOUTH_SLAVIC',
+  CU: 'SPANISH', CY: 'GREEK', CZ: 'CZECH',
+  // D
+  DK: 'DANISH', DJ: 'ARABIC', DM: 'ENGLISH', DO: 'SPANISH',
+  // E
+  EC: 'SPANISH', EG: 'ARABIC', SV: 'SPANISH', GQ: 'SPANISH', ER: 'ARABIC',
+  EE: 'FINNISH', SZ: 'ENGLISH', ET: 'AMHARIC',
+  // F
+  FJ: 'ENGLISH', FI: 'FINNISH', FR: 'FRENCH',
+  // G
+  GA: 'FRENCH', GM: 'ENGLISH', GE: 'GEORGIAN', DE: 'GERMAN', GH: 'ENGLISH',
+  GR: 'GREEK', GD: 'ENGLISH', GT: 'SPANISH', GN: 'FRENCH', GW: 'PORTUGUESE', GY: 'ENGLISH',
+  // H
+  HT: 'FRENCH', HN: 'SPANISH', HU: 'HUNGARIAN',
+  // I
+  IS: 'ICELANDIC', IN: 'HINDI', ID: 'INDONESIAN', IR: 'PERSIAN', IQ: 'ARABIC',
+  IE: 'ENGLISH', IL: 'HEBREW', IT: 'ITALIAN',
+  // J
+  JM: 'ENGLISH', JP: 'JAPANESE', JO: 'ARABIC',
+  // K
+  KZ: 'RUSSIAN', KE: 'SWAHILI', KI: 'ENGLISH', KP: 'KOREAN', KR: 'KOREAN',
+  KW: 'ARABIC', KG: 'RUSSIAN',
+  // L
+  LA: 'LAO', LV: 'POLISH', LB: 'ARABIC', LS: 'ENGLISH', LR: 'ENGLISH',
+  LY: 'ARABIC', LI: 'GERMAN', LT: 'POLISH', LU: 'GERMAN',
+  // M
+  MG: 'FRENCH', MW: 'ENGLISH', MY: 'INDONESIAN', MV: 'URDU', ML: 'FRENCH',
+  MT: 'ENGLISH', MH: 'ENGLISH', MR: 'ARABIC', MU: 'FRENCH', MX: 'SPANISH',
+  FM: 'ENGLISH', MD: 'ROMANIAN', MC: 'FRENCH', MN: 'MONGOLIAN', ME: 'SOUTH_SLAVIC',
+  MA: 'ARABIC', MZ: 'PORTUGUESE', MM: 'BURMESE',
+  // N
+  NA: 'ENGLISH', NR: 'ENGLISH', NP: 'NEPALI', NL: 'DUTCH', NZ: 'ENGLISH',
+  NI: 'SPANISH', NE: 'FRENCH', NG: 'ENGLISH', MK: 'SOUTH_SLAVIC', NO: 'NORWEGIAN',
+  // O
+  OM: 'ARABIC',
+  // P
+  PK: 'URDU', PW: 'ENGLISH', PS: 'ARABIC', PA: 'SPANISH', PG: 'ENGLISH',
+  PY: 'SPANISH', PE: 'SPANISH', PH: 'TAGALOG', PL: 'POLISH', PT: 'PORTUGUESE',
+  // Q
+  QA: 'ARABIC',
+  // R
+  RO: 'ROMANIAN', RU: 'RUSSIAN', RW: 'FRENCH',
+  // S
+  KN: 'ENGLISH', LC: 'ENGLISH', VC: 'ENGLISH', WS: 'ENGLISH', SM: 'ITALIAN',
+  ST: 'PORTUGUESE', SA: 'ARABIC', SN: 'FRENCH', RS: 'SOUTH_SLAVIC', SC: 'FRENCH',
+  SL: 'ENGLISH', SG: 'MANDARIN', SK: 'SLOVAK', SI: 'SLOVENIAN', SB: 'ENGLISH',
+  SO: 'ARABIC', ZA: 'ENGLISH', SS: 'ENGLISH', ES: 'SPANISH', LK: 'SINHALA_TAMIL',
+  SD: 'ARABIC', SR: 'DUTCH', SE: 'SWEDISH', CH: 'GERMAN', SY: 'ARABIC',
+  // T
+  TW: 'MANDARIN', TJ: 'PERSIAN', TZ: 'SWAHILI', TH: 'THAI', TL: 'PORTUGUESE',
+  TG: 'FRENCH', TO: 'ENGLISH', TT: 'ENGLISH', TN: 'ARABIC', TR: 'TURKISH',
+  TM: 'RUSSIAN', TV: 'ENGLISH',
+  // U
+  UG: 'SWAHILI', UA: 'UKRAINIAN', AE: 'ARABIC', GB: 'ENGLISH', US: 'ENGLISH',
+  UY: 'SPANISH', UZ: 'RUSSIAN',
+  // V
+  VU: 'ENGLISH', VA: 'ITALIAN', VE: 'SPANISH', VN: 'VIETNAMESE',
+  // Y
+  YE: 'ARABIC',
+  // Z
+  ZM: 'ENGLISH', ZW: 'ENGLISH'
 };
 
 // Backward-compatible alias for existing imports
 export const ESSENTIAL_PHRASES = LANGUAGE_PACKS;
 
 /**
- * Intelligently retrieves localized travel phrases for ANY country on Earth.
+ * Intelligently retrieves localized travel phrases for ANY of the 195 countries on Earth.
  * Ensures:
  * 1. English + Native script side-by-side for seamless traveler-to-local communication.
  * 2. Phonetic pronunciation so travelers know how to say it.
@@ -625,42 +1005,21 @@ export function getPhrasesForCountry(country) {
 
   let packKey = null;
 
-  // 1. Direct country code lookup
+  // 1. Direct country code lookup (exact 195 nations mapping)
   if (COUNTRY_TO_LANGUAGE_MAP[code]) {
     packKey = COUNTRY_TO_LANGUAGE_MAP[code];
   }
 
-  // 2. Country name / official name matches
-  if (!packKey) {
-    if (code === 'CN' || name.includes('china') || officialName.includes('china') || officialName.includes('中华')) packKey = 'MANDARIN';
-    else if (code === 'JP' || name.includes('japan')) packKey = 'JAPANESE';
-    else if (code === 'ES' || name.includes('spain')) packKey = 'SPANISH';
-    else if (code === 'FR' || name.includes('france')) packKey = 'FRENCH';
-    else if (code === 'DE' || name.includes('germany')) packKey = 'GERMAN';
-    else if (code === 'IT' || name.includes('italy')) packKey = 'ITALIAN';
-    else if (code === 'IN' || name.includes('india')) packKey = 'HINDI';
-    else if (code === 'RU' || name.includes('russia')) packKey = 'RUSSIAN';
-    else if (code === 'KR' || name.includes('korea')) packKey = 'KOREAN';
-    else if (code === 'BR' || code === 'PT' || name.includes('brazil') || name.includes('portugal')) packKey = 'PORTUGUESE';
-    else if (code === 'TH' || name.includes('thailand')) packKey = 'THAI';
-    else if (code === 'VN' || name.includes('vietnam')) packKey = 'VIETNAMESE';
-    else if (code === 'ID' || name.includes('indonesia')) packKey = 'INDONESIAN';
-    else if (code === 'TR' || name.includes('turkey')) packKey = 'TURKISH';
-    else if (code === 'GR' || name.includes('greece')) packKey = 'GREEK';
-    else if (code === 'NL' || name.includes('netherland')) packKey = 'DUTCH';
-    else if (code === 'PL' || name.includes('poland')) packKey = 'POLISH';
-    else if (code === 'SE' || name.includes('sweden')) packKey = 'SWEDISH';
-  }
-
-  // 3. Languages string analysis from country profile (e.g. "Mandarin", "Spanish", "Arabic")
+  // 2. Languages string analysis from country profile (e.g. "Pashto", "Dari", "Mandarin", "Spanish")
   if (!packKey && languages) {
-    if (languages.includes('chinese') || languages.includes('mandarin') || languages.includes('putonghua')) packKey = 'MANDARIN';
+    if (languages.includes('pashto') || languages.includes('dari') || code === 'AF') packKey = 'PASHTO';
+    else if (languages.includes('chinese') || languages.includes('mandarin') || languages.includes('putonghua')) packKey = 'MANDARIN';
     else if (languages.includes('japanese')) packKey = 'JAPANESE';
     else if (languages.includes('spanish') || languages.includes('castilian') || languages.includes('español')) packKey = 'SPANISH';
     else if (languages.includes('french') || languages.includes('français')) packKey = 'FRENCH';
     else if (languages.includes('german') || languages.includes('deutsch')) packKey = 'GERMAN';
     else if (languages.includes('italian') || languages.includes('italiano')) packKey = 'ITALIAN';
-    else if (languages.includes('hindi') || languages.includes('urdu') || languages.includes('bengali')) packKey = 'HINDI';
+    else if (languages.includes('hindi')) packKey = 'HINDI';
     else if (languages.includes('arabic')) packKey = 'ARABIC';
     else if (languages.includes('russian')) packKey = 'RUSSIAN';
     else if (languages.includes('portuguese') || languages.includes('português')) packKey = 'PORTUGUESE';
@@ -672,16 +1031,44 @@ export function getPhrasesForCountry(country) {
     else if (languages.includes('greek')) packKey = 'GREEK';
     else if (languages.includes('dutch')) packKey = 'DUTCH';
     else if (languages.includes('polish')) packKey = 'POLISH';
-    else if (languages.includes('swedish') || languages.includes('danish') || languages.includes('norwegian')) packKey = 'SWEDISH';
+    else if (languages.includes('norwegian')) packKey = 'NORWEGIAN';
+    else if (languages.includes('danish')) packKey = 'DANISH';
+    else if (languages.includes('finnish')) packKey = 'FINNISH';
+    else if (languages.includes('swedish')) packKey = 'SWEDISH';
+    else if (languages.includes('ukrainian')) packKey = 'UKRAINIAN';
+    else if (languages.includes('czech')) packKey = 'CZECH';
+    else if (languages.includes('slovak')) packKey = 'SLOVAK';
+    else if (languages.includes('hungarian')) packKey = 'HUNGARIAN';
+    else if (languages.includes('romanian')) packKey = 'ROMANIAN';
+    else if (languages.includes('bulgarian')) packKey = 'BULGARIAN';
+    else if (languages.includes('serbian') || languages.includes('croatian') || languages.includes('bosnian')) packKey = 'SOUTH_SLAVIC';
+    else if (languages.includes('albanian')) packKey = 'ALBANIAN';
+    else if (languages.includes('armenian')) packKey = 'ARMENIAN';
+    else if (languages.includes('azerbaijani')) packKey = 'AZERBAIJANI';
+    else if (languages.includes('georgian')) packKey = 'GEORGIAN';
+    else if (languages.includes('bengali')) packKey = 'BENGALI';
+    else if (languages.includes('urdu')) packKey = 'URDU';
+    else if (languages.includes('persian') || languages.includes('farsi')) packKey = 'PERSIAN';
+    else if (languages.includes('hebrew')) packKey = 'HEBREW';
+    else if (languages.includes('amharic')) packKey = 'AMHARIC';
+    else if (languages.includes('khmer')) packKey = 'KHMER';
+    else if (languages.includes('burmese')) packKey = 'BURMESE';
+    else if (languages.includes('lao')) packKey = 'LAO';
+    else if (languages.includes('nepali') || languages.includes('dzongkha')) packKey = 'NEPALI';
+    else if (languages.includes('sinhala') || languages.includes('tamil')) packKey = 'SINHALA_TAMIL';
+    else if (languages.includes('tagalog') || languages.includes('filipino')) packKey = 'TAGALOG';
     else if (languages.includes('swahili') || languages.includes('kiswahili')) packKey = 'SWAHILI';
+    else if (languages.includes('icelandic')) packKey = 'ICELANDIC';
+    else if (languages.includes('mongolian')) packKey = 'MONGOLIAN';
+    else if (languages.includes('catalan')) packKey = 'CATALAN';
     else if (languages.includes('english')) packKey = 'ENGLISH';
   }
 
-  // 4. Region fallback heuristic
+  // 3. Fallback heuristic
   if (!packKey) {
-    const region = (country.region || '').toLowerCase();
-    if (region.includes('latin') || region.includes('south america') || region.includes('central america')) packKey = 'SPANISH';
-    else if (region.includes('middle east')) packKey = 'ARABIC';
+    if (code === 'AF' || name.includes('afghanistan')) packKey = 'PASHTO';
+    else if (code === 'CN' || name.includes('china')) packKey = 'MANDARIN';
+    else if (code === 'JP' || name.includes('japan')) packKey = 'JAPANESE';
     else packKey = 'ENGLISH';
   }
 
@@ -694,4 +1081,5 @@ export function getPhrasesForCountry(country) {
     text: `${item.english} • ${item.native}`
   }));
 }
+
 

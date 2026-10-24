@@ -240,6 +240,8 @@ export function getLanguageCodeForCountry(country) {
   const languages = (country.languages || '').toLowerCase();
 
   const map = {
+    // Pashto / Dari (Afghanistan)
+    AF: 'ps-AF',
     // Chinese
     CN: 'zh-CN', TW: 'zh-TW', HK: 'zh-HK', MO: 'zh-MO', SG: 'zh-CN',
     // Japanese
@@ -247,7 +249,7 @@ export function getLanguageCodeForCountry(country) {
     // Korean
     KR: 'ko-KR', KP: 'ko-KR',
     // French
-    FR: 'fr-FR', MC: 'fr-FR', BE: 'fr-BE', SN: 'fr-FR', CI: 'fr-FR', CD: 'fr-FR', CA: 'en-US',
+    FR: 'fr-FR', MC: 'fr-FR', BE: 'fr-BE', SN: 'fr-FR', CI: 'fr-FR', CD: 'fr-FR',
     // German
     DE: 'de-DE', AT: 'de-AT', CH: 'de-CH', LI: 'de-DE', LU: 'de-DE',
     // Spanish
@@ -258,17 +260,22 @@ export function getLanguageCodeForCountry(country) {
     // Italian
     IT: 'it-IT', SM: 'it-IT', VA: 'it-IT',
     // Hindi
-    IN: 'hi-IN', NP: 'hi-IN',
+    IN: 'hi-IN',
+    // Urdu
+    PK: 'ur-PK',
+    // Bengali
+    BD: 'bn-BD',
     // Russian
-    RU: 'ru-RU', BY: 'ru-RU', KZ: 'ru-RU', KG: 'ru-RU', TJ: 'ru-RU', UZ: 'ru-RU',
+    RU: 'ru-RU', BY: 'ru-RU', KZ: 'ru-RU', KG: 'ru-RU', TJ: 'tg-TJ', UZ: 'uz-UZ',
     // Portuguese
     BR: 'pt-BR', PT: 'pt-PT', AO: 'pt-PT', MZ: 'pt-PT',
     // Arabic
     SA: 'ar-SA', AE: 'ar-AE', EG: 'ar-EG', QA: 'ar-QA', KW: 'ar-KW',
     OM: 'ar-OM', BH: 'ar-BH', JO: 'ar-JO', LB: 'ar-LB', IQ: 'ar-IQ',
-    MA: 'ar-MA', DZ: 'ar-DZ', TN: 'ar-TN',
-    // Turkish
-    TR: 'tr-TR', AZ: 'tr-TR',
+    MA: 'ar-MA', DZ: 'ar-DZ', TN: 'ar-TN', LY: 'ar-LY', SD: 'ar-SD',
+    YE: 'ar-YE', SY: 'ar-SY',
+    // Turkish & Azerbaijani
+    TR: 'tr-TR', AZ: 'az-AZ',
     // Thai
     TH: 'th-TH',
     // Vietnamese
@@ -276,21 +283,56 @@ export function getLanguageCodeForCountry(country) {
     // Indonesian / Malay
     ID: 'id-ID', MY: 'ms-MY', BN: 'ms-MY',
     // Dutch
-    NL: 'nl-NL',
+    NL: 'nl-NL', SR: 'nl-NL',
     // Greek
     GR: 'el-GR', CY: 'el-GR',
     // Polish
     PL: 'pl-PL',
     // Scandinavian
-    SE: 'sv-SE', NO: 'nb-NO', DK: 'da-DK', FI: 'fi-FI',
+    SE: 'sv-SE', NO: 'nb-NO', DK: 'da-DK', FI: 'fi-FI', IS: 'is-IS',
+    // Ukrainian
+    UA: 'uk-UA',
+    // Czech & Slovak
+    CZ: 'cs-CZ', SK: 'sk-SK',
+    // Hungarian
+    HU: 'hu-HU',
+    // Romanian
+    RO: 'ro-RO', MD: 'ro-RO',
+    // Bulgarian
+    BG: 'bg-BG',
+    // South Slavic (Croatian, Serbian, Bosnian)
+    HR: 'hr-HR', RS: 'sr-RS', BA: 'bs-BA', ME: 'sr-ME', MK: 'mk-MK', SI: 'sl-SI',
+    // Albanian
+    AL: 'sq-AL',
+    // Armenian
+    AM: 'hy-AM',
+    // Georgian
+    GE: 'ka-GE',
+    // Persian
+    IR: 'fa-IR',
+    // Hebrew
+    IL: 'he-IL',
+    // Amharic
+    ET: 'am-ET',
+    // Khmer, Burmese, Lao
+    KH: 'km-KH', MM: 'my-MM', LA: 'lo-LA',
+    // Nepali
+    NP: 'ne-NP',
+    // Sri Lanka (Sinhala / Tamil)
+    LK: 'si-LK',
+    // Philippines
+    PH: 'fil-PH',
+    // Mongolia
+    MN: 'mn-MN',
     // Swahili
     KE: 'sw-KE', TZ: 'sw-TZ', UG: 'sw-UG',
     // English
-    US: 'en-US', GB: 'en-GB', AU: 'en-AU', NZ: 'en-NZ', IE: 'en-IE', ZA: 'en-ZA'
+    US: 'en-US', GB: 'en-GB', AU: 'en-AU', NZ: 'en-NZ', IE: 'en-IE', ZA: 'en-ZA', CA: 'en-CA'
   };
 
   if (map[code]) return map[code];
 
+  if (languages.includes('pashto') || languages.includes('dari')) return 'ps-AF';
   if (languages.includes('chinese') || languages.includes('mandarin')) return 'zh-CN';
   if (languages.includes('japanese')) return 'ja-JP';
   if (languages.includes('korean')) return 'ko-KR';
@@ -299,6 +341,10 @@ export function getLanguageCodeForCountry(country) {
   if (languages.includes('german') || languages.includes('deutsch')) return 'de-DE';
   if (languages.includes('italian')) return 'it-IT';
   if (languages.includes('hindi')) return 'hi-IN';
+  if (languages.includes('bengali')) return 'bn-BD';
+  if (languages.includes('urdu')) return 'ur-PK';
+  if (languages.includes('persian') || languages.includes('farsi')) return 'fa-IR';
+  if (languages.includes('hebrew')) return 'he-IL';
   if (languages.includes('arabic')) return 'ar-SA';
   if (languages.includes('russian')) return 'ru-RU';
   if (languages.includes('portuguese')) return 'pt-BR';
@@ -309,6 +355,13 @@ export function getLanguageCodeForCountry(country) {
   if (languages.includes('greek')) return 'el-GR';
   if (languages.includes('dutch')) return 'nl-NL';
   if (languages.includes('polish')) return 'pl-PL';
+  if (languages.includes('ukrainian')) return 'uk-UA';
+  if (languages.includes('czech')) return 'cs-CZ';
+  if (languages.includes('slovak')) return 'sk-SK';
+  if (languages.includes('hungarian')) return 'hu-HU';
+  if (languages.includes('romanian')) return 'ro-RO';
+  if (languages.includes('bulgarian')) return 'bg-BG';
+  if (languages.includes('croatian') || languages.includes('serbian')) return 'hr-HR';
   if (languages.includes('swahili')) return 'sw-KE';
 
   return 'en-US';
