@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { 
   Search, 
   SlidersHorizontal, 
@@ -6,8 +6,13 @@ import {
   Check, 
   ChevronLeft, 
   ChevronRight, 
-  Globe2 
+  Globe2,
+  LayoutGrid,
+  Columns,
+  Compass,
+  Sparkles
 } from 'lucide-react';
+import InteractiveWorldMap from './InteractiveWorldMap';
 
 const REGIONS = [
   'all', 
@@ -32,6 +37,7 @@ export default function CountrySelector({
   onSortChange
 }) {
   const scrollRowRef = useRef(null);
+  const [viewMode, setViewMode] = useState('carousel'); // 'carousel' | 'grid'
 
   const scroll = (direction) => {
     if (scrollRowRef.current) {
@@ -49,9 +55,15 @@ export default function CountrySelector({
     }
   };
 
+  const handleSearchKeyDown = (e) => {
+    if (e.key === 'Enter' && countries.length > 0) {
+      onSelectCountry(countries[0]);
+    }
+  };
+
   return (
     <section className="selector-section glass-panel">
-      {/* Top Header of Selector with Counter and Navigation Arrows */}
+      {/* Top Header of Selector with Counter, View Toggle and Navigation Arrows */}
       <div className="selector-header-row">
         <div className="selector-title-badge">
           <Globe2 size={16} className="globe-badge-icon" />
@@ -61,25 +73,60 @@ export default function CountrySelector({
           </span>
         </div>
 
-        <div className="carousel-nav-controls">
-          <button 
-            type="button"
-            onClick={() => scroll('left')} 
-            className="carousel-arrow-btn"
-            title="Scroll Left"
-            aria-label="Scroll countries left"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button 
-            type="button"
-            onClick={() => scroll('right')} 
-            className="carousel-arrow-btn"
-            title="Scroll Right"
-            aria-label="Scroll countries right"
-          >
-            <ChevronRight size={18} />
-          </button>
+        <div className="selector-right-controls">
+          <div className="view-mode-toggle">
+            <button
+              type="button"
+              className={`view-mode-btn ${viewMode === 'carousel' ? 'active' : ''}`}
+              onClick={() => setViewMode('carousel')}
+              title="Carousel Mode (Default)"
+            >
+              <Columns size={14} />
+              <span>Carousel</span>
+            </button>
+            <button
+              type="button"
+              className={`view-mode-btn ${viewMode === 'grid' ? 'active' : ''}`}
+              onClick={() => setViewMode('grid')}
+              title="Grid Mode (All Nations)"
+            >
+              <LayoutGrid size={14} />
+              <span>Grid</span>
+            </button>
+            <button
+              type="button"
+              className={`view-mode-btn ${viewMode === 'map' ? 'active' : ''}`}
+              onClick={() => setViewMode('map')}
+              title="Interactive World Map Radar"
+              id="btn-view-mode-map"
+            >
+              <Compass size={14} />
+              <span>World Map</span>
+            </button>
+          </div>
+
+          {viewMode === 'carousel' && (
+            <div className="carousel-nav-controls">
+              <button 
+                type="button"
+                onClick={() => scroll('left')} 
+                className="carousel-arrow-btn"
+                title="Scroll Left"
+                aria-label="Scroll countries left"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button 
+                type="button"
+                onClick={() => scroll('right')} 
+                className="carousel-arrow-btn"
+                title="Scroll Right"
+                aria-label="Scroll countries right"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -92,6 +139,7 @@ export default function CountrySelector({
             placeholder="Search all countries by name, capital, or code... (Press '/' to focus)"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
+            onKeyDown={handleSearchKeyDown}
             className="search-input"
             id="input-search-countries"
           />
@@ -100,6 +148,7 @@ export default function CountrySelector({
               type="button"
               onClick={() => onSearchChange('')} 
               className="clear-search-btn"
+              title="Clear search"
             >
               ✕
             </button>
@@ -140,56 +189,67 @@ export default function CountrySelector({
         })}
       </div>
 
-      {/* Countries Horizontal Row with Beautiful Custom Scrollbar */}
-      <div 
-        className="countries-scroll-row" 
-        ref={scrollRowRef}
-        onWheel={handleWheel}
-      >
-        {countries.map((country) => {
-          const isSelected = selectedCountry?.id === country.id;
-          return (
-            <div
-              key={country.id}
-              onClick={() => onSelectCountry(country)}
-              className={`country-card ${isSelected ? 'selected' : ''}`}
-              id={`country-card-${country.code.toLowerCase()}`}
-            >
-              <div className="country-flag-box">
-                <img 
-                  src={country.flagSvg || country.flag} 
-                  alt={`${country.name} flag`} 
-                  className="country-flag-img"
-                  loading="lazy"
-                  onError={(e) => {
-                    // Fallback flag format
-                    e.target.src = `https://flagcdn.com/w320/${country.code.toLowerCase()}.png`;
-                  }}
-                />
-                <span className="country-code-badge">{country.code}</span>
-                {isSelected && (
-                  <span className="selected-badge">
-                    <Check size={12} strokeWidth={3} />
+      {/* Countries Display: Map Mode OR Carousel / Grid Mode */}
+      {viewMode === 'map' ? (
+        <InteractiveWorldMap
+          countries={countries}
+          selectedCountry={selectedCountry}
+          onSelectCountry={onSelectCountry}
+          selectedRegion={selectedRegion}
+          searchQuery={searchQuery}
+        />
+      ) : (
+        <div 
+          className={viewMode === 'carousel' ? 'countries-scroll-row' : 'countries-grid-view'} 
+          ref={viewMode === 'carousel' ? scrollRowRef : null}
+          onWheel={viewMode === 'carousel' ? handleWheel : undefined}
+        >
+          {countries.map((country) => {
+            const isSelected = selectedCountry?.id === country.id;
+            return (
+              <div
+                key={country.id}
+                onClick={() => onSelectCountry(country)}
+                className={`country-card ${isSelected ? 'selected' : ''}`}
+                id={`country-card-${country.code.toLowerCase()}`}
+                title={`Click to open full profile & tourist destinations of ${country.name}`}
+              >
+                <div className="country-flag-box">
+                  <img 
+                    src={country.flagSvg || country.flag} 
+                    alt={`${country.name} flag`} 
+                    className="country-flag-img"
+                    loading="lazy"
+                    onError={(e) => {
+                      // Fallback flag format
+                      e.target.src = `https://flagcdn.com/w320/${country.code.toLowerCase()}.png`;
+                    }}
+                  />
+                  <span className="country-code-badge">{country.code}</span>
+                  {isSelected && (
+                    <span className="selected-badge">
+                      <Check size={12} strokeWidth={3} />
+                    </span>
+                  )}
+                </div>
+
+                <div className="country-meta">
+                  <h3 className="country-name" title={country.name}>{country.name}</h3>
+                  <span className="country-capital" title={country.capital}>
+                    <MapPin size={11} /> {country.capital || 'Capital'}
                   </span>
-                )}
+                </div>
               </div>
+            );
+          })}
 
-              <div className="country-meta">
-                <h3 className="country-name" title={country.name}>{country.name}</h3>
-                <span className="country-capital" title={country.capital}>
-                  <MapPin size={11} /> {country.capital || 'Capital'}
-                </span>
-              </div>
+          {countries.length === 0 && (
+            <div className="no-countries-found">
+              <p>No countries found matching "{searchQuery}".</p>
             </div>
-          );
-        })}
-
-        {countries.length === 0 && (
-          <div className="no-countries-found">
-            <p>No countries found matching "{searchQuery}".</p>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       <style>{`
         .selector-section {
@@ -203,6 +263,8 @@ export default function CountrySelector({
           align-items: center;
           justify-content: space-between;
           padding-bottom: 0.35rem;
+          flex-wrap: wrap;
+          gap: 0.75rem;
         }
         .selector-title-badge {
           display: inline-flex;
@@ -220,6 +282,38 @@ export default function CountrySelector({
           font-weight: 600;
           margin-left: 0.35rem;
           font-size: 0.82rem;
+        }
+        .selector-right-controls {
+          display: flex;
+          align-items: center;
+          gap: 0.85rem;
+        }
+        .view-mode-toggle {
+          display: flex;
+          background: var(--bg-card);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-sm);
+          padding: 2px;
+        }
+        .view-mode-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0.25rem 0.65rem;
+          border-radius: 6px;
+          color: var(--text-muted);
+          font-size: 0.78rem;
+          font-weight: 600;
+          transition: var(--transition-fast);
+          cursor: pointer;
+        }
+        .view-mode-btn:hover {
+          color: var(--text-primary);
+        }
+        .view-mode-btn.active {
+          background: var(--accent-primary);
+          color: #ffffff;
+          box-shadow: 0 2px 8px var(--accent-glow);
         }
         .carousel-nav-controls {
           display: flex;
@@ -363,6 +457,18 @@ export default function CountrySelector({
           scroll-behavior: smooth;
           -webkit-overflow-scrolling: touch;
           /* Firefox custom scrollbar styling */
+          scrollbar-width: thin;
+          scrollbar-color: rgba(99, 102, 241, 0.5) rgba(15, 22, 36, 0.6);
+        }
+
+        /* Modern Responsive Grid View for Countries */
+        .countries-grid-view {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+          gap: 1rem;
+          max-height: 680px;
+          overflow-y: auto;
+          padding: 0.5rem 0.25rem 1rem 0.25rem;
           scrollbar-width: thin;
           scrollbar-color: rgba(99, 102, 241, 0.5) rgba(15, 22, 36, 0.6);
         }

@@ -31,9 +31,14 @@ export const getFallbackStore = () => fallbackStore;
 
 export async function initDb() {
   try {
+    const isSslNeeded = config.db.connectionString.includes('neon.tech') || 
+                        config.db.connectionString.includes('sslmode=require') || 
+                        config.nodeEnv === 'production';
+
     const poolConfig = config.db.connectionString
       ? {
           connectionString: config.db.connectionString,
+          ssl: isSslNeeded ? { rejectUnauthorized: false } : false,
           connectionTimeoutMillis: config.db.connectionTimeoutMillis,
           max: config.db.max,
         }

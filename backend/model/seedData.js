@@ -23,51 +23,52 @@ export const initialCountries = [
       {
         "id": "band-e-amir",
         "name": "Band-e Amir National Park",
-        "location": "Bamyan Province",
-        "category": "Natural Glacial Wonder",
-        "image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
-        "whyFamous": "Afghanistan's first national park, featuring six deep sapphire-blue travertine lakes formed by natural mineral dams high in the Hindu Kush mountains.",
+        "location": "Bamyan Province, Afghanistan",
+        "category": "Natural Glacial Wonder & Travertine Lakes",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Afghanistan%27s_Grand_Canyon.jpg",
+        "whyFamous": "Afghanistan's first national park, featuring six deep sapphire-blue travertine lakes formed by natural mineral dams high in the Hindu Kush mountains. Referred to as the Grand Canyon of Afghanistan.",
         "specs": {
-          "elevation": "2,900 meters",
+          "elevation": "2,900 meters (9,500 ft)",
           "feature": "6 natural dammed travertine lakes",
-          "waterColor": "Deep lapis lazuli blue"
+          "waterColor": "Deep lapis lazuli blue",
+          "googleRank": "#1 Top Rated Natural Landmark in Afghanistan"
         }
       },
       {
         "id": "afghanistan-dest-1",
-        "name": "Kabul Ancient Citadel & UNESCO Heritage Sanctuary (Site #1)",
-        "location": "Kabul & Environs, Afghanistan",
-        "category": "UNESCO World Heritage & Ancient Wonders",
-        "image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
-        "whyFamous": "Universally acknowledged as the premier historical and architectural jewel of the nation, recognized by UNESCO for exceptional cultural significance, preserving centuries of royal civilization and craftsmanship. Ranked among Google's top-searched iconic tourist highlights for Afghanistan.",
+        "name": "Bala Hissar & Ancient Kabul Citadel",
+        "location": "Koh-e Sherdarwaza, Kabul, Afghanistan",
+        "category": "Ancient Citadel & Silk Road Fort",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/86/Upper_Bala_Hissar_from_west_Kabul_in_1879.jpg",
+        "whyFamous": "An ancient citadel dating back to the 5th century CE, historically the fortress-palace of Afghan rulers. Perched on Koh-e Sherdarwaza mountain with massive battlements overlooking the entire Kabul Valley.",
         "specs": {
           "destinationRank": "Google Top Rated Landmark #1 in Afghanistan",
           "region": "Asia",
           "bestTimeOfDay": "Morning 08:30 - 11:30 or Sunset",
           "highlights": [
-            "Historic landmark preservation in Kabul",
-            "Panoramic scenic observation platforms overlooking Afghanistan",
-            "Cultural heritage museum galleries and guided interpretive tours",
-            "Authentic regional gastronomy and traditional handicrafts"
+            "Ancient ramparts and defensive towers overlooking Kabul basin",
+            "Archaeological excavations revealing multi-millennium stone foundations",
+            "Historic defensive stone walls extending across the mountains",
+            "Panoramic sunrise vistas across old and modern Kabul"
           ]
         }
       },
       {
         "id": "afghanistan-dest-2",
-        "name": "Kabul Imperial Royal Palace & Grand Fortress (Site #2)",
-        "location": "Kabul & Environs, Afghanistan",
+        "name": "Darul Aman Palace",
+        "location": "Darulaman District, Kabul, Afghanistan",
         "category": "Historic Fortresses & Royal Palaces",
-        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
-        "whyFamous": "The historical seat of national royalty and military valor, renowned for monumental stone fortifications, royal reception halls, and sweeping panoramic views across the ancient capital. Ranked among Google's top-searched iconic tourist highlights for Afghanistan.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Darul_Aman_Palace_in_Kabul%2C_Afghanistan.jpg/1280px-Darul_Aman_Palace_in_Kabul%2C_Afghanistan.jpg",
+        "whyFamous": "Monumental neoclassical palace built in the 1920s by King Amanullah Khan as the grand centerpiece of a new European-style capital city for Afghanistan, recently restored to its full architectural splendor.",
         "specs": {
           "destinationRank": "Google Top Rated Landmark #2 in Afghanistan",
           "region": "Asia",
           "bestTimeOfDay": "Morning 08:30 - 11:30 or Sunset",
           "highlights": [
-            "Historic landmark preservation in Kabul",
-            "Panoramic scenic observation platforms overlooking Afghanistan",
-            "Cultural heritage museum galleries and guided interpretive tours",
-            "Authentic regional gastronomy and traditional handicrafts"
+            "Magnificent neoclassical pillared portico and central dome",
+            "Expansive landscaped ceremonial lawns and reflecting pools",
+            "Restored royal grand reception halls with Afghan marble",
+            "Historical museum exhibits depicting Afghanistan's modern era"
           ]
         }
       },

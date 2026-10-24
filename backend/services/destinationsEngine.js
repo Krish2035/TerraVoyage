@@ -4,6 +4,218 @@ import { indiaAttractions } from '../model/indiaAttractions.js';
 const TOP_CURATED_NATIONS = {
   in: indiaAttractions,
   india: indiaAttractions,
+
+  af: [
+    {
+      id: "af-band-e-amir",
+      name: "Band-e Amir National Park",
+      location: "Bamyan Province, Afghanistan",
+      category: "Natural Glacial Wonder & Travertine Lakes",
+      image: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Afghanistan%27s_Grand_Canyon.jpg",
+      whyFamous: "Afghanistan's first national park, featuring six deep sapphire-blue travertine lakes formed by natural mineral dams high in the Hindu Kush mountains. Referred to as the Grand Canyon of Afghanistan.",
+      specs: {
+        googleRank: "#1 Top Rated Natural Landmark in Afghanistan",
+        elevation: "2,900 meters (9,500 ft)",
+        keyFeature: "6 mineral-dammed lapis-blue alpine lakes",
+        highlights: [
+          "Band-e Panir, Band-e Gholaman, Band-e Haibat, Band-e Qambar, Band-e Pudina, and Band-e Zulfiqar",
+          "Paddleboating on crystal-clear sapphire travertine waters",
+          "Spectacular natural limestone cliffs and mineral terraces",
+          "Hiking trails overlooking the Hindu Kush peaks"
+        ]
+      }
+    },
+    {
+      id: "af-bala-hissar",
+      name: "Bala Hissar & Ancient Kabul Citadel",
+      location: "Koh-e Sherdarwaza, Kabul, Afghanistan",
+      category: "Ancient Citadel & Silk Road Fort",
+      image: "https://upload.wikimedia.org/wikipedia/commons/8/86/Upper_Bala_Hissar_from_west_Kabul_in_1879.jpg",
+      whyFamous: "An ancient citadel dating back to the 5th century CE, historically the fortress-palace of Afghan rulers. Perched on Koh-e Sherdarwaza mountain with massive battlements overlooking the entire Kabul Valley.",
+      specs: {
+        googleRank: "#2 Top Historical Fortress in Afghanistan",
+        origins: "5th century CE (Hephthalite and Kushan eras)",
+        strategicRole: "Guardian citadel of the historic Silk Road mountain pass",
+        highlights: [
+          "Ancient ramparts and defensive towers overlooking Kabul basin",
+          "Archaeological excavations revealing multi-millennium stone foundations",
+          "Historic defensive stone walls extending across the mountains",
+          "Panoramic sunrise vistas across old and modern Kabul"
+        ]
+      }
+    },
+    {
+      id: "af-darul-aman-palace",
+      name: "Darul Aman Palace",
+      location: "Darulaman District, Kabul, Afghanistan",
+      category: "Historic Fortresses & Royal Palaces",
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Darul-Aman_Palace_001.jpg",
+      whyFamous: "Monumental neoclassical palace built in the 1920s by King Amanullah Khan as the grand centerpiece of a new European-style capital city for Afghanistan, recently restored to its full architectural splendor.",
+      specs: {
+        googleRank: "#3 Iconic Royal Palace in Afghanistan",
+        architecturalStyle: "Neoclassical / Beaux-Arts by French and German architects",
+        commissionedBy: "King Amanullah Khan (1927)",
+        highlights: [
+          "Magnificent neoclassical pillared portico and central dome",
+          "Expansive landscaped ceremonial lawns and reflecting pools",
+          "Restored royal grand reception halls with Afghan marble",
+          "Historical museum exhibits depicting Afghanistan's modern era"
+        ]
+      }
+    },
+    {
+      id: "af-gardens-of-babur",
+      name: "Gardens of Babur (Bagh-e Babur)",
+      location: "Kabul, Afghanistan",
+      category: "UNESCO World Heritage & Historic Gardens",
+      image: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Garden_of_Babur_By_Dani.jpg",
+      whyFamous: "Historic Mughal garden created in 1528 by Babur, founder of the Mughal Empire. Terraced hillside garden featuring flowing watercourses, sweet-smelling orchards, a white marble mosque, and Babur's tomb.",
+      specs: {
+        googleRank: "#4 Most Visited Heritage Park in Kabul",
+        founded: "1528 CE by Emperor Babur",
+        terraces: "15 tiered cascading garden terraces",
+        highlights: [
+          "Tomb of Emperor Babur overlooking the terraced mountain orchards",
+          "Shah Jahan's white marble mosque built in 1646",
+          "Cascading central water channel with natural spring-fed fountains",
+          "Queen's Palace (Caravanserai) offering panoramic tea terraces"
+        ]
+      }
+    },
+    {
+      id: "af-minaret-of-jam",
+      name: "Minaret of Jam (UNESCO World Heritage)",
+      location: "Shahrak District, Ghor Province, Afghanistan",
+      category: "UNESCO World Heritage & Ancient Minarets",
+      image: "https://upload.wikimedia.org/wikipedia/commons/2/23/Jam_afghan_architecture_harirud_brick.jpg",
+      whyFamous: "A soaring 65-meter-tall 12th-century baked brick minaret in a remote river gorge, decorated with intricate geometric relief brickwork and turquoise glazed tiles, marking the lost capital of the Ghurid Empire.",
+      specs: {
+        googleRank: "UNESCO World Heritage Site (Inscribed 2002)",
+        height: "65 meters (213 ft)",
+        constructed: "c. 1190 CE by Sultan Ghiyath al-Din",
+        highlights: [
+          "Pinnacle of Islamic baked-brick architectural craftsmanship",
+          "Complete Quranic Surah Maryam inscribed in elaborate Kufic script",
+          "Dramatic gorge setting at the confluence of Hari and Jam rivers",
+          "Double spiral internal stone staircase to upper balconies"
+        ]
+      }
+    },
+    {
+      id: "af-blue-mosque",
+      name: "Blue Mosque (Shrine of Hazrat Ali)",
+      location: "Mazar-i-Sharif, Balkh Province, Afghanistan",
+      category: "Sacred Shrines & Architectural Mosques",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Blue_Mosque_in_the_northern_Afghan_city_in_2012.jpg/1280px-Blue_Mosque_in_the_northern_Afghan_city_in_2012.jpg",
+      whyFamous: "A breathtaking oasis of azure and cobalt Persian glazed tiles in the heart of Mazar-i-Sharif, revered as the burial shrine of Ali ibn Abi Talib, celebrated for flocking white doves and the annual Nowruz festival.",
+      specs: {
+        googleRank: "#1 Sacred Islamic Landmark in Northern Afghanistan",
+        rebuilt: "1481 CE by Sultan Husayn Bayqara of Herat",
+        tilework: "Tens of thousands of handmade Persian ceramic mosaic tiles",
+        highlights: [
+          "Fabulous turquoise domes shimmering against desert sunlight",
+          "Famous sanctuary grounds where doves are said to turn pure white",
+          "Historic center of the Jahenda Bala flag-raising ceremony",
+          "Illuminated evening courtyard with spiritual chanting"
+        ]
+      }
+    },
+    {
+      id: "af-herat-citadel",
+      name: "Herat Citadel (Qala Ikhtyaruddin)",
+      location: "Herat, Western Afghanistan",
+      category: "Ancient Citadels & Silk Road Forts",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/View_of_Herat_Citadel_from_atop_the_premises.jpg/1280px-View_of_Herat_Citadel_from_atop_the_premises.jpg",
+      whyFamous: "Originally built by Alexander the Great in 330 BCE and fortified by the Kart and Timurid dynasties in 1305 CE, standing as one of the oldest and most imposing mud-brick fortresses along the ancient Silk Road.",
+      specs: {
+        googleRank: "#1 Historical Landmark in Western Afghanistan",
+        origins: "330 BCE (Alexander the Great)",
+        towers: "18 monumental crenellated bastions",
+        highlights: [
+          "Herat National Museum housed within royal upper citadel rooms",
+          "Restored Timurid glazed blue tile inscriptions on the upper tower",
+          "Sweeping 360-degree views over Herat's historic mud-brick old town",
+          "Ancient weapon collections and Silk Road trade artifacts"
+        ]
+      }
+    },
+    {
+      id: "af-bamiyan-buddhas",
+      name: "Buddhas of Bamiyan & Cultural Landscape",
+      location: "Bamyan Valley, Central Afghanistan",
+      category: "UNESCO World Heritage & Ancient Wonders",
+      image: "https://upload.wikimedia.org/wikipedia/commons/4/46/Buddha_of_Bamiyan.jpg",
+      whyFamous: "Monumental sandstone cliff niches where colossal 6th-century standing Buddhas (55m and 38m) stood for 1,500 years, surrounded by hundreds of Buddhist monastic cave sanctuaries with early oil frescos.",
+      specs: {
+        googleRank: "UNESCO World Heritage Site (Inscribed 2003)",
+        cliffHeight: "Over 100 meters of vertical sandstone cliffs",
+        caveCount: "Over 1,000 Buddhist monastic cave chambers",
+        highlights: [
+          "Viewing the colossal cliff niches overlooking the lush Bamyan Valley",
+          "Cave monasteries with remnants of ancient 5th-century Buddhist frescoes",
+          "Spectacular sunset illumination on the reddish-gold sandstone cliffs",
+          "Shahr-e Gholghola ('City of Screams') fortress ruins nearby"
+        ]
+      }
+    },
+    {
+      id: "af-great-mosque-herat",
+      name: "Great Mosque of Herat (Masjid Jami)",
+      location: "Herat, Afghanistan",
+      category: "Historic Mosques & Islamic Architecture",
+      image: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Friday_Mosque_in_Herat%2C_Afghanistan.jpg",
+      whyFamous: "One of the grandest congregational mosques in Central Asia, founded in 1200 CE by Ghurid rulers and adorned with dazzling floral and geometric ceramic mosaics by Timurid master craftsmen.",
+      specs: {
+        googleRank: "#2 Historic Sacred Site in Western Afghanistan",
+        capacity: "Over 20,000 worshippers across colonnaded porticos",
+        tileWorkshop: "On-site traditional artisan workshop restoring mosaics",
+        highlights: [
+          "Immense central courtyard framed by four towering decorated iwans",
+          "Massive 14th-century carved bronze cauldron weighing over 1.5 tons",
+          "Observing traditional master artisans cutting and firing mosaic tiles",
+          "Intricate turquoise, lapis, and gold floral calligraphic bands"
+        ]
+      }
+    },
+    {
+      id: "af-panjshir-valley",
+      name: "Panjshir Valley & Emerald River",
+      location: "Panjshir Province, Afghanistan",
+      category: "Mountain Valleys & River Gorges",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Panjshir_Valley_2008.jpg/1280px-Panjshir_Valley_2008.jpg",
+      whyFamous: "A legendary verdant mountain valley carved by the roaring Panjshir River through the Hindu Kush, famed for world-renowned emerald deposits, terraced walnut groves, and historic defense fortresses.",
+      specs: {
+        googleRank: "#1 Alpine Valley Trek in Afghanistan",
+        geography: "140 km mountain river canyon through the Hindu Kush",
+        elevation: "1,800 to 4,000+ meters",
+        highlights: [
+          "Emerald mining villages in the high mountain crags",
+          "Ahmad Shah Massoud Mausoleum overlooking the valley mouth",
+          "Rafting and riverside tea houses along turquoise alpine waters",
+          "Scenic hiking trails through traditional mud-brick orchard villages"
+        ]
+      }
+    },
+    {
+      id: "af-shah-do-shamshira",
+      name: "Shah-Do Shamshira Mosque",
+      location: "Kabul River Embankment, Kabul, Afghanistan",
+      category: "Historic City Mosques",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Shah-Do_Shamshira_Mosque_in_Kabul%2C_Afghanistan.jpg/1280px-Shah-Do_Shamshira_Mosque_in_Kabul%2C_Afghanistan.jpg",
+      whyFamous: "Unique two-story yellow baroque mosque built in the 1920s by King Amanullah Khan beside the Kabul River, showcasing an extraordinary blend of Italian neoclassical architecture and Islamic religious heritage.",
+      specs: {
+        googleRank: "#5 Historic Monument in Kabul",
+        built: "1920s during King Amanullah Khan's modernizing reign",
+        architecturalStyle: "Italianate / Afghan Baroque",
+        highlights: [
+          "Distinctive lemon-yellow stucco facade with ornate cornices and pilasters",
+          "Riverside balcony views overlooking the bustling Old City bazaar",
+          "Flocks of feeding pigeons gathering in the central courtyard plaza",
+          "Shrine of the 7th-century Arab warrior king next to the prayer hall"
+        ]
+      }
+    }
+  ],
   
   fr: [
     {
@@ -450,20 +662,12 @@ export function getTopDestinationsForCountry(country) {
     return indiaAttractions;
   }
 
-  // 2. Combine country's existing seed attractions + curated nation presets
+  // 2. Prioritize curated nation presets over uncurated seed data
   let existing = [];
   if (TOP_CURATED_NATIONS[codeKey] || TOP_CURATED_NATIONS[idKey]) {
     existing = [...(TOP_CURATED_NATIONS[codeKey] || TOP_CURATED_NATIONS[idKey])];
-  }
-  
-  if (Array.isArray(country.attractions) && country.attractions.length > 0) {
-    const existingIds = new Set(existing.map(a => a.id));
-    for (const a of country.attractions) {
-      if (!existingIds.has(a.id)) {
-        existing.push(a);
-        existingIds.add(a.id);
-      }
-    }
+  } else if (Array.isArray(country.attractions) && country.attractions.length > 0) {
+    existing = [...country.attractions];
   }
 
   const existingNames = new Set(existing.map(a => a.name.toLowerCase()));

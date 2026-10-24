@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Landmark, 
   MapPin, 
@@ -8,8 +8,21 @@ import {
   Info, 
   Search, 
   Filter, 
-  ChevronDown 
+  ChevronDown,
+  Navigation,
+  ExternalLink,
+  Camera,
+  CheckCircle2,
+  Footprints,
+  Globe2
 } from 'lucide-react';
+import { 
+  getInitialGenuineImage, 
+  fetchGenuinePlaceImage, 
+  getGoogleMapsUrl,
+  getGoogleStreetViewUrl,
+  getGoogleEarth3DUrl
+} from '../services/genuineImageService';
 
 export default function AttractionsSection({ 
   country, 
@@ -87,7 +100,7 @@ export default function AttractionsSection({
             World-Famous Tourist Destinations in <span className="highlight-text">{country.name}</span>
           </h2>
           <p className="section-subheading">
-            Curated from top Google Travel indices, historical archives, and national registries. Click any destination to inspect complete architectural blueprints, visitor specs, and why it is famous.
+            Curated from Google Maps, global historical archives, and national registries. Click any destination to inspect verified architectural blueprints, authentic photos, and live Google Maps explorer.
           </p>
         </div>
 
@@ -153,50 +166,12 @@ export default function AttractionsSection({
         <>
           <div className="attractions-grid">
             {displayedAttractions.map((attraction, idx) => (
-              <div 
-                key={attraction.id || idx} 
-                className="attraction-card"
-                onClick={() => onSelectAttraction(attraction)}
-                id={`attraction-card-${attraction.id}`}
-              >
-                <div className="card-image-wrapper">
-                  <img 
-                    src={attraction.image} 
-                    alt={attraction.name} 
-                    className="card-img"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.target.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
-                    }}
-                  />
-                  <div className="card-img-gradient"></div>
-                  <span className="category-pill">{attraction.category}</span>
-                  <span className="location-pill">
-                    <MapPin size={11} /> {attraction.location}
-                  </span>
-                </div>
-
-                <div className="card-body">
-                  <h3 className="attraction-name" title={attraction.name}>{attraction.name}</h3>
-
-                  <div className="why-famous-snippet">
-                    <span className="why-label">
-                      <Sparkles size={12} className="why-icon" /> Why it's famous:
-                    </span>
-                    <p className="why-text">{attraction.whyFamous}</p>
-                  </div>
-
-                  <div className="card-footer">
-                    <span className="specs-indicator">
-                      {attraction.specs ? `${Object.keys(attraction.specs).length} Verified Specs` : 'Detailed Specs'}
-                    </span>
-                    <button className="specs-trigger-btn">
-                      <span>View Specs</span>
-                      <ArrowRight size={14} className="arrow-icon" />
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <AttractionCardItem
+                key={attraction.id || idx}
+                attraction={attraction}
+                country={country}
+                onSelectAttraction={onSelectAttraction}
+              />
             ))}
           </div>
 
@@ -444,22 +419,35 @@ export default function AttractionsSection({
           inset: 0;
           background: linear-gradient(180deg, transparent 40%, rgba(7, 9, 14, 0.9) 100%);
         }
-        .category-pill {
+        .card-top-overlay-row {
           position: absolute;
-          top: 12px;
-          left: 12px;
-          background: rgba(14, 20, 32, 0.85);
+          top: 10px;
+          left: 10px;
+          right: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          z-index: 5;
+          pointer-events: none;
+        }
+        .category-pill {
+          position: static;
+          background: rgba(14, 20, 32, 0.88);
           backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          border: 1px solid rgba(255, 255, 255, 0.18);
           color: #f8fafc;
-          font-size: 0.72rem;
+          font-size: 0.70rem;
           font-weight: 600;
-          padding: 0.25rem 0.65rem;
+          padding: 0.22rem 0.6rem;
           border-radius: var(--radius-full);
-          max-width: 80%;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          max-width: 42%;
+          flex-shrink: 1;
+          pointer-events: auto;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
         .location-pill {
           position: absolute;
@@ -608,7 +596,187 @@ export default function AttractionsSection({
         .empty-icon {
           color: var(--text-muted);
         }
+
+        /* Quick Action Badges on Card Image: Maps, Street View 360°, Google Earth 3D */
+        .card-quick-actions {
+          position: static;
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          flex-shrink: 0;
+          pointer-events: auto;
+        }
+        .quick-badge-pill {
+          background: rgba(15, 23, 42, 0.88);
+          backdrop-filter: blur(8px);
+          font-size: 0.70rem;
+          font-weight: 700;
+          padding: 0.22rem 0.52rem;
+          border-radius: var(--radius-full);
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+          text-decoration: none;
+        }
+        .quick-badge-pill.gmaps {
+          border: 1px solid rgba(56, 189, 248, 0.4);
+          color: #38bdf8;
+        }
+        .quick-badge-pill.gmaps:hover {
+          background: #0284c7;
+          color: #ffffff;
+          border-color: #38bdf8;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 14px rgba(56, 189, 248, 0.45);
+        }
+        .quick-badge-pill.streetview {
+          border: 1px solid rgba(245, 158, 11, 0.45);
+          color: #f59e0b;
+        }
+        .quick-badge-pill.streetview:hover {
+          background: #d97706;
+          color: #ffffff;
+          border-color: #fbbf24;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 14px rgba(245, 158, 11, 0.45);
+        }
+        .quick-badge-pill.earth3d {
+          border: 1px solid rgba(16, 185, 129, 0.45);
+          color: #10b981;
+        }
+        .quick-badge-pill.earth3d:hover {
+          background: #059669;
+          color: #ffffff;
+          border-color: #34d399;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 14px rgba(16, 185, 129, 0.45);
+        }
+
+        .specs-indicator {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+        .indicator-icon {
+          color: var(--accent-emerald);
+        }
       `}</style>
     </section>
   );
 }
+
+// Individual Destination Card with Dynamic Genuine Image Resolution & Google Maps Link
+function AttractionCardItem({ attraction, country, onSelectAttraction }) {
+  const [imgSrc, setImgSrc] = useState(() => getInitialGenuineImage(attraction, country));
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchGenuinePlaceImage(attraction.name, country?.name).then((resolved) => {
+      if (isMounted && resolved) {
+        setImgSrc(resolved);
+      }
+    });
+    return () => { isMounted = false; };
+  }, [attraction.name, country?.name]);
+
+  const gmapsUrl = getGoogleMapsUrl(attraction.name, attraction.location, country?.name);
+  const streetViewUrl = getGoogleStreetViewUrl(attraction.name, attraction.location, country?.name);
+  const earth3dUrl = getGoogleEarth3DUrl(attraction.name, attraction.location, country?.name);
+
+  return (
+    <div 
+      className="attraction-card"
+      onClick={() => onSelectAttraction(attraction)}
+      id={`attraction-card-${attraction.id}`}
+    >
+      <div className="card-image-wrapper">
+        <img 
+          src={imgSrc} 
+          alt={attraction.name} 
+          className="card-img"
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.target.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
+          }}
+        />
+        <div className="card-img-gradient"></div>
+
+        {/* Top Header Row: Category Pill + Quick Actions inside a flex row to prevent any overlap */}
+        <div className="card-top-overlay-row">
+          <span className="category-pill" title={attraction.category}>
+            {attraction.category}
+          </span>
+
+          <div className="card-quick-actions">
+            <a 
+              href={gmapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="quick-badge-pill gmaps"
+              title="Open in Google Maps"
+              onClick={(e) => e.stopPropagation()}
+              id={`btn-card-map-${attraction.id}`}
+            >
+              <Navigation size={10} />
+              <span>Map</span>
+            </a>
+            <a 
+              href={streetViewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="quick-badge-pill streetview"
+              title="Launch 360° Google Street View"
+              onClick={(e) => e.stopPropagation()}
+              id={`btn-card-streetview-${attraction.id}`}
+            >
+              <Footprints size={10} />
+              <span>360°</span>
+            </a>
+            <a 
+              href={earth3dUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="quick-badge-pill earth3d"
+              title="Launch 3D Google Earth Flyover"
+              onClick={(e) => e.stopPropagation()}
+              id={`btn-card-earth-${attraction.id}`}
+            >
+              <Globe2 size={10} />
+              <span>3D Earth</span>
+            </a>
+          </div>
+        </div>
+
+        <span className="location-pill">
+          <MapPin size={11} /> {attraction.location}
+        </span>
+      </div>
+
+      <div className="card-body">
+        <h3 className="attraction-name" title={attraction.name}>{attraction.name}</h3>
+
+        <div className="why-famous-snippet">
+          <span className="why-label">
+            <Sparkles size={12} className="why-icon" /> Why it's famous:
+          </span>
+          <p className="why-text">{attraction.whyFamous}</p>
+        </div>
+
+        <div className="card-footer">
+          <span className="specs-indicator">
+            <CheckCircle2 size={12} className="indicator-icon" />
+            {attraction.specs ? `${Object.keys(attraction.specs).length} Verified Specs` : 'Detailed Specs'}
+          </span>
+          <button className="specs-trigger-btn" type="button">
+            <span>View Specs</span>
+            <ArrowRight size={14} className="arrow-icon" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
