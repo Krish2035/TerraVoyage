@@ -237,33 +237,80 @@ export function extractCurrencyCode(currencyStr) {
 export function getLanguageCodeForCountry(country) {
   if (!country) return 'en-US';
   const code = (country.code || '').toUpperCase();
+  const languages = (country.languages || '').toLowerCase();
+
   const map = {
-    FR: 'fr-FR',
-    DE: 'de-DE',
-    ES: 'es-ES',
-    IT: 'it-IT',
+    // Chinese
+    CN: 'zh-CN', TW: 'zh-TW', HK: 'zh-HK', MO: 'zh-MO', SG: 'zh-CN',
+    // Japanese
     JP: 'ja-JP',
-    CN: 'zh-CN',
-    IN: 'hi-IN',
-    RU: 'ru-RU',
-    BR: 'pt-BR',
-    PT: 'pt-PT',
-    SA: 'ar-SA',
-    AE: 'ar-AE',
-    EG: 'ar-EG',
-    KR: 'ko-KR',
-    NL: 'nl-NL',
-    GR: 'el-GR',
-    TR: 'tr-TR',
+    // Korean
+    KR: 'ko-KR', KP: 'ko-KR',
+    // French
+    FR: 'fr-FR', MC: 'fr-FR', BE: 'fr-BE', SN: 'fr-FR', CI: 'fr-FR', CD: 'fr-FR', CA: 'en-US',
+    // German
+    DE: 'de-DE', AT: 'de-AT', CH: 'de-CH', LI: 'de-DE', LU: 'de-DE',
+    // Spanish
+    ES: 'es-ES', MX: 'es-MX', AR: 'es-AR', CO: 'es-CO', CL: 'es-CL',
+    PE: 'es-PE', VE: 'es-VE', EC: 'es-EC', GT: 'es-GT', CU: 'es-CU',
+    DO: 'es-DO', BO: 'es-BO', HN: 'es-HN', PY: 'es-PY', SV: 'es-SV',
+    NI: 'es-NI', CR: 'es-CR', PA: 'es-PA', UY: 'es-UY',
+    // Italian
+    IT: 'it-IT', SM: 'it-IT', VA: 'it-IT',
+    // Hindi
+    IN: 'hi-IN', NP: 'hi-IN',
+    // Russian
+    RU: 'ru-RU', BY: 'ru-RU', KZ: 'ru-RU', KG: 'ru-RU', TJ: 'ru-RU', UZ: 'ru-RU',
+    // Portuguese
+    BR: 'pt-BR', PT: 'pt-PT', AO: 'pt-PT', MZ: 'pt-PT',
+    // Arabic
+    SA: 'ar-SA', AE: 'ar-AE', EG: 'ar-EG', QA: 'ar-QA', KW: 'ar-KW',
+    OM: 'ar-OM', BH: 'ar-BH', JO: 'ar-JO', LB: 'ar-LB', IQ: 'ar-IQ',
+    MA: 'ar-MA', DZ: 'ar-DZ', TN: 'ar-TN',
+    // Turkish
+    TR: 'tr-TR', AZ: 'tr-TR',
+    // Thai
     TH: 'th-TH',
+    // Vietnamese
     VN: 'vi-VN',
-    ID: 'id-ID',
-    MX: 'es-MX',
+    // Indonesian / Malay
+    ID: 'id-ID', MY: 'ms-MY', BN: 'ms-MY',
+    // Dutch
+    NL: 'nl-NL',
+    // Greek
+    GR: 'el-GR', CY: 'el-GR',
+    // Polish
     PL: 'pl-PL',
-    SE: 'sv-SE',
-    NO: 'nb-NO',
-    DK: 'da-DK',
-    FI: 'fi-FI'
+    // Scandinavian
+    SE: 'sv-SE', NO: 'nb-NO', DK: 'da-DK', FI: 'fi-FI',
+    // Swahili
+    KE: 'sw-KE', TZ: 'sw-TZ', UG: 'sw-UG',
+    // English
+    US: 'en-US', GB: 'en-GB', AU: 'en-AU', NZ: 'en-NZ', IE: 'en-IE', ZA: 'en-ZA'
   };
-  return map[code] || 'en-US';
+
+  if (map[code]) return map[code];
+
+  if (languages.includes('chinese') || languages.includes('mandarin')) return 'zh-CN';
+  if (languages.includes('japanese')) return 'ja-JP';
+  if (languages.includes('korean')) return 'ko-KR';
+  if (languages.includes('spanish') || languages.includes('español')) return 'es-ES';
+  if (languages.includes('french') || languages.includes('français')) return 'fr-FR';
+  if (languages.includes('german') || languages.includes('deutsch')) return 'de-DE';
+  if (languages.includes('italian')) return 'it-IT';
+  if (languages.includes('hindi')) return 'hi-IN';
+  if (languages.includes('arabic')) return 'ar-SA';
+  if (languages.includes('russian')) return 'ru-RU';
+  if (languages.includes('portuguese')) return 'pt-BR';
+  if (languages.includes('thai')) return 'th-TH';
+  if (languages.includes('vietnamese')) return 'vi-VN';
+  if (languages.includes('indonesian') || languages.includes('malay')) return 'id-ID';
+  if (languages.includes('turkish')) return 'tr-TR';
+  if (languages.includes('greek')) return 'el-GR';
+  if (languages.includes('dutch')) return 'nl-NL';
+  if (languages.includes('polish')) return 'pl-PL';
+  if (languages.includes('swahili')) return 'sw-KE';
+
+  return 'en-US';
 }
+
