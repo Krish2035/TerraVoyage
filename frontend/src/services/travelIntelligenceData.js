@@ -152,40 +152,83 @@ export const WEBCAM_CATALOG = {
       id: 'ch-matterhorn',
       name: 'Zermatt & Matterhorn Alpine Peak',
       city: 'Zermatt, Switzerland',
-      embedUrl: 'https://www.youtube.com/embed/8I-g2W9_92I?autoplay=1&mute=1&playsinline=1',
+      embedUrl: 'https://www.youtube-nocookie.com/embed/8I-g2W9_92I?autoplay=1&mute=1&playsinline=1&rel=0',
+      directUrl: 'https://www.youtube.com/results?search_query=Zermatt+Matterhorn+live+cam+4k',
       source: 'Swiss Alpine Livecam',
       description: 'Jaw-dropping views of the pyramid alpine summit.',
       type: 'youtube'
     }
+  ],
+  AR: [
+    {
+      id: 'ar-buenos-aires',
+      name: 'Buenos Aires Obelisco & Plaza de la República',
+      city: 'Buenos Aires, Argentina',
+      embedUrl: 'https://www.youtube-nocookie.com/embed/5_XqJzXnO0M?autoplay=1&mute=1&playsinline=1&rel=0',
+      directUrl: 'https://www.youtube.com/results?search_query=Buenos+Aires+Argentina+live+camera+4k',
+      earthCamUrl: 'https://www.earthcam.com/search/ft_search.php?term=Buenos+Aires',
+      source: 'Buenos Aires Live Cam',
+      description: 'Avenida 9 de Julio, the Obelisk, and urban pulse of Buenos Aires in real time.',
+      type: 'portal'
+    },
+    {
+      id: 'ar-patagonia',
+      name: 'Patagonia & Bariloche Alpine Lake Live',
+      city: 'Bariloche, Argentina',
+      embedUrl: 'https://www.youtube-nocookie.com/embed/1-iS7LArMPA?autoplay=1&mute=1&playsinline=1&rel=0',
+      directUrl: 'https://www.youtube.com/results?search_query=Bariloche+Patagonia+Argentina+live+cam',
+      earthCamUrl: 'https://www.earthcam.com/search/ft_search.php?term=Argentina',
+      source: 'Patagonia Nature Cam',
+      description: 'Crystal-clear glacial lakes and Andean peaks of southern Argentina.',
+      type: 'portal'
+    }
+  ],
+  BR: [
+    {
+      id: 'br-rio',
+      name: 'Rio de Janeiro Copacabana & Christ the Redeemer',
+      city: 'Rio de Janeiro, Brazil',
+      directUrl: 'https://www.youtube.com/results?search_query=Rio+de+Janeiro+Copacabana+live+cam+4k',
+      earthCamUrl: 'https://www.earthcam.com/search/ft_search.php?term=Rio+de+Janeiro',
+      source: 'Rio Beach Stream',
+      description: 'Panoramic views over Copacabana Beach, Sugarloaf Mountain, and Corcovado.',
+      type: 'portal'
+    }
+  ],
+  ES: [
+    {
+      id: 'es-barcelona',
+      name: 'Barcelona Sagrada Família & Mediterranean Coast',
+      city: 'Barcelona, Spain',
+      directUrl: 'https://www.youtube.com/results?search_query=Barcelona+Sagrada+Familia+live+camera',
+      earthCamUrl: 'https://www.earthcam.com/search/ft_search.php?term=Barcelona',
+      source: 'Catalonia Skyline',
+      description: 'Gaudí masterpieces and vibrant Mediterranean coastline in real-time.',
+      type: 'portal'
+    }
   ]
 };
 
-// Fallback dynamic livecam for any country
+// Fallback dynamic livecam for any country (never uses deprecated listType=search)
 export function getCountryWebcams(country) {
   if (!country) return [];
   const code = country.code?.toUpperCase();
   if (WEBCAM_CATALOG[code]) {
     return WEBCAM_CATALOG[code];
   }
-  // Generic live EarthCam query
+  // Generic live EarthCam & Satellite Portal for any country
   return [
     {
-      id: `${country.code || 'intl'}-live-1`,
-      name: `${country.capital || country.name} City Panorama & Weather`,
+      id: `${country.code || 'intl'}-earthcam-portal`,
+      name: `${country.name} Live Atmosphere & EarthCam Network`,
       city: `${country.capital || country.name}, ${country.name}`,
-      embedUrl: `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(country.name + ' live camera 4k')}&autoplay=1&mute=1&playsinline=1`,
-      source: 'Global EarthCam Network',
-      description: `Live panoramic view, weather, and traffic of ${country.capital || country.name}.`,
-      type: 'search'
-    },
-    {
-      id: `${country.code || 'intl'}-live-2`,
-      name: `${country.name} Nature & Scenic Landscapes Live`,
-      city: country.name,
-      embedUrl: `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(country.name + ' scenic live cam')}&autoplay=1&mute=1&playsinline=1`,
-      source: 'World Nature Stream',
-      description: `Scenic landscapes and live conditions across ${country.name}.`,
-      type: 'search'
+      source: 'Global EarthCam & Satellite Network',
+      description: `Live real-time conditions, weather satellite, and city cameras across ${country.name}.`,
+      type: 'portal',
+      directUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(country.name + ' live camera 4k')}`,
+      earthCamUrl: `https://www.earthcam.com/search/ft_search.php?term=${encodeURIComponent(country.name)}`,
+      skylineUrl: `https://www.skylinewebcams.com/en/webcam.html?q=${encodeURIComponent(country.name)}`,
+      windyUrl: `https://www.windy.com/-Webcams/world`
     }
   ];
 }
