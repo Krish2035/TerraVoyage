@@ -15,7 +15,9 @@ import {
   Cloud, 
   Share2, 
   Download, 
-  Languages 
+  Languages,
+  Menu,
+  X
 } from 'lucide-react';
 import { useTranslation } from '../services/translationService';
 
@@ -38,6 +40,22 @@ export default function Navbar({
   canInstallPwa = false
 }) {
   const { currentLang, changeLanguage, languages, t } = useTranslation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile drawer on route/view change or resize to desktop
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [currentView]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <header className="navbar-wrapper glass-panel">
@@ -67,7 +85,7 @@ export default function Navbar({
 
         <button 
           onClick={onOpenArchModal}
-          className="arch-badge"
+          className="arch-badge desktop-only"
           title="Click to view 112 Production Architecture Parameters & Health"
         >
           <span className="arch-dot"></span>
@@ -79,11 +97,11 @@ export default function Navbar({
       </div>
 
       <div className="navbar-right">
-        {/* PWA Install Button */}
+        {/* Desktop Secondary Action Tools */}
         {canInstallPwa && (
           <button
             onClick={onInstallApp}
-            className="btn-nav-action btn-nav-pwa"
+            className="btn-nav-action btn-nav-pwa desktop-nav-tool"
             title="Install TerraVoyage as a Desktop/Mobile App (Offline Enabled)"
             id="btn-install-pwa"
           >
@@ -95,7 +113,7 @@ export default function Navbar({
         {/* Cloud Account Sync Action */}
         <button
           onClick={onOpenAuthModal}
-          className="btn-nav-action btn-nav-cloud"
+          className="btn-nav-action btn-nav-cloud desktop-nav-tool"
           title="Open Cloud Account & Backup Vault"
           id="btn-nav-cloud-user"
         >
@@ -106,7 +124,7 @@ export default function Navbar({
         {/* Social Share Trip Action */}
         <button
           onClick={onOpenShareModal}
-          className="btn-nav-action"
+          className="btn-nav-action desktop-nav-tool"
           title="Share Itinerary, Landmarks & QR Code"
           id="btn-nav-share-trip"
         >
@@ -117,7 +135,7 @@ export default function Navbar({
         {/* Wanderlust Trivia Quiz Action */}
         <button
           onClick={onOpenQuiz}
-          className="btn-nav-action"
+          className="btn-nav-action desktop-nav-tool"
           title="Play Wanderlust Geography & Landmark Quiz"
           id="btn-nav-quiz"
         >
@@ -128,7 +146,7 @@ export default function Navbar({
         {/* World Explorer Passport Action */}
         <button
           onClick={onOpenPassport}
-          className="btn-nav-action btn-nav-passport"
+          className="btn-nav-action btn-nav-passport desktop-nav-tool"
           title="Open My World Explorer Passport & Travel Bucket List"
           id="btn-nav-passport"
         >
@@ -139,7 +157,7 @@ export default function Navbar({
         {/* Compare Nations Action */}
         <button 
           onClick={onOpenCompare}
-          className="btn-nav-action"
+          className="btn-nav-action desktop-nav-tool"
           title="Compare nations side-by-side"
           id="btn-nav-compare"
         >
@@ -147,7 +165,7 @@ export default function Navbar({
           <span className="nav-btn-text">{t('compare')}</span>
         </button>
 
-        {/* Travel Itinerary Drawer Action */}
+        {/* Travel Itinerary Drawer Action - Always visible on all screens */}
         <button 
           onClick={onOpenItinerary}
           className="btn-nav-action btn-nav-itinerary"
@@ -161,17 +179,18 @@ export default function Navbar({
           )}
         </button>
 
+        {/* Add Country Button (Desktop) */}
         <button 
           onClick={onOpenAddCountry}
-          className="btn-primary"
+          className="btn-primary desktop-only"
           id="btn-add-country"
         >
           <Plus size={16} />
           <span className="nav-btn-text">{t('addCountry')}</span>
         </button>
 
-        {/* Language Selector Dropdown - Elegantly Placed at Far Right Utilities */}
-        <div className="lang-selector-box" title="Change Interface Language">
+        {/* Language Selector Dropdown (Desktop) */}
+        <div className="lang-selector-box desktop-only" title="Change Interface Language">
           <Languages size={14} className="lang-icon" />
           <select 
             value={currentLang} 
@@ -187,6 +206,7 @@ export default function Navbar({
           </select>
         </div>
 
+        {/* Theme Toggle - Always visible */}
         <button 
           onClick={onToggleTheme} 
           className="btn-icon" 
@@ -195,7 +215,135 @@ export default function Navbar({
         >
           {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
         </button>
+
+        {/* Mobile & Tablet Hamburger Menu Toggle Button */}
+        <button
+          type="button"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="btn-icon btn-mobile-menu-toggle"
+          title={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+          id="btn-mobile-menu"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          {isMobileMenuOpen ? <X size={20} className="text-cyan" /> : <Menu size={20} />}
+        </button>
       </div>
+
+      {/* Mobile & Tablet Responsive Navigation Sheet */}
+      {isMobileMenuOpen && (
+        <div className="mobile-nav-drawer glass-panel animate-slide-up" id="mobile-nav-drawer">
+          <div className="mobile-drawer-top">
+            <button
+              onClick={() => {
+                onOpenAddCountry();
+                setIsMobileMenuOpen(false);
+              }}
+              className="btn-primary mobile-btn-add"
+              id="mobile-btn-add-country"
+            >
+              <Plus size={16} />
+              <span>{t('addCountry')}</span>
+            </button>
+
+            <div className="mobile-lang-box">
+              <Languages size={15} className="lang-icon" />
+              <select
+                value={currentLang}
+                onChange={(e) => changeLanguage(e.target.value)}
+                className="lang-select-dropdown"
+              >
+                {languages.map((l) => (
+                  <option key={l.code} value={l.code}>
+                    {l.flag} {l.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="mobile-drawer-grid">
+            <button
+              onClick={() => {
+                onOpenQuiz();
+                setIsMobileMenuOpen(false);
+              }}
+              className="mobile-tool-card"
+            >
+              <HelpCircle size={18} className="text-purple" />
+              <span>{t('quiz')}</span>
+            </button>
+
+            <button
+              onClick={() => {
+                onOpenPassport();
+                setIsMobileMenuOpen(false);
+              }}
+              className="mobile-tool-card"
+            >
+              <Award size={18} className="text-gold" />
+              <span>{t('passport')}</span>
+            </button>
+
+            <button
+              onClick={() => {
+                onOpenCompare();
+                setIsMobileMenuOpen(false);
+              }}
+              className="mobile-tool-card"
+            >
+              <Scale size={18} className="text-cyan" />
+              <span>{t('compare')}</span>
+            </button>
+
+            <button
+              onClick={() => {
+                onOpenAuthModal();
+                setIsMobileMenuOpen(false);
+              }}
+              className="mobile-tool-card"
+            >
+              <Cloud size={18} className="text-indigo" />
+              <span>{t('cloudAccount')}</span>
+            </button>
+
+            <button
+              onClick={() => {
+                onOpenShareModal();
+                setIsMobileMenuOpen(false);
+              }}
+              className="mobile-tool-card"
+            >
+              <Share2 size={18} className="text-emerald" />
+              <span>{t('shareTrip')}</span>
+            </button>
+
+            {canInstallPwa && (
+              <button
+                onClick={() => {
+                  onInstallApp();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="mobile-tool-card highlight-card"
+              >
+                <Download size={18} className="text-cyan" />
+                <span>{t('installApp')}</span>
+              </button>
+            )}
+
+            <button
+              onClick={() => {
+                onOpenArchModal();
+                setIsMobileMenuOpen(false);
+              }}
+              className="mobile-tool-card arch-card"
+            >
+              <ShieldCheck size={18} className="text-emerald" />
+              <span>112 Pillars</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       <style>{`
         .navbar-wrapper {
@@ -428,6 +576,89 @@ export default function Navbar({
           background: #4f46e5;
           color: #ffffff;
         }
+        .btn-mobile-menu-toggle {
+          display: none;
+        }
+        .mobile-nav-drawer {
+          position: absolute;
+          top: calc(100% + 0.6rem);
+          left: 0;
+          right: 0;
+          background: rgba(13, 17, 23, 0.96);
+          backdrop-filter: blur(24px);
+          -webkit-backdrop-filter: blur(24px);
+          border: 1px solid var(--border-accent);
+          border-radius: var(--radius-lg);
+          padding: 1.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), var(--shadow-glow);
+          z-index: 100;
+        }
+        .mobile-drawer-top {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+        .mobile-btn-add {
+          flex: 1;
+          justify-content: center;
+          padding: 0.65rem 1rem;
+          font-size: 0.88rem;
+          min-height: 42px;
+        }
+        .mobile-lang-box {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          background: rgba(30, 41, 59, 0.8);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          padding: 0.5rem 0.75rem;
+          min-height: 42px;
+        }
+        .mobile-drawer-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.65rem;
+        }
+        .mobile-tool-card {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          padding: 0.75rem 0.85rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          color: var(--text-primary);
+          font-size: 0.84rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: var(--transition-fast);
+          min-height: 44px;
+        }
+        .mobile-tool-card:hover, .mobile-tool-card:active {
+          background: rgba(99, 102, 241, 0.2);
+          border-color: var(--border-accent);
+          transform: translateY(-1px);
+        }
+        .mobile-tool-card.arch-card {
+          grid-column: span 2;
+          justify-content: center;
+          background: rgba(16, 185, 129, 0.1);
+          border-color: rgba(16, 185, 129, 0.3);
+          color: var(--accent-emerald);
+        }
+        .mobile-tool-card.highlight-card {
+          grid-column: span 2;
+          justify-content: center;
+          background: rgba(56, 189, 248, 0.12);
+          border-color: rgba(56, 189, 248, 0.35);
+          color: #38bdf8;
+        }
+
+        /* Large Tablet / Small Laptop Viewports (1025px - 1400px) */
         @media (max-width: 1400px) {
           .btn-nav-action .nav-btn-text {
             display: none;
@@ -439,17 +670,52 @@ export default function Navbar({
             padding: 0.44rem 0.58rem;
           }
         }
-        @media (max-width: 1120px) {
-          .arch-badge {
-            display: none;
+        @media (max-width: 1180px) {
+          .arch-badge.desktop-only {
+            display: none !important;
           }
         }
-        @media (max-width: 768px) {
+
+        /* Tablet & Mobile Viewports (<= 1024px) */
+        @media (max-width: 1024px) {
+          .desktop-only, .desktop-nav-tool {
+            display: none !important;
+          }
+          .btn-mobile-menu-toggle {
+            display: flex !important;
+          }
+          .navbar-wrapper {
+            padding: 0.75rem 1.15rem;
+          }
+          .navbar-left, .navbar-right {
+            gap: 0.65rem;
+          }
+        }
+
+        /* Mobile Phone Viewports (<= 640px) */
+        @media (max-width: 640px) {
           .brand-subtitle {
             display: none;
           }
+          .brand-title {
+            font-size: 1.1rem;
+          }
+          .brand-icon-wrapper {
+            width: 36px;
+            height: 36px;
+          }
           .navbar-wrapper {
-            padding: 0.6rem 0.9rem;
+            padding: 0.6rem 0.85rem;
+            top: 0.5rem;
+          }
+          .btn-nav-itinerary .nav-btn-text {
+            display: none;
+          }
+          .mobile-drawer-grid {
+            grid-template-columns: 1fr;
+          }
+          .mobile-tool-card.arch-card, .mobile-tool-card.highlight-card {
+            grid-column: span 1;
           }
         }
       `}</style>

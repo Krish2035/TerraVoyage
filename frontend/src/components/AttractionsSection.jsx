@@ -662,6 +662,44 @@ export default function AttractionsSection({
         .indicator-icon {
           color: var(--accent-emerald);
         }
+
+        /* Tablet Responsive Viewports (<= 1024px) */
+        @media (max-width: 1024px) {
+          .attractions-container {
+            padding: 1.5rem;
+          }
+          .attractions-grid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+          }
+        }
+
+        /* Mobile Phone Viewports (<= 640px) */
+        @media (max-width: 640px) {
+          .attractions-container {
+            padding: 0.95rem;
+            border-radius: var(--radius-md);
+            gap: 1.25rem;
+          }
+          .attractions-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+          }
+          .section-heading {
+            font-size: 1.35rem;
+          }
+          .attractions-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          .card-image-wrapper {
+            height: 185px;
+          }
+          .attraction-filter-row {
+            padding: 0.75rem;
+          }
+        }
       `}</style>
     </section>
   );

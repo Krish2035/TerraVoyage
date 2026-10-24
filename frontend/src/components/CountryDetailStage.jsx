@@ -542,11 +542,12 @@ export default function CountryDetailStage({ country, onOpenCompare, onAddMultip
           animation: pulseGlow 2s infinite ease-in-out;
         }
         .country-headline {
-          font-size: 2.5rem;
+          font-size: clamp(1.65rem, 5vw, 2.5rem);
           font-weight: 800;
           line-height: 1.1;
           letter-spacing: -0.03em;
           margin: 0;
+          word-break: break-word;
         }
         .btn-audio-pronounce, .btn-anthem-play {
           display: inline-flex;
@@ -1073,6 +1074,54 @@ export default function CountryDetailStage({ country, onOpenCompare, onAddMultip
         .tier-label {
           font-size: 0.7rem;
           color: var(--text-secondary);
+        }
+
+        /* Tablet Responsive Viewports (<= 1024px) */
+        @media (max-width: 1024px) {
+          .country-detail-container {
+            padding: 1.5rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .country-banner-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+          }
+          .banner-actions-right {
+            width: 100%;
+            justify-content: space-between;
+          }
+        }
+
+        /* Small Mobile Viewports (<= 640px) */
+        @media (max-width: 640px) {
+          .country-detail-container {
+            padding: 0.95rem;
+            border-radius: var(--radius-md);
+            gap: 1.5rem;
+          }
+          .headline-audio-row {
+            gap: 0.5rem;
+          }
+          .btn-audio-pronounce, .btn-anthem-play {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.75rem;
+          }
+          .flag-image-frame {
+            height: 185px;
+          }
+          .budget-tiers-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+          }
+          .weather-display-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+          }
         }
       `}</style>
     </section>

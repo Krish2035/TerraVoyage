@@ -1098,6 +1098,54 @@ export default function AttractionSpecsModal({
         .earth-link {
           color: var(--accent-gold) !important;
         }
+
+        /* Mobile Responsive Viewports (<= 640px) */
+        @media (max-width: 640px) {
+          .modal-backdrop {
+            padding: 0.5rem;
+          }
+          .specs-modal-card {
+            max-height: 96vh;
+            border-radius: var(--radius-md);
+          }
+          .modal-hero-banner {
+            height: 180px;
+          }
+          .modal-hero-content {
+            left: 14px;
+            right: 14px;
+            bottom: 12px;
+          }
+          .modal-hero-title {
+            font-size: 1.25rem;
+          }
+          .modal-body-scroll {
+            padding: 1rem 1.15rem;
+            gap: 1.25rem;
+          }
+          .modal-action-bar {
+            padding: 0.85rem 1.15rem;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+          }
+          .action-buttons {
+            width: 100%;
+            display: flex;
+            gap: 0.5rem;
+          }
+          .action-buttons button {
+            flex: 1;
+            justify-content: center;
+          }
+          .explorer-mode-tabs {
+            border-radius: var(--radius-md);
+          }
+          .exp-tab-btn {
+            padding: 0.32rem 0.55rem;
+            font-size: 0.72rem;
+          }
+        }
       `}</style>
     </div>
   );

@@ -190,7 +190,19 @@ input, select, textarea {
 
 @media (max-width: 768px) {
   .app-container {
-    padding: 1rem 1rem 3rem 1rem;
-    gap: 1.75rem;
+    padding: 0.75rem 0.75rem 5rem 0.75rem;
+    gap: 1.5rem;
+  }
+  
+  /* Mobile touch responsiveness and tap targets */
+  button, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0.5rem 0.5rem 5.5rem 0.5rem;
+    gap: 1.2rem;
   }
 }

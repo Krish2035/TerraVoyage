@@ -741,6 +741,34 @@ export default function App() {
           background: var(--bg-secondary);
           color: var(--text-primary);
         }
+
+        /* Mobile Responsive Viewports (<= 640px) */
+        @media (max-width: 640px) {
+          .country-nav-bar {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0.75rem 0.95rem;
+            gap: 0.75rem;
+          }
+          .country-nav-left, .country-nav-right {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .quick-switch-box {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .quick-switch-select {
+            max-width: none;
+            flex: 1;
+          }
+          .floating-trip-btn {
+            bottom: 1.25rem;
+            right: 1.25rem;
+            padding: 0.55rem 0.95rem;
+            font-size: 0.82rem;
+          }
+        }
       `}</style>
       </div>
     </LanguageProvider>

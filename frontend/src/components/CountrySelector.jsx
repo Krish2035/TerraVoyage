@@ -600,6 +600,71 @@ export default function CountrySelector({
           width: 100%;
           text-align: center;
         }
+
+        /* Tablet Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .selector-section {
+            padding: 1.15rem;
+          }
+          .selector-header-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.85rem;
+          }
+          .selector-right-controls {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .countries-grid-view {
+            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+            gap: 0.75rem;
+            max-height: 580px;
+          }
+        }
+
+        /* Mobile Phone Viewports (<= 640px) */
+        @media (max-width: 640px) {
+          .selector-section {
+            padding: 0.85rem;
+            border-radius: var(--radius-md);
+          }
+          .filter-bar {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.65rem;
+          }
+          .search-input-wrapper {
+            min-width: 0;
+            width: 100%;
+          }
+          .sort-wrapper {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .country-card {
+            min-width: 140px;
+            max-width: 155px;
+            padding: 0.65rem;
+          }
+          .country-flag-box {
+            height: 75px;
+          }
+        }
+
+        /* Small Phones (<= 420px) */
+        @media (max-width: 420px) {
+          .view-mode-btn span {
+            display: none;
+          }
+          .countries-grid-view {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+          }
+          .countries-grid-view .country-card {
+            min-width: 0;
+            max-width: none;
+          }
+        }
       `}</style>
     </section>
   );
