@@ -366,6 +366,26 @@ export default function CompareNationsModal({
             grid-template-columns: repeat(3, 1fr);
           }
           @media (max-width: 768px) {
+            .compare-modal-card {
+              max-height: 94vh;
+              border-radius: var(--radius-md);
+            }
+            .compare-header {
+              padding: 1rem 1.15rem;
+            }
+            .compare-title {
+              font-size: 1.15rem;
+            }
+            .slot-selector-row {
+              padding: 0.75rem 1rem;
+              gap: 0.65rem;
+            }
+            .slot-select-box {
+              min-width: 100%;
+            }
+            .compare-matrix-scroll {
+              padding: 1rem;
+            }
             .compare-columns-grid.cols-2, .compare-columns-grid.cols-3 {
               grid-template-columns: 1fr;
             }

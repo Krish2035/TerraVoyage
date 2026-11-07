@@ -13,6 +13,7 @@ import WorldExplorerPassportModal from './components/WorldExplorerPassportModal'
 import WanderlustQuizModal from './components/WanderlustQuizModal';
 import UserAuthModal from './components/UserAuthModal';
 import ShareTripModal from './components/ShareTripModal';
+import Footer from './components/Footer';
 import { LanguageProvider } from './services/translationService';
 import { decodeSharedTrip } from './services/cloudSyncService';
 import { apiService } from './services/api';
@@ -449,6 +450,13 @@ export default function App() {
         </>
       )}
 
+      {/* TerraVoyage Comprehensive Responsive Footer */}
+      <Footer 
+        onOpenArchitecture={() => setIsArchModalOpen(true)}
+        onOpenPassport={() => setIsPassportOpen(true)}
+        onOpenQuiz={() => setIsQuizOpen(true)}
+      />
+
       {/* Deep-Dive Specs Modal when user clicks an attraction */}
       {selectedAttraction && (
         <AttractionSpecsModal
@@ -553,7 +561,7 @@ export default function App() {
       <style>{`
         .floating-trip-btn {
           position: fixed;
-          bottom: 1.8rem;
+          bottom: calc(1.8rem + env(safe-area-inset-bottom, 0px));
           right: 1.8rem;
           display: inline-flex;
           align-items: center;
@@ -569,6 +577,7 @@ export default function App() {
           z-index: 99;
           border: 1px solid rgba(255, 255, 255, 0.25);
           transition: var(--transition-fast);
+          touch-action: manipulation;
         }
         .floating-trip-btn:hover {
           transform: translateY(-3px) scale(1.03);
@@ -670,6 +679,7 @@ export default function App() {
           font-weight: 700;
           transition: var(--transition-fast);
           cursor: pointer;
+          white-space: nowrap;
         }
         .btn-back-home:hover {
           background: var(--accent-primary);
@@ -684,6 +694,13 @@ export default function App() {
           align-items: center;
           gap: 0.45rem;
           font-size: 0.88rem;
+          overflow-x: auto;
+          white-space: nowrap;
+          max-width: 100%;
+          scrollbar-width: none;
+        }
+        .breadcrumb-box::-webkit-scrollbar {
+          display: none;
         }
         .breadcrumb-btn {
           color: var(--text-muted);
@@ -692,6 +709,7 @@ export default function App() {
           transition: color 0.2s ease;
           padding: 0;
           background: none;
+          white-space: nowrap;
         }
         .breadcrumb-btn:hover {
           color: var(--text-highlight);
@@ -699,13 +717,16 @@ export default function App() {
         }
         .breadcrumb-arrow {
           color: var(--text-muted);
+          flex-shrink: 0;
         }
         .breadcrumb-segment {
           color: var(--text-secondary);
+          white-space: nowrap;
         }
         .breadcrumb-active {
           color: var(--text-highlight);
           font-weight: 700;
+          white-space: nowrap;
         }
 
         /* Quick Switcher */
@@ -725,9 +746,11 @@ export default function App() {
           font-size: 0.82rem;
           color: var(--text-muted);
           font-weight: 500;
+          white-space: nowrap;
         }
         .quick-switch-icon {
           color: var(--accent-primary);
+          flex-shrink: 0;
         }
         .quick-switch-select {
           background: transparent;
@@ -742,8 +765,19 @@ export default function App() {
           color: var(--text-primary);
         }
 
-        /* Mobile Responsive Viewports (<= 640px) */
-        @media (max-width: 640px) {
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .country-nav-bar {
+            padding: 0.85rem 1.15rem;
+            gap: 0.85rem;
+          }
+          .country-nav-left {
+            gap: 0.85rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
           .country-nav-bar {
             flex-direction: column;
             align-items: stretch;
@@ -763,10 +797,26 @@ export default function App() {
             flex: 1;
           }
           .floating-trip-btn {
-            bottom: 1.25rem;
-            right: 1.25rem;
+            bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+            right: 1rem;
             padding: 0.55rem 0.95rem;
             font-size: 0.82rem;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .btn-back-home {
+            width: 100%;
+            justify-content: center;
+          }
+          .country-nav-left {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.6rem;
+          }
+          .breadcrumb-box {
+            padding-bottom: 2px;
           }
         }
       `}</style>

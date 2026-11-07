@@ -345,6 +345,26 @@ export default function TripGeneratorWidget({ country, onAddMultipleToItinerary 
           transform: translateY(-2px);
           box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
         }
+
+        @media (max-width: 640px) {
+          .trip-generator-container {
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .tg-header-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+          }
+          .tg-controls {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .btn-add-all-itinerary {
+            width: 100%;
+            justify-content: center;
+          }
+        }
       `}</style>
     </div>
   );

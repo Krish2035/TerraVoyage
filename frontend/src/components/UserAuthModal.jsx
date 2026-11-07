@@ -408,6 +408,40 @@ export default function UserAuthModal({ isOpen, onClose, itineraryCount = 0, pas
           border-top: 1px solid var(--border-subtle);
           padding-top: 0.85rem;
         }
+
+        @media (max-width: 640px) {
+          .user-auth-modal-card {
+            width: 100%;
+            padding: 1.25rem 1rem;
+            max-height: 94vh;
+            border-radius: var(--radius-md);
+            overflow-y: auto;
+          }
+          .auth-title {
+            font-size: 1.25rem;
+          }
+          .profile-hero-card {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+          }
+          .profile-name-row {
+            justify-content: center;
+          }
+          .cloud-status-row {
+            justify-content: center;
+          }
+          .sync-stats-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+          }
+          .edit-actions-row {
+            flex-direction: column;
+          }
+          .edit-actions-row button {
+            width: 100%;
+          }
+        }
       `}</style>
     </div>
   );

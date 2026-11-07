@@ -513,6 +513,62 @@ export default function CurrencyBudgetWidget({ country }) {
         .seg-move {
           background: #f59e0b;
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .currency-budget-container {
+            padding: 1.15rem 1.35rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .currency-budget-container {
+            padding: 1rem;
+            gap: 0.85rem;
+          }
+          .cb-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+          }
+          .cb-converter-card, .cb-budget-meter-card {
+            padding: 0.85rem 1rem;
+          }
+        }
+
+        /* Small Mobile (<= 580px) */
+        @media (max-width: 580px) {
+          .converter-interactive-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+          }
+          .swap-icon-wrap {
+            padding-top: 0;
+            display: flex;
+            justify-content: center;
+            transform: rotate(90deg);
+          }
+          .budget-tier-pills {
+            gap: 0.35rem;
+          }
+          .tier-btn {
+            padding: 0.5rem 0.25rem;
+          }
+        }
+
+        /* Small Phones (<= 420px) */
+        @media (max-width: 420px) {
+          .budget-tier-pills {
+            grid-template-columns: 1fr;
+          }
+          .tier-btn {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0.5rem 0.75rem;
+          }
+        }
       `}</style>
     </div>
   );

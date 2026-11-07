@@ -380,7 +380,43 @@ export default function WorldExplorerPassportModal({
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
           }
-          @media (max-width: 860px) {
+          @media (max-width: 768px) {
+            .passport-modal-card {
+              width: 100%;
+              max-height: 94vh;
+              border-radius: var(--radius-md);
+            }
+            .passport-header {
+              padding: 1rem 1.15rem;
+            }
+            .passport-title {
+              font-size: 1.15rem;
+            }
+            .passport-stats-bar {
+              padding: 0.75rem 1rem;
+            }
+            .passport-controls-row {
+              padding: 0.75rem 1rem;
+              flex-direction: column;
+              align-items: stretch;
+              gap: 0.65rem;
+            }
+            .passport-tabs {
+              overflow-x: auto;
+              -webkit-overflow-scrolling: touch;
+              width: 100%;
+              padding-bottom: 2px;
+            }
+            .passport-search-wrap {
+              width: 100%;
+            }
+            .p-search-input {
+              flex: 1;
+              width: auto;
+            }
+            .passport-stamps-scroll {
+              padding: 1rem;
+            }
             .passport-grid {
               grid-template-columns: repeat(2, 1fr);
             }

@@ -619,6 +619,39 @@ export default function ItineraryDrawer({
             color: var(--accent-emerald);
           }
 
+          /* Mobile & Small Screen Responsive Viewports */
+          @media (max-width: 640px) {
+            .itinerary-drawer {
+              max-width: 100%;
+            }
+            .itinerary-header {
+              padding: 1rem 1.15rem;
+            }
+            .itinerary-title {
+              font-size: 1.15rem;
+            }
+            .itinerary-actions-bar {
+              padding: 0.75rem 1rem;
+              flex-direction: column;
+              gap: 0.5rem;
+            }
+            .btn-route-maps, .btn-print-summary {
+              width: 100%;
+              flex: none;
+            }
+            .itinerary-list-scroll {
+              padding: 1rem;
+            }
+            .itinerary-item-card {
+              padding: 0.75rem;
+              gap: 0.75rem;
+            }
+            .item-thumb-box {
+              width: 58px;
+              height: 58px;
+            }
+          }
+
           /* Print / PDF Media Styles */
           @media print {
             body * {

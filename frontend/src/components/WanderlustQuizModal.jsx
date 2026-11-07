@@ -421,6 +421,38 @@ export default function WanderlustQuizModal({ isOpen, onClose, country }) {
           gap: 1rem;
           margin-top: 0.5rem;
         }
+
+        @media (max-width: 640px) {
+          .quiz-modal-card {
+            width: 100%;
+            padding: 1.25rem 1rem;
+            max-height: 94vh;
+            border-radius: var(--radius-md);
+            overflow-y: auto;
+          }
+          .quiz-title {
+            font-size: 1.25rem;
+          }
+          .question-text {
+            font-size: 0.95rem;
+          }
+          .explanation-box {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.65rem;
+          }
+          .btn-next-question {
+            width: 100%;
+            justify-content: center;
+          }
+          .results-actions-row {
+            flex-direction: column;
+            width: 100%;
+          }
+          .results-actions-row button {
+            width: 100%;
+          }
+        }
       `}</style>
     </div>
   );

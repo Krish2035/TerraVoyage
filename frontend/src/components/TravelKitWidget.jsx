@@ -261,6 +261,36 @@ export default function TravelKitWidget({ country }) {
           line-height: 1.45;
           font-size: 0.82rem;
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .travel-kit-container {
+            padding: 1.15rem 1.35rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .travel-kit-container {
+            padding: 1rem;
+            gap: 0.85rem;
+          }
+          .tk-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .emergency-numbers-grid {
+            grid-template-columns: 1fr;
+          }
+          .tk-card {
+            padding: 0.85rem 1rem;
+          }
+        }
       `}</style>
     </div>
   );

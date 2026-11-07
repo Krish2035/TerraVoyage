@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07090e" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#050811" />
+    </linearGradient>
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-grad)" />
+  <circle cx="600" cy="315" r="450" fill="url(#glow)" />
+
+  <!-- Grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="157" x2="1200" y2="157" />
+    <line x1="0" y1="315" x2="1200" y2="315" />
+    <line x1="0" y1="472" x2="1200" y2="472" />
+    <line x1="300" y1="0" x2="300" y2="630" />
+    <line x1="600" y1="0" x2="600" y2="630" />
+    <line x1="900" y1="0" x2="900" y2="630" />
+  </g>
+
+  <!-- Logo Mark Icon -->
+  <g transform="translate(600, 180)">
+    <circle cx="0" cy="0" r="54" fill="#6366f1" fill-opacity="0.2" stroke="#6366f1" stroke-width="2" />
+    <circle cx="0" cy="0" r="42" fill="url(#accent-grad)" />
+    <path d="M-24 0 A24 24 0 0 0 24 0 A24 24 0 0 0 -24 0 M0 -24 A24 24 0 0 0 0 24 A24 24 0 0 0 0 -24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Title & Brand Text -->
+  <text x="600" y="295" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="-0.03em">TerraVoyage</text>
+  
+  <!-- Subtitle Tagline -->
+  <text x="600" y="345" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#38bdf8" text-anchor="middle" letter-spacing="0.02em">World Country &amp; Tourism Specifications Explorer</text>
+  
+  <text x="600" y="390" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="400" fill="#94a3b8" text-anchor="middle">Explore 195 Nations • Live Weather &amp; FX • 3D Landmarks • Smart Itineraries</text>
+
+  <!-- Vercel Deployment Badge -->
+  <g transform="translate(600, 460)">
+    <rect x="-140" y="-20" width="280" height="40" rx="20" fill="#000000" stroke="#38bdf8" stroke-width="1.5" />
+    <path d="M-115 6 L-107 -8 L-99 6 Z" fill="#ffffff" />
+    <text x="8" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">Deployed on Vercel</text>
+  </g>
+
+  <!-- Footer URL -->
+  <text x="600" y="555" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#64748b" text-anchor="middle">https://terravoyage.vercel.app</text>
+</svg>
+

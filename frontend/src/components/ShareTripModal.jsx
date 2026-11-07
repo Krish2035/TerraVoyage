@@ -319,6 +319,35 @@ export default function ShareTripModal({ isOpen, onClose, itineraryItems, countr
           margin: 0;
           line-height: 1.35;
         }
+
+        @media (max-width: 640px) {
+          .share-modal-card {
+            width: 100%;
+            padding: 1.25rem 1rem;
+            max-height: 94vh;
+            border-radius: var(--radius-md);
+            overflow-y: auto;
+          }
+          .share-title {
+            font-size: 1.25rem;
+          }
+          .link-input-row {
+            flex-direction: column;
+          }
+          .btn-copy-share-link {
+            width: 100%;
+            justify-content: center;
+          }
+          .social-channels-grid {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+          }
+          .qr-code-card {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+          }
+        }
       `}</style>
     </div>
   );

@@ -1099,29 +1099,42 @@ export default function AttractionSpecsModal({
           color: var(--accent-gold) !important;
         }
 
-        /* Mobile Responsive Viewports (<= 640px) */
-        @media (max-width: 640px) {
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .specs-modal-card {
+            max-width: 720px;
+            max-height: 92vh;
+          }
+          .modal-body-scroll {
+            padding: 1.4rem 1.6rem;
+            gap: 1.5rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
           .modal-backdrop {
             padding: 0.5rem;
           }
           .specs-modal-card {
-            max-height: 96vh;
+            max-width: 100%;
+            max-height: 95vh;
             border-radius: var(--radius-md);
           }
           .modal-hero-banner {
-            height: 180px;
+            height: 200px;
           }
           .modal-hero-content {
-            left: 14px;
-            right: 14px;
-            bottom: 12px;
+            left: 16px;
+            right: 16px;
+            bottom: 14px;
           }
-          .modal-hero-title {
-            font-size: 1.25rem;
+          .modal-title {
+            font-size: clamp(1.3rem, 4.5vw, 1.7rem);
           }
           .modal-body-scroll {
-            padding: 1rem 1.15rem;
-            gap: 1.25rem;
+            padding: 1.15rem 1.25rem;
+            gap: 1.35rem;
           }
           .modal-action-bar {
             padding: 0.85rem 1.15rem;
@@ -1142,8 +1155,57 @@ export default function AttractionSpecsModal({
             border-radius: var(--radius-md);
           }
           .exp-tab-btn {
-            padding: 0.32rem 0.55rem;
+            padding: 0.32rem 0.6rem;
             font-size: 0.72rem;
+          }
+          .gmaps-footer-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+          }
+          .earth-3d-hero-card {
+            gap: 1rem;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .modal-backdrop {
+            padding: 0.35rem;
+          }
+          .specs-modal-card {
+            max-height: 96vh;
+            border-radius: var(--radius-sm);
+          }
+          .modal-hero-banner {
+            height: 165px;
+          }
+          .modal-hero-content {
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+          }
+          .modal-title {
+            font-size: 1.2rem;
+          }
+          .modal-body-scroll {
+            padding: 0.85rem 0.95rem;
+            gap: 1.15rem;
+          }
+          .action-buttons {
+            flex-direction: column;
+          }
+          .btn-action-streetview, .btn-action-earth3d {
+            width: 100%;
+            justify-content: center;
+          }
+          .earth-3d-hero-card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+          .earth-info-box {
+            align-items: center;
           }
         }
       `}</style>

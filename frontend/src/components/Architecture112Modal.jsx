@@ -304,6 +304,30 @@ export default function Architecture112Modal({ isOpen, onClose, systemStatus, on
           justify-content: flex-end;
           background: rgba(10, 14, 22, 0.6);
         }
+
+        @media (max-width: 640px) {
+          .arch-modal-card {
+            width: 100%;
+            max-height: 94vh;
+            border-radius: var(--radius-md);
+          }
+          .arch-modal-header {
+            padding: 1rem 1.15rem;
+          }
+          .arch-modal-header h2 {
+            font-size: 1.15rem;
+          }
+          .arch-modal-body {
+            padding: 1rem;
+            gap: 1.25rem;
+          }
+          .metrics-grid {
+            grid-template-columns: 1fr;
+          }
+          .arch-modal-footer {
+            padding: 0.85rem 1rem;
+          }
+        }
       `}</style>
     </div>
   );

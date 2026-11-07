@@ -601,10 +601,30 @@ export default function CountrySelector({
           text-align: center;
         }
 
-        /* Tablet Responsive Viewports (<= 768px) */
+        /* Laptop Viewports (1024px - 1440px) */
+        @media (max-width: 1440px) {
+          .selector-section {
+            padding: 1.15rem 1.35rem;
+          }
+        }
+
+        /* Tablet Responsive Viewports (<= 1024px) */
+        @media (max-width: 1024px) {
+          .selector-section {
+            padding: 1.1rem;
+            gap: 1rem;
+          }
+          .countries-grid-view {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.85rem;
+            max-height: 600px;
+          }
+        }
+
+        /* Tablet Portrait & Large Mobile (<= 768px) */
         @media (max-width: 768px) {
           .selector-section {
-            padding: 1.15rem;
+            padding: 1rem;
           }
           .selector-header-row {
             flex-direction: column;
@@ -614,19 +634,6 @@ export default function CountrySelector({
           .selector-right-controls {
             width: 100%;
             justify-content: space-between;
-          }
-          .countries-grid-view {
-            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-            gap: 0.75rem;
-            max-height: 580px;
-          }
-        }
-
-        /* Mobile Phone Viewports (<= 640px) */
-        @media (max-width: 640px) {
-          .selector-section {
-            padding: 0.85rem;
-            border-radius: var(--radius-md);
           }
           .filter-bar {
             flex-direction: column;
@@ -641,20 +648,40 @@ export default function CountrySelector({
             width: 100%;
             justify-content: space-between;
           }
-          .country-card {
-            min-width: 140px;
-            max-width: 155px;
-            padding: 0.65rem;
-          }
-          .country-flag-box {
-            height: 75px;
+          .countries-grid-view {
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 0.75rem;
+            max-height: 540px;
           }
         }
 
-        /* Small Phones (<= 420px) */
-        @media (max-width: 420px) {
+        /* Mobile Phone Viewports (<= 640px) */
+        @media (max-width: 640px) {
+          .selector-section {
+            padding: 0.8rem;
+            border-radius: var(--radius-md);
+          }
+          .country-card {
+            min-width: 135px;
+            max-width: 150px;
+            padding: 0.6rem;
+          }
+          .country-flag-box {
+            height: 72px;
+          }
+          .region-pill {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.78rem;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .view-mode-btn {
+            padding: 0.25rem 0.5rem;
+          }
           .view-mode-btn span {
-            display: none;
+            font-size: 0.74rem;
           }
           .countries-grid-view {
             grid-template-columns: repeat(2, 1fr);
@@ -663,6 +690,13 @@ export default function CountrySelector({
           .countries-grid-view .country-card {
             min-width: 0;
             max-width: none;
+          }
+        }
+
+        /* Very Small Phones (<= 380px) */
+        @media (max-width: 380px) {
+          .view-mode-btn span {
+            display: none;
           }
         }
       `}</style>

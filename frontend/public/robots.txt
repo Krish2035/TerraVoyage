@@ -1,0 +1,32 @@
+# TerraVoyage Robots.txt - Search Engine Optimization & Crawling Directives
+# Website: https://terravoyage.vercel.app/
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /assets/
+Allow: /manifest.json
+Allow: /sitemap.xml
+
+# Major search crawler permissions
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Canonical Sitemap location
+Sitemap: https://terravoyage.vercel.app/sitemap.xml
+

@@ -362,6 +362,47 @@ export default function TravelPhrasebookWidget({ country }) {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.05); }
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .phrasebook-container {
+            padding: 1.15rem 1.35rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .phrasebook-container {
+            padding: 1rem;
+            gap: 0.85rem;
+          }
+          .pb-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+          }
+          .pb-tabs {
+            width: 100%;
+          }
+          .pb-tab-btn {
+            flex: 1;
+            text-align: center;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .phrase-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 0.95rem;
+          }
+          .btn-phrase-speak {
+            width: 100%;
+            justify-content: center;
+          }
+        }
       `}</style>
     </div>
   );

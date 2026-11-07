@@ -234,6 +234,23 @@ export default function FlightHubsWidget({ country }) {
           color: #38bdf8;
           font-family: var(--font-mono);
         }
+
+        @media (max-width: 640px) {
+          .flight-hubs-card {
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .flight-actions-row {
+            width: 100%;
+          }
+          .flight-link-btn {
+            flex: 1;
+            justify-content: center;
+          }
+          .airports-grid {
+            grid-template-columns: 1fr;
+          }
+        }
       `}</style>
     </div>
   );

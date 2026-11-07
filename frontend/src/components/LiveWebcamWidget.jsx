@@ -544,6 +544,30 @@ export default function LiveWebcamWidget({ country }) {
           padding-top: 0.5rem;
           border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        @media (max-width: 640px) {
+          .webcam-widget-card {
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .cam-header-actions {
+            width: 100%;
+            flex-wrap: wrap;
+          }
+          .cam-action-btn {
+            flex: 1;
+            justify-content: center;
+          }
+          .cam-selector-bar {
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+          }
+          .cam-footer-caption {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+          }
+        }
       `}</style>
     </div>
   );

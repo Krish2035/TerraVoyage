@@ -49,13 +49,25 @@ export default function Navbar({
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1024) {
+      if (window.innerWidth > 1080) {
         setIsMobileMenuOpen(false);
       }
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    if (isMobileMenuOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="navbar-wrapper glass-panel">
@@ -232,6 +244,15 @@ export default function Navbar({
           </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Backdrop for tap-outside-to-close */}
+      {isMobileMenuOpen && (
+        <div 
+          className="mobile-drawer-backdrop" 
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Mobile & Tablet Responsive Navigation Sheet */}
       {isMobileMenuOpen && (
@@ -582,6 +603,14 @@ export default function Navbar({
         .btn-mobile-menu-toggle {
           display: none;
         }
+        .mobile-drawer-backdrop {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.65);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          z-index: 90;
+        }
         .mobile-nav-drawer {
           position: absolute;
           top: calc(100% + 0.6rem);
@@ -598,6 +627,9 @@ export default function Navbar({
           gap: 1rem;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), var(--shadow-glow);
           z-index: 100;
+          max-height: calc(85vh - 70px);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
         .mobile-drawer-top {
           display: flex;
@@ -683,14 +715,29 @@ export default function Navbar({
             padding: 0.44rem 0.58rem;
           }
         }
-        @media (max-width: 1280px) {
+
+        /* Laptop Viewports (<= 1440px) */
+        @media (max-width: 1440px) {
           .arch-badge.desktop-only {
             display: none !important;
           }
         }
 
-        /* Tablet & Mobile Viewports (<= 1024px) */
-        @media (max-width: 1024px) {
+        /* Compact Laptop / Tablet Landscape (<= 1240px) */
+        @media (max-width: 1240px) {
+          .btn-primary.desktop-only .nav-btn-text {
+            display: none;
+          }
+          .btn-primary.desktop-only {
+            padding: 0.48rem 0.65rem;
+          }
+          .lang-selector-box.desktop-only {
+            padding: 0.3rem 0.4rem;
+          }
+        }
+
+        /* Tablet & Mobile Viewports (<= 1080px) */
+        @media (max-width: 1080px) {
           .desktop-only, .desktop-nav-tool {
             display: none !important;
           }
@@ -711,18 +758,28 @@ export default function Navbar({
             display: none;
           }
           .brand-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
           }
           .brand-icon-wrapper {
             width: 36px;
             height: 36px;
           }
           .navbar-wrapper {
-            padding: 0.6rem 0.85rem;
-            top: 0.5rem;
+            padding: 0.55rem 0.75rem;
+            top: 0.4rem;
+            margin-bottom: 0.25rem;
           }
           .btn-nav-itinerary .nav-btn-text {
             display: none;
+          }
+          .navbar-controls-group {
+            margin-left: 0.15rem;
+            padding-left: 0.35rem;
+          }
+          .mobile-nav-drawer {
+            padding: 1rem;
+            gap: 0.85rem;
+            max-height: calc(88vh - 60px);
           }
           .mobile-drawer-grid {
             grid-template-columns: 1fr;

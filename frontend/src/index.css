@@ -178,32 +178,114 @@ input, select, textarea {
   animation: scaleIn var(--transition-normal) forwards;
 }
 
-/* Global App Container */
+/* Color Utilities */
+.text-cyan { color: #38bdf8 !important; }
+.text-gold { color: #f59e0b !important; }
+.text-emerald { color: #10b981 !important; }
+.text-rose { color: #f43f5e !important; }
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* Global App Container & Responsive Breakpoints */
 .app-container {
   max-width: 1540px;
   width: 100%;
   margin: 0 auto;
-  padding: 1.5rem 2rem 4rem 2rem;
+  padding: 1.25rem 2rem 4rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2.25rem;
 }
 
+/* Common Modal Backdrop Standard */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Modal Close Button Standard */
+.modal-close-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+.modal-close-btn:hover {
+  background: rgba(244, 63, 94, 0.2);
+  color: #f43f5e;
+  border-color: rgba(244, 63, 94, 0.4);
+}
+
+/* Laptop Viewport (1024px - 1440px) */
+@media (max-width: 1440px) {
+  .app-container {
+    padding: 1rem 1.5rem 4rem 1.5rem;
+    gap: 2rem;
+  }
+}
+
+/* Tablet Viewports (768px - 1024px) */
+@media (max-width: 1024px) {
+  .app-container {
+    padding: 0.85rem 1.25rem 4.5rem 1.25rem;
+    gap: 1.75rem;
+  }
+  .modal-backdrop {
+    padding: 1rem;
+  }
+}
+
+/* Mobile & Small Tablets (<= 768px) */
 @media (max-width: 768px) {
   .app-container {
-    padding: 0.75rem 0.75rem 5rem 0.75rem;
-    gap: 1.5rem;
+    padding: 0.65rem 0.75rem calc(5rem + env(safe-area-inset-bottom, 0px)) 0.75rem;
+    gap: 1.4rem;
   }
   
-  /* Mobile touch responsiveness and tap targets */
-  button, input, select, textarea {
+  .modal-backdrop {
+    padding: 0.5rem;
+  }
+
+  /* Prevent automatic iOS Safari zoom-in on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+    touch-action: manipulation;
+  }
+
+  button {
     touch-action: manipulation;
   }
 }
 
+/* Small Phones (<= 480px) */
 @media (max-width: 480px) {
   .app-container {
-    padding: 0.5rem 0.5rem 5.5rem 0.5rem;
-    gap: 1.2rem;
+    padding: 0.45rem 0.45rem calc(5.5rem + env(safe-area-inset-bottom, 0px)) 0.45rem;
+    gap: 1.1rem;
+  }
+
+  .modal-backdrop {
+    padding: 0.35rem 0.35rem calc(0.35rem + env(safe-area-inset-bottom, 0px)) 0.35rem;
   }
 }

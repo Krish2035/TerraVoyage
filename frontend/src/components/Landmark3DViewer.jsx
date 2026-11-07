@@ -250,6 +250,31 @@ export default function Landmark3DViewer({ attraction, country }) {
     isDraggingRef.current = false;
   };
 
+  // Touch handlers for mobile & tablet 3D inspection
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      isDraggingRef.current = true;
+      lastMouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      setAutoRotate(false);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDraggingRef.current || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - lastMouseRef.current.x;
+    const dy = e.touches[0].clientY - lastMouseRef.current.y;
+    lastMouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+
+    setRotation(prev => ({
+      x: Math.max(-0.8, Math.min(1.2, prev.x + dy * 0.01)),
+      y: prev.y + dx * 0.01
+    }));
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+  };
+
   const handleResetCamera = () => {
     setRotation({ x: 0.35, y: 0.5 });
     setZoom(1);
@@ -318,6 +343,9 @@ export default function Landmark3DViewer({ attraction, country }) {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <canvas 
           ref={canvasRef} 
@@ -465,6 +493,21 @@ export default function Landmark3DViewer({ attraction, country }) {
           color: #38bdf8;
           font-weight: 700;
           font-family: var(--font-mono);
+        }
+
+        @media (max-width: 640px) {
+          .canvas-container {
+            height: 280px;
+          }
+          .inspector-controls-bar {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.6rem;
+            padding: 0.65rem 0.85rem;
+          }
+          .inspector-btn-cluster {
+            justify-content: space-between;
+          }
         }
       `}</style>
     </div>

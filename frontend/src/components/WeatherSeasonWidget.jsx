@@ -504,6 +504,55 @@ export default function WeatherSeasonWidget({ country, attraction }) {
           padding: 0.15rem 0.5rem;
           border-radius: 4px;
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .weather-season-container {
+            padding: 1.15rem 1.35rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .weather-season-container {
+            padding: 1rem;
+            gap: 0.85rem;
+          }
+          .ws-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+          }
+          .ws-weather-card {
+            padding: 0.85rem 1rem;
+          }
+          .ws-season-card {
+            padding: 0.85rem 1rem;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .ws-weather-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+          }
+          .ws-weather-meta {
+            align-items: flex-start;
+            width: 100%;
+          }
+          .ws-season-top {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.35rem;
+          }
+          .ws-season-specs {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+          }
+        }
       `}</style>
     </div>
   );

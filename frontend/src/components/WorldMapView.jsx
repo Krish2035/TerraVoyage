@@ -424,6 +424,51 @@ export default function WorldMapView({
           opacity: 0.92;
           transform: translateY(-1px);
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .map-toolbar {
+            padding: 0.75rem 1rem;
+          }
+          .map-country-tooltip {
+            bottom: 1rem;
+            right: 1rem;
+            width: 290px;
+            padding: 1rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .map-toolbar {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.65rem;
+          }
+          .map-country-tooltip {
+            position: relative;
+            bottom: auto;
+            right: auto;
+            width: 100%;
+            margin-top: 0.75rem;
+            box-shadow: none;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .map-stats-badge {
+            font-size: 0.75rem;
+            flex-wrap: wrap;
+          }
+          .tooltip-stats-row {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25rem;
+          }
+          .t-val {
+            font-size: 0.72rem;
+          }
+        }
       `}</style>
     </div>
   );

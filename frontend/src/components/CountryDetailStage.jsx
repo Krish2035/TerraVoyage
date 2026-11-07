@@ -1076,10 +1076,34 @@ export default function CountryDetailStage({ country, onOpenCompare, onAddMultip
           color: var(--text-secondary);
         }
 
+        /* Laptop Responsive Viewports (1024px - 1366px) */
+        @media (max-width: 1366px) {
+          .stage-split-grid {
+            grid-template-columns: 320px 1fr;
+            gap: 1.5rem;
+          }
+          .essential-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .stat-card-wide {
+            grid-column: span 2;
+          }
+        }
+
         /* Tablet Responsive Viewports (<= 1024px) */
         @media (max-width: 1024px) {
           .country-detail-container {
             padding: 1.5rem;
+          }
+          .stage-split-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+          .essential-stats-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          .stat-card-wide {
+            grid-column: span 3;
           }
         }
 
@@ -1094,6 +1118,12 @@ export default function CountryDetailStage({ country, onOpenCompare, onAddMultip
             width: 100%;
             justify-content: space-between;
           }
+          .essential-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .stat-card-wide {
+            grid-column: span 2;
+          }
         }
 
         /* Small Mobile Viewports (<= 640px) */
@@ -1101,7 +1131,7 @@ export default function CountryDetailStage({ country, onOpenCompare, onAddMultip
           .country-detail-container {
             padding: 0.95rem;
             border-radius: var(--radius-md);
-            gap: 1.5rem;
+            gap: 1.35rem;
           }
           .headline-audio-row {
             gap: 0.5rem;
@@ -1121,6 +1151,28 @@ export default function CountryDetailStage({ country, onOpenCompare, onAddMultip
             flex-direction: column;
             align-items: flex-start;
             gap: 0.75rem;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .essential-stats-grid {
+            grid-template-columns: 1fr;
+          }
+          .stat-card-wide {
+            grid-column: span 1;
+          }
+          .headline-audio-row {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .banner-actions-right {
+            flex-direction: column;
+            align-items: stretch;
+          }
+          .btn-compare-country, .banner-badge {
+            width: 100%;
+            justify-content: center;
           }
         }
       `}</style>

@@ -195,6 +195,21 @@ export default function TimezoneClockWidget({ country }) {
           font-size: 0.72rem;
           color: var(--text-muted);
         }
+
+        @media (max-width: 640px) {
+          .timezone-clock-container {
+            padding: 0.85rem 1rem;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+          }
+          .tz-daylight-status {
+            align-items: flex-start;
+          }
+          .tz-label-row {
+            flex-wrap: wrap;
+          }
+        }
       `}</style>
     </div>
   );

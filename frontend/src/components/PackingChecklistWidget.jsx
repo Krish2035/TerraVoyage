@@ -292,6 +292,43 @@ export default function PackingChecklistWidget({ country }) {
           background: #10b981;
           color: #ffffff;
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .packing-widget-container {
+            padding: 1.15rem 1.35rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .packing-widget-container {
+            padding: 1rem;
+            gap: 0.85rem;
+          }
+          .pw-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+          }
+          .pw-header-actions {
+            width: 100%;
+            justify-content: space-between;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .pw-add-form {
+            flex-direction: column;
+          }
+          .pw-add-btn {
+            justify-content: center;
+          }
+          .pw-item-row {
+            padding: 0.45rem 0.6rem;
+          }
+        }
       `}</style>
     </div>
   );

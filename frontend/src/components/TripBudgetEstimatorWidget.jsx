@@ -377,6 +377,20 @@ export default function TripBudgetEstimatorWidget({ country }) {
           color: #ffffff;
           font-family: var(--font-mono);
         }
+
+        @media (max-width: 640px) {
+          .trip-budget-widget {
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .tier-selector-pills {
+            flex-direction: column;
+          }
+          .btn-copy-budget {
+            width: 100%;
+            justify-content: center;
+          }
+        }
       `}</style>
     </div>
   );

@@ -69,6 +69,30 @@ export default function InteractiveWorldMap({
     setIsDragging(false);
   };
 
+  // Touch handlers for mobile & tablet drag/pan
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStart({
+        x: e.touches[0].clientX - pan.x,
+        y: e.touches[0].clientY - pan.y
+      });
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (isDragging && e.touches.length === 1) {
+      setPan({
+        x: e.touches[0].clientX - dragStart.x,
+        y: e.touches[0].clientY - dragStart.y
+      });
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   // Filter countries matching search or region
   const mappedCountries = useMemo(() => {
     return countries.map(country => {
@@ -141,6 +165,9 @@ export default function InteractiveWorldMap({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <svg 
           viewBox={`0 0 ${mapWidth} ${mapHeight}`} 
@@ -399,9 +426,41 @@ export default function InteractiveWorldMap({
           overflow: hidden;
           cursor: grab;
           user-select: none;
+          touch-action: none;
         }
         .map-viewport.is-dragging {
           cursor: grabbing;
+        }
+
+        /* Responsive Map Viewport Heights */
+        @media (max-width: 1024px) {
+          .map-viewport {
+            height: 400px;
+          }
+          .map-toolbar {
+            padding: 0.75rem 1rem;
+          }
+        }
+        @media (max-width: 640px) {
+          .map-viewport {
+            height: 320px;
+          }
+          .map-toolbar {
+            padding: 0.65rem 0.85rem;
+          }
+          .map-footer-bar {
+            padding: 0.65rem 0.85rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+          }
+          .map-legend {
+            flex-wrap: wrap;
+            gap: 0.75rem;
+          }
+          .map-stat-pill {
+            display: none;
+          }
         }
         .world-map-svg {
           width: 100%;

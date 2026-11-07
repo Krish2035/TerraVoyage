@@ -229,6 +229,45 @@ export default function VisaCheckerWidget({ country }) {
           color: var(--accent-emerald);
           flex-shrink: 0;
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .visa-checker-container {
+            padding: 1.15rem 1.35rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .visa-checker-container {
+            padding: 1rem;
+            gap: 0.85rem;
+          }
+          .vc-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.6rem;
+          }
+          .vc-passport-selector {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .vc-select {
+            flex: 1;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .vc-status-top {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+          }
+          .vc-status-card, .vc-checklist-card {
+            padding: 0.85rem 1rem;
+          }
+        }
       `}</style>
     </div>
   );

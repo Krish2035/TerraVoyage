@@ -386,6 +386,23 @@ export default function CulturalEtiquetteWidget({ country }) {
           margin: 0;
           line-height: 1.4;
         }
+
+        @media (max-width: 640px) {
+          .cultural-etiquette-card {
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .etiquette-two-col-grid {
+            grid-template-columns: 1fr;
+          }
+          .dos-cards-grid {
+            grid-template-columns: 1fr;
+          }
+          .calc-row {
+            flex-direction: column;
+            align-items: stretch;
+          }
+        }
       `}</style>
     </div>
   );

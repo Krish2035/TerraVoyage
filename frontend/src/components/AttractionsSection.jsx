@@ -663,23 +663,34 @@ export default function AttractionsSection({
           color: var(--accent-emerald);
         }
 
-        /* Tablet Responsive Viewports (<= 1024px) */
-        @media (max-width: 1024px) {
+        /* Laptop Viewports (1024px - 1440px) */
+        @media (max-width: 1440px) {
           .attractions-container {
             padding: 1.5rem;
           }
           .attractions-grid {
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.25rem;
+          }
+        }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .attractions-container {
+            padding: 1.35rem;
+          }
+          .attractions-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.15rem;
           }
         }
 
         /* Mobile Phone Viewports (<= 640px) */
         @media (max-width: 640px) {
           .attractions-container {
-            padding: 0.95rem;
+            padding: 0.9rem;
             border-radius: var(--radius-md);
-            gap: 1.25rem;
+            gap: 1.2rem;
           }
           .attractions-header {
             flex-direction: column;
@@ -687,17 +698,52 @@ export default function AttractionsSection({
             gap: 1rem;
           }
           .section-heading {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
           }
           .attractions-grid {
             grid-template-columns: 1fr;
             gap: 1rem;
           }
           .card-image-wrapper {
-            height: 185px;
+            height: 190px;
           }
           .attraction-filter-row {
             padding: 0.75rem;
+            flex-direction: column;
+            gap: 0.65rem;
+          }
+          .attraction-search-box {
+            width: 100%;
+          }
+          .attr-category-pills {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.25rem;
+          }
+          .load-more-container {
+            flex-direction: column;
+            align-items: stretch;
+          }
+          .btn-load-more, .btn-show-all {
+            width: 100%;
+            justify-content: center;
+          }
+        }
+
+        /* Small Phones (<= 420px) */
+        @media (max-width: 420px) {
+          .card-quick-actions .quick-badge-pill span {
+            display: none;
+          }
+          .card-quick-actions .quick-badge-pill {
+            padding: 0.25rem 0.45rem;
+          }
+          .card-body {
+            padding: 1rem;
+          }
+          .attraction-name {
+            font-size: 1.15rem;
           }
         }
       `}</style>

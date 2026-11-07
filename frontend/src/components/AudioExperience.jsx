@@ -456,6 +456,42 @@ export function NationalAnthemPlayer({ country }) {
           color: #ffffff;
           background: rgba(255, 255, 255, 0.15);
         }
+
+        /* Tablet Responsive Viewports (768px - 1024px) */
+        @media (max-width: 1024px) {
+          .anthem-player-card {
+            padding: 0.85rem 1.2rem;
+          }
+        }
+
+        /* Mobile Responsive Viewports (<= 768px) */
+        @media (max-width: 768px) {
+          .anthem-player-card {
+            padding: 0.75rem 1rem;
+            gap: 0.75rem;
+          }
+          .anthem-left {
+            gap: 0.65rem;
+          }
+          .anthem-title-text {
+            font-size: 0.88rem;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          .anthem-player-card {
+            flex-direction: column;
+            align-items: stretch;
+          }
+          .anthem-controls {
+            justify-content: space-between;
+          }
+          .btn-anthem-play {
+            flex: 1;
+            justify-content: center;
+          }
+        }
       `}</style>
     </div>
   );

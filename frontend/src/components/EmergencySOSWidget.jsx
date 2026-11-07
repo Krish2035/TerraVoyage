@@ -417,6 +417,22 @@ export default function EmergencySOSWidget({ country }) {
           color: #000000;
           transform: scale(1.1);
         }
+
+        @media (max-width: 640px) {
+          .emergency-sos-card {
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .sos-hotline-grid {
+            grid-template-columns: 1fr;
+          }
+          .embassy-card-grid {
+            grid-template-columns: 1fr;
+          }
+          .phrase-cards-container {
+            grid-template-columns: 1fr;
+          }
+        }
       `}</style>
     </div>
   );

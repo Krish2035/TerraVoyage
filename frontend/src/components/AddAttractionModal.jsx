@@ -308,6 +308,29 @@ export default function AddAttractionModal({ isOpen, country, onClose, onAttract
           font-weight: 600;
           box-shadow: 0 4px 12px var(--accent-gold-glow);
         }
+
+        @media (max-width: 640px) {
+          .add-modal-card {
+            width: 100%;
+            max-height: 94vh;
+            border-radius: var(--radius-md);
+          }
+          .add-modal-header {
+            padding: 1rem 1.15rem;
+          }
+          .add-form-scroll {
+            padding: 1rem;
+            gap: 1rem;
+          }
+          .form-actions {
+            flex-direction: column-reverse;
+          }
+          .btn-cancel, .btn-submit {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+          }
+        }
       `}</style>
     </div>
   );
