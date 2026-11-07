@@ -1,5 +1,5 @@
 # TerraVoyage Robots.txt - Search Engine Optimization & Crawling Directives
-# Website: https://terravoyage.vercel.app/
+# Website: https://terra-voyage-one.vercel.app/
 
 User-agent: *
 Allow: /
@@ -28,5 +28,4 @@ User-agent: YandexBot
 Allow: /
 
 # Canonical Sitemap location
-Sitemap: https://terravoyage.vercel.app/sitemap.xml
-
+Sitemap: https://terra-voyage-one.vercel.app/sitemap.xml

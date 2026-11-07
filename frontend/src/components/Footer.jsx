@@ -169,13 +169,13 @@ export default function Footer({ onOpenArchitecture, onOpenPassport, onOpenQuiz 
             </li>
             <li>
               <a 
-                href="https://terravoyage.vercel.app/" 
+                href="https://terra-voyage-one.vercel.app/" 
                 target="_blank" 
                 rel="noreferrer"
                 className="footer-nav-link"
               >
                 <ExternalLink size={13} />
-                <span>terravoyage.vercel.app</span>
+                <span>terra-voyage-one.vercel.app</span>
               </a>
             </li>
           </ul>

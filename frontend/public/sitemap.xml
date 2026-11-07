@@ -5,59 +5,58 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- TerraVoyage Homepage (Deployed on Vercel) -->
   <url>
-    <loc>https://terravoyage.vercel.app/</loc>
+    <loc>https://terra-voyage-one.vercel.app/</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- Interactive World Map Exploration -->
   <url>
-    <loc>https://terravoyage.vercel.app/#interactive-world-map</loc>
+    <loc>https://terra-voyage-one.vercel.app/#interactive-world-map</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <!-- 195 Sovereign Countries Directory -->
   <url>
-    <loc>https://terravoyage.vercel.app/#country-directory</loc>
+    <loc>https://terra-voyage-one.vercel.app/#country-directory</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <!-- Premier Tourist Attractions & 3D Landmarks -->
   <url>
-    <loc>https://terravoyage.vercel.app/#tourist-attractions</loc>
+    <loc>https://terra-voyage-one.vercel.app/#tourist-attractions</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <!-- Smart Trip Itinerary Generator -->
   <url>
-    <loc>https://terravoyage.vercel.app/#trip-itinerary-builder</loc>
+    <loc>https://terra-voyage-one.vercel.app/#trip-itinerary-builder</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Live Currency Converter & Traveler Cost of Living -->
+  <!-- Live Currency Converter & Daily Budget -->
   <url>
-    <loc>https://terravoyage.vercel.app/#currency-budget-calculator</loc>
+    <loc>https://terra-voyage-one.vercel.app/#currency-budget-calculator</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Global Visa & Passport Requirements Checker -->
+  <!-- Global Visa & Entry Requirements Checker -->
   <url>
-    <loc>https://terravoyage.vercel.app/#visa-checker</loc>
+    <loc>https://terra-voyage-one.vercel.app/#visa-checker</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <!-- Essential Local Travel Phrasebook & Speech Audio -->
   <url>
-    <loc>https://terravoyage.vercel.app/#travel-phrasebook</loc>
+    <loc>https://terra-voyage-one.vercel.app/#travel-phrasebook</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
-
